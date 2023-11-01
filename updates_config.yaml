@@ -1,0 +1,5 @@
+textReplacement:
+  - lookFor: "\"name\": \"react-next-template\""
+    replaceBy: "\"name\": \"PROJECT_SLUG\""
+filesToRemove:
+  - updates_config.yaml

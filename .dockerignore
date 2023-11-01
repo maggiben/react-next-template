@@ -1,0 +1,9 @@
+.env
+.env.template
+.editorconfig
+.next/
+.vscode/
+node_modules/
+dist
+deploy
+Dockerfile
