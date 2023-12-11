@@ -11,6 +11,13 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  
+  serverRuntimeConfig: {
+    apiSearch: process.env.SEARCH_ENDPOINT,
+  },
+  publicRuntimeConfig: {
+    apiSearch: process.env.SEARCH_ENDPOINT,
+  },
 
   async redirects() {
     return [
