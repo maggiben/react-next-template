@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import { Heading, TextBody, ButtonGroup, Checkbox, Label, Grid, GridItem, DropdownButton, Button } from "@fravega-it/bumeran-ds-fvg";
 import { List, ListItem, ListHeader, ListDivider } from '@fravega-it/bumeran-ds-fvg'
 import { TextInput } from '@fravega-it/bumeran-ds-fvg'
@@ -6,11 +7,11 @@ import { CheckCircleIcon, CloseCircleIcon } from '@fravega-it/bumeran-ds-fvg'
 import { TableView, Column, Cell } from '@fravega-it/bumeran-ds-fvg'
 import DuplicateModal from './duplicateModal';
 import ClientCard from './ClientCard';
+import EmptyCard from './EmptyCard';
 import FilterForm, { FormValues } from '../forms/FilterForm';
 import api from '../../services/api';
-import Image from "next/image";
 import styled from "styled-components";
-import logo from "@images/bumeran-iso.svg";
+import { personState } from '../../states/atoms';
 import getConfig from "next/config";
 
 const Container = styled.div`
@@ -45,11 +46,17 @@ export type Person = {
     confirmed: boolean;
   }
   city: string;
+  cp: string;  
   selected: boolean;
+  status: {
+    label: string;
+    color: string;
+  }
 }
 
 const Content = (): JSX.Element => {
   const config = getConfig();
+  const [personX, setPersonX] = useRecoilState(personState);
   const [open, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -77,6 +84,10 @@ const Content = (): JSX.Element => {
   }, []);
 
   const onSearch = (data: FormValues) => {
+    /*
+      TODO:
+      resolver problema multiples personas mismo id, email, etc...
+    */
     const person = persons.filter((persons) => {
       return data.documentNumber === persons.identification.number;
     });
@@ -100,10 +111,9 @@ const Content = (): JSX.Element => {
             <FilterForm onSearch={onSearch} />
           </DropdownButton>  
         </GridItem>
-        <GridItem xs={8}>
-        </GridItem>
         <GridItem xs={12}>
           { person && <ClientCard person={person} /> }
+          { !person && <EmptyCard /> }
         </GridItem>
       </Grid>
     </Container>

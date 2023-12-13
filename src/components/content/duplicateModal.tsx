@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { Modal, ModalHeader, ModalBody, ModalFooter, NotificationIcon, TextBody, ButtonGroup, Button } from '@fravega-it/bumeran-ds-fvg';
 import { TableView, Column, Cell, Label, Radio } from '@fravega-it/bumeran-ds-fvg'
 import { Person } from './index';
+import { personState } from '../../states/atoms';
 
 type DuplicateModalProps = {
   isOpen?: boolean;
@@ -11,8 +13,9 @@ type DuplicateModalProps = {
 }
 
 const DuplicateModal = (props: DuplicateModalProps) => {
+  const [person, setPerson] = useRecoilState(personState);
   const {isOpen, onSelectPersonModal, closeModal, persons} = props;
-  const [personsObj, setPersonsObj] = useState<Person[]>(props.persons);
+  const [personsObj, setPersonsObj] = useState<Person[]>({...props.persons});
 
   useEffect(() => {
     setPersonsObj(props.persons);
@@ -29,6 +32,10 @@ const DuplicateModal = (props: DuplicateModalProps) => {
     });
     setPersonsObj(p)
   }
+
+  const setSelectedPerson = () => {
+    setPerson(personsObj[personsObj.findIndex((person) => person.selected)]);
+  };
 
   const handleChange = (id: string, selected: boolean) => () => {
     updatePersonSelectedStatus(id);
@@ -77,7 +84,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
           size="s"
           align="left"
           primaryLabel="Accept"
-          onClickPrimary={() => onSelectPersonModal(personsObj[personsObj.findIndex((person) => person.selected)])}
+          onClickPrimary={() => {setSelectedPerson(); onSelectPersonModal(personsObj[personsObj.findIndex((person) => person.selected)]);}}
           secondaryLabel="Cancel"
           onClickSecondary={closeModal}
         />
