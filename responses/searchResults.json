@@ -1,3 +1,70 @@
-[{
-    "namw": "pedro"
-}]
+[
+    {
+        "id": "001",
+        "name": "Federico",
+        "age": 25,
+        "identification": {
+            "type": "dni",
+            "number": 30000000
+        },
+        "profession": "Ingeniero",
+        "faceapi": true,
+        "email": {
+            "address": "federico@gmail.com",
+            "confirmed": false
+        },
+        "city": "Madrid",
+        "selected": false
+    },
+    {
+        "id": "002",
+        "name": "Facundo",
+        "age": 30,
+        "identification": {
+            "type": "dni",
+            "number": 30000001
+        },
+        "faceapi": false,
+        "email": {
+            "address": "facundo@gmail.com",
+            "confirmed": false
+        },
+        "profession": "Abogado",
+        "city": "Barcelona",
+        "selected": false
+    },
+    {
+        "id": "003",
+        "name": "Facundo",
+        "age": 30,
+        "identification": {
+            "type": "dni",
+            "number": 30000001
+        },
+        "faceapi": false,
+        "email": {
+            "address": "facundo@gmail.com",
+            "confirmed": false
+        },
+        "profession": "Concierge",
+        "city": "Madrid",
+        "selected": false
+    },
+    {
+        "id": "004",
+        "name": "Jeremías",
+        "age": 35,
+        "identification": {
+            "type": "dni",
+            "number": 30000002
+        },
+        "faceapi": true,
+        "email": {
+            "address": "jeremías@gmail.com",
+            "confirmed": true
+        },
+        "profession": "Médico",
+        "city": "Valencia",
+        "selected": false
+    }
+]

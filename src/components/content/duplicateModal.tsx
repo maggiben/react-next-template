@@ -1,60 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, NotificationIcon, TextBody, ButtonGroup, Button } from '@fravega-it/bumeran-ds-fvg';
 import { TableView, Column, Cell, Label, Radio } from '@fravega-it/bumeran-ds-fvg'
+import { Person } from './index';
 
 type DuplicateModalProps = {
   isOpen?: boolean;
-  closeModal: () => boolean;
+  closeModal: (person?: Person) => boolean;
+  onSelectPersonModal: (person?: Person) => boolean;
+  persons: Person[];
 }
 
 const DuplicateModal = (props: DuplicateModalProps) => {
-  const { isOpen, closeModal } = props;
-  const personsObj = [
-    {
-      id: '001',
-      name: 'Federico',
-      age: 25,
-      proffession: 'Ingeniero',
-      faceapi: true,
-      email: {
-        address: 'federico@gmail.com',
-        confirmed: false
-      },
-      city: 'Madrid',
-      selected: false,
-    },
-    {
-      id: '002',
-      name: 'Facundo',
-      age: 30,
-      faceapi: false,
-      email: {
-        address: 'facundo@gmail.com',
-        confirmed: false
-      },
-      proffession: 'Abogado',
-      city: 'Barcelona',
-      selected: false,
-    },
-    {
-      id: '003',
-      name: 'Jeremías',
-      age: 35,
-      faceapi: true,
-      email: {
-        address: 'jeremías@gmail.com',
-        confirmed: true
-      },
-      proffession: 'Médico',
-      city: 'Valencia',
-      selected: false,
-    },
-  ];
+  const {isOpen, onSelectPersonModal, closeModal, persons} = props;
+  const [personsObj, setPersonsObj] = useState<Person[]>(props.persons);
 
-  const [persons, setPersons] = useState(personsObj);
+  useEffect(() => {
+    setPersonsObj(props.persons);
+  }, [props.persons])
 
   const updatePersonSelectedStatus = (id: string) => {
-    const p = persons.map((person) => {
+    const p = personsObj.map((person) => {
       if(person.id === id) {
         person.selected = true;
       } else {
@@ -62,7 +27,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
       }
       return person;
     });
-    setPersons(p)
+    setPersonsObj(p)
   }
 
   const handleChange = (id: string, selected: boolean) => () => {
@@ -79,7 +44,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
 
       <ModalBody>
         <TableView
-          items={persons}
+          items={personsObj}
           renderColumns={() => (
             <>
               <Column minWidth={20} label="select" />
@@ -94,6 +59,8 @@ const DuplicateModal = (props: DuplicateModalProps) => {
             <>
               {/* <Cell><Radio id={name} label="Radio" onChange={handleChange} name={name} value={name} /></Cell> */}
               {/* <Cell><Radio id={name} label={name} value={name} onChange={handleChange}/></Cell> */}
+
+
               <Cell><Radio id={id} label={name} value={name} checked={selected}  onChange={handleChange(id, selected)}/></Cell>
               <Cell>{name}</Cell>
               <Cell><Label label={faceapi.toString()} color={faceapi ? "green" : "red"} /></Cell>
@@ -110,7 +77,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
           size="s"
           align="left"
           primaryLabel="Accept"
-          onClickPrimary={closeModal}
+          onClickPrimary={() => onSelectPersonModal(personsObj[personsObj.findIndex((person) => person.selected)])}
           secondaryLabel="Cancel"
           onClickSecondary={closeModal}
         />

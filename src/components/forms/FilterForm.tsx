@@ -23,15 +23,14 @@ const schema = yup
     documentNumber: yup.number(),
     email: yup.string().email(),
   })
-  // .required();
+  .test((options, ...rest) => {
+    const { createError } = rest[0];
+    return Object.keys(options).length <= 1 ? createError({path: 'all', message: 'Seleccione al menos una opción', params: options, type: 'global'}) : true;
+  })
+  .required();
 
 const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.Element => {
   const config = getConfig();
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    api.get('/searchResults.json').then((result) => console.log('result', result));
-  }, []);
-
   const { handleSubmit, control, reset, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
@@ -42,7 +41,7 @@ const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.
   const onSubmit = (data: FormValues) => console.log(data);
 
   return (
-    <form>
+    <form style={{ maxWidth: '720px'}}>
       <Grid>
         <GridItem xs={4}>
           <Controller
@@ -82,8 +81,6 @@ const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.
               name="documentType"
               defaultValue={'dni'}
               render={({ field: { onChange, onBlur, value, ref } }) => {
-                // eslint-disable-next-line no-console
-                console.log('onChange', value);
                 return (
                   <Select
                     id="documentType"
@@ -108,12 +105,15 @@ const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.
           <Controller
             control={control}
             name="documentNumber"
+            defaultValue={30000001}
             render={({ field: { onChange, onBlur } }) => {
               return (
                 <NumberInput
                   id="documentNumber"
                   label="Número"
-                  errorMessage="caca"
+                  defaultValue={30000001}
+                  error={Boolean(errors.documentNumber)}
+                  errorMessage={errors.documentNumber?.message}
                   onChange={onChange} // send value to hook form
                   onBlur={onBlur} // notify when input is touched/blur
                 />
@@ -136,7 +136,11 @@ const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.
             
           />
         </GridItem>
-        <GridItem xs={8} alignSelf="end" justifySelf="end">
+        <GridItem xs={3} alignSelf="center" justifySelf="center">
+          {errors.all && <div>Errors: {errors.all.message}</div>}
+          
+        </GridItem>
+        <GridItem xs={5} alignSelf="end" justifySelf="end">
           <ButtonGroup
             primaryLabel="Buscar"
             secondaryLabel="Reset"

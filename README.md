@@ -1,6 +1,6 @@
-# Frávega template
+# Cliente Frontend
 
-Este es un template de proyectos de Frávega basado en [Next.js](https://nextjs.org/).
+Basado en el template de proyectos de Frávega en [Next.js](https://nextjs.org/).
 
 ## Pre-requisitos
 
