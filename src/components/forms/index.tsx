@@ -7,6 +7,11 @@ type FormValues = {
   name: string
 }
 
+type ClientFormProps = {
+  cuid?: string;
+  documentNumber?: string;
+}
+
 const schema = yup
   .object()
   .shape({
@@ -14,7 +19,7 @@ const schema = yup
   })
   .required();
 
-const ClientForm = (): JSX.Element => {
+const ClientForm = ({cuid, documentNumber}: ClientFormProps): JSX.Element => {
   const { handleSubmit, control } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });

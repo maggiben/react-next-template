@@ -11,6 +11,7 @@ import {
   GridItem, 
   Heading, 
   Label,
+  Button,
 } from '@fravega-it/bumeran-ds-fvg'
 
 import { Person } from './index';
@@ -31,6 +32,12 @@ const Centered = styled.div`
   align-items: center;
 `;
 
+const Start = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+`;
+
 type ClientCardProps = {
   isOpen?: boolean;
   person: Person;
@@ -48,7 +55,7 @@ const ClientCard = (props: ClientCardProps) => {
         </GridItem>
         <GridItem xs={6} alignSelf="center" justifySelf="center">
           <Centered>
-            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">Estatus:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.profession} color={person.profession ? "green" : "red"}/>
+            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">Estatus:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status.label} color={person.status.color as 'red' | 'green'}/>
           </Centered>
         </GridItem>
         <GridItem xs={12}>
@@ -60,33 +67,28 @@ const ClientCard = (props: ClientCardProps) => {
                 <Column minWidth={100} label="faceapi" />
                 <Column minWidth={70} label="email" />
                 <Column minWidth={70} label="email confirmed" />
+                <Column minWidth={40} label="resend email" />
                 <Column minWidth={100} label="city" />
               </>
             )}
             renderCells={({ id, name, faceapi, email, city }) => (
               <>
                 <Cell>{name}</Cell>
-                {/* <Cell><Button id={id} label={faceapi.toString()} /></Cell> */}
                 <Cell>
-                  {/* { (function () {
-                      if(faceapi) {
-                        return (
-                          <input type="checkbox" id={id} checked={faceapi} readOnly/>
-                        );
-                      } else {
-                        return <Button id={id} size="s" label="Resend" />
-                      }
-                    })()
-                  } */}
-                  <Label leftIcon={faceapi ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={faceapi.toString()} color={faceapi ? "green" : "red"}/>
+                  <Label leftIcon={faceapi ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={faceapi.toString()} color={faceapi ? "green" : "red"}/>                  
                   </Cell>
-                {/* <Cell><Label label={faceapi.toString()} color={faceapi ? "green" : "red"}/></Cell> */}
                 <Cell>{email.address}</Cell>
-                {/* <Cell><input type="checkbox" id={id} checked={email.confirmed} readOnly/></Cell> */}
                 <Cell>
                   <Label leftIcon={email.confirmed ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={email.confirmed.toString()} color={email.confirmed ? "green" : "red"}/>
                 </Cell>
-                {/* <Cell><Label label={email.confirmed.toString()} color={email.confirmed ? "green" : "red"}/></Cell> */}
+                <Cell>
+                  {(function () {
+                      if(!email.confirmed) {
+                        return <Button id={id} size="s" label="Resend" />
+                      }
+                    })()
+                  }
+                </Cell>
                 <Cell>{city}</Cell>
               </>
             )}

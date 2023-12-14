@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { Modal, ModalHeader, ModalBody, ModalFooter, NotificationIcon, TextBody, ButtonGroup, Button } from '@fravega-it/bumeran-ds-fvg';
 import { TableView, Column, Cell, Label, Radio } from '@fravega-it/bumeran-ds-fvg'
@@ -21,17 +21,20 @@ const DuplicateModal = (props: DuplicateModalProps) => {
     setPersonsObj(props.persons);
   }, [props.persons])
 
-  const updatePersonSelectedStatus = (id: string) => {
-    const p = personsObj.map((person) => {
-      if(person.id === id) {
-        person.selected = true;
-      } else {
-        person.selected = false;
-      }
-      return person;
-    });
-    setPersonsObj(p)
-  }
+  const updatePersonSelectedStatus = useCallback(
+    (id: string) => {
+      const p = personsObj.map((person) => {
+        if(person.id === id) {
+          person.selected = true;
+        } else {
+          person.selected = false;
+        }
+        return person;
+      });
+      setPersonsObj(p)
+    },
+    [personsObj]
+  );
 
   const setSelectedPerson = () => {
     setPerson(personsObj[personsObj.findIndex((person) => person.selected)]);

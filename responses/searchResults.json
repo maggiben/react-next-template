@@ -14,7 +14,11 @@
             "confirmed": false
         },
         "city": "Madrid",
-        "selected": false
+        "selected": false,
+        "status": {
+            "label": "not ok",
+            "color": "red"
+        }
     },
     {
         "id": "002",
@@ -31,7 +35,11 @@
         },
         "profession": "Abogado",
         "city": "Barcelona",
-        "selected": false
+        "selected": false,
+        "status": {
+            "label": "okay",
+            "color": "green"
+        }
     },
     {
         "id": "003",
@@ -48,7 +56,11 @@
         },
         "profession": "Concierge",
         "city": "Madrid",
-        "selected": false
+        "selected": false,
+        "status": {
+            "label": "not ok",
+            "color": "red"
+        }
     },
     {
         "id": "004",
@@ -65,6 +77,10 @@
         },
         "profession": "Médico",
         "city": "Valencia",
-        "selected": false
+        "selected": false,
+        "status": {
+            "label": "okay",
+            "color": "green"
+        }
     }
 ]

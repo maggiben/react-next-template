@@ -13,6 +13,8 @@ import api from '../../services/api';
 import styled from "styled-components";
 import { personState } from '../../states/atoms';
 import getConfig from "next/config";
+import { useRouter } from 'next/router';
+import { result } from 'cypress/types/lodash';
 
 const Container = styled.div`
   display: block;
@@ -56,9 +58,13 @@ export type Person = {
 
 const Content = (): JSX.Element => {
   const config = getConfig();
-  const [personX, setPersonX] = useRecoilState(personState);
+  const router = useRouter();
+  // const [personX, setPersonX] = useRecoilState(personState);
   const [open, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const params = Object.fromEntries(new URLSearchParams(document.location.search));
+
 
   const closeModal = (): boolean =>  {
     setIsModalOpen(false);
@@ -78,28 +84,51 @@ const Content = (): JSX.Element => {
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    api.get('/searchResults.json').then((result) => {
-      setPersons(result);
-    });
+    fetchResults();
   }, []);
+
+  const fetchResults = (data?: FormValues) => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    if (data) {
+      Object.entries(data).forEach((datum) => {
+        urlSearchParams.append(datum[0], datum[1].toString());
+      });
+      return api.get(`/searchResults.json?${urlSearchParams.toString()}`).then((result) => {
+        setPersons(result);
+        return result;
+      });
+    }
+    return api.get('/searchResults.json').then((result) => {
+      setPersons(result);
+      return result;
+    });
+  };
 
   const onSearch = (data: FormValues) => {
     /*
       TODO:
       resolver problema multiples personas mismo id, email, etc...
     */
-    const person = persons.filter((persons) => {
-      return data.documentNumber === persons.identification.number;
+    // eslint-disable-next-line no-console
+    router.push({
+      pathname: document.location.pathname,
+      query: data,
     });
-    if (person.length >= 1 && person.length < 2) {
-      setPersons([...person]);
-      setPerson(person[0]);
-      setIsOpen(false);
-    } else if (person.length >= 2) {
-      setPersons([...person]);
-      setIsOpen(false);
-      setIsModalOpen(true);
-    }
+    fetchResults(data).then((results) => {
+      setPersons(results);
+      const person = persons.filter((persons) => {
+        return data.documentNumber === persons.identification.number;
+      });
+      if (person.length >= 1 && person.length < 2) {
+        // setPersons([...person]);
+        setPerson(person[0]);
+        setIsOpen(false);
+      } else if (person.length >= 2) {
+        // setPersons([...person]);
+        setIsOpen(false);
+        setIsModalOpen(true);
+      }
+    });
   }
 
   return (

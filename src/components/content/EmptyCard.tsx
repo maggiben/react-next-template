@@ -13,7 +13,7 @@ const Card = styled.div`
 const EmptyCard = () => {
   return (
     <Card>
-        <Heading>Bienvenido al buscador de clientes</Heading>
+      <Heading>Bienvenido al buscador de clientes</Heading>
     </Card>
   );
 };
