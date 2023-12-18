@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import * as yup from 'yup';
 import getConfig from "next/config";
-
+import { useRouter } from 'next/router';
 
 export type FormValues = {
   cuid?: string;
@@ -22,6 +22,7 @@ const schema = yup
     documentType: yup.string(),
     documentNumber: yup.number(),
     email: yup.string().email(),
+    all: yup.string(),
   })
   .test((options, ...rest) => {
     const { createError } = rest[0];
@@ -29,89 +30,92 @@ const schema = yup
   })
   .required();
 
-const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.Element => {
+type FilterFormProps = {
+  onSearch: (data: FormValues) => void;
+  documentType?: string;
+  documentNumber?: number;
+  cuid?: number;
+  email?: string;
+}
+  
+const FilterForm = (props: FilterFormProps): JSX.Element => {
+  const router = useRouter();
+  const { onSearch } = props;
   const config = getConfig();
   const { handleSubmit, control, reset, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
   
-  // eslint-disable-next-line no-console
-  console.log('error', errors);
-  // eslint-disable-next-line no-console
-  const onSubmit = (data: FormValues) => console.log(data);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    // Check if the pressed key is Enter (key code 13)
+    if (event.key === 'Enter') {
+      handleSubmit(onSearch ?? onSubmit)();
+    }
+  };
+  
+  const onSubmit = (data: FormValues) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  };
 
   return (
-    <form style={{ maxWidth: '720px'}}>
+    <form onKeyDown={handleKeyDown}>
       <Grid>
         <GridItem xs={4}>
           <Controller
-            render={({ field: { onChange, onBlur, value, ref } }) => (
+            defaultValue={props.cuid?.toString()}
+            render={({ field: { onChange, onBlur } }) => (
               <TextInput
                 id="cuid"
                 label="CUID"
-                placeholder="CUID"
-                errorMessage="caca"
+                defaultValue={props.cuid?.toString()}
+                errorMessage={errors.cuid?.message}
                 onChange={onChange} // send value to hook form
                 onBlur={onBlur} // notify when input is touched/blur
               />
             )}
             name="cuid"
             control={control}
-            
           />
-          
         </GridItem>
         <GridItem xs={4}>
-            {/* <Select
-              id="select-example"
-              options={[
-                { id: '1', label: 'dni' },
-                { id: '2', label: 'libreta civica' },
-                { id: '3', label: 'opción 3' },
-              ]}
-              value={optionSelected}
-              onChange={(option: { id: string; label: string }) =>
-                setOptionSelected(option.id)
-              }
-              placeholder="Tipo de documento"
-              label="Tipo de documento"
-            /> */}
-            <Controller
-              control={control}
-              name="documentType"
-              defaultValue={'dni'}
-              render={({ field: { onChange, onBlur, value, ref } }) => {
-                return (
-                  <Select
-                    id="documentType"
-                    options={[
-                      { id: 'dni', label: 'DNI' },
-                      { id: 'lc', label: 'Libreta Civica' },
-                      { id: 'le', label: 'Libreta de Enrolamiento' },
-                      { id: 'le', label: 'CUIT' },
-                      { id: 'le', label: 'CUIL' },
-                    ]}
-                    value={'dni'}
-                    placeholder="Tipo de documento"
-                    label="Tipo de documento"
-                    onChange={({id}) => onChange(id)}
-                    onBlur={onBlur} // notify when input is touched/blur
-                  />
-                )
-              }}
-            />
+          <Controller
+            control={control}
+            name="documentType"
+            defaultValue={props.documentType ?? 'dni'}
+            render={({ field: { onChange, onBlur, value, ref } }) => {
+              return (
+                <Select
+                  id="documentType"
+                  label="Tipo de documento"
+                  options={[
+                    { id: 'dni', label: 'DNI' },
+                    { id: 'lc', label: 'Libreta Cívica' },
+                    { id: 'le', label: 'Libreta de Enrolamiento' },
+                    { id: 'cuit', label: 'CUIT' },
+                    { id: 'cuil', label: 'CUIL' },
+                  ]}
+                  value={props.documentType ?? 'dni'}
+                  placeholder="Tipo de documento"
+                  errorMessage={errors.documentType?.message}
+                  onChange={({id}) => onChange(id)}
+                  onBlur={onBlur} // notify when input is touched/blur
+                />
+              )
+            }}
+          />
         </GridItem>
         <GridItem xs={4}>
           <Controller
             control={control}
             name="documentNumber"
-            defaultValue={30000001}
+            defaultValue={props.documentNumber}
             render={({ field: { onChange, onBlur } }) => {
               return (
-                <NumberInput
+                <TextInput
                   id="documentNumber"
                   label="Número"
-                  defaultValue={30000001}
+                  defaultValue={props.documentNumber?.toString()}
                   error={Boolean(errors.documentNumber)}
                   errorMessage={errors.documentNumber?.message}
                   onChange={onChange} // send value to hook form
@@ -123,10 +127,13 @@ const FilterForm = ({ onSearch }: { onSearch: (data: FormValues) => void}): JSX.
         </GridItem>
         <GridItem xs={4}>
           <Controller
+            defaultValue={props.email}
             render={({ field: { onChange, onBlur } }) => (
               <TextInput
                 id="email"
                 label="Email"
+                defaultValue={props.email}
+                errorMessage={errors.email?.message}
                 onChange={onChange} // send value to hook form
                 onBlur={onBlur} // notify when input is touched/blur
               />

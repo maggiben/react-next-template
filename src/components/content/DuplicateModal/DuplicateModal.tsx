@@ -2,8 +2,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { Modal, ModalHeader, ModalBody, ModalFooter, NotificationIcon, TextBody, ButtonGroup, Button } from '@fravega-it/bumeran-ds-fvg';
 import { TableView, Column, Cell, Label, Radio } from '@fravega-it/bumeran-ds-fvg'
-import { Person } from './index';
-import { personState } from '../../states/atoms';
+import { Person } from '../index';
+import { personState } from '../../../states/atoms';
 
 type DuplicateModalProps = {
   isOpen?: boolean;
