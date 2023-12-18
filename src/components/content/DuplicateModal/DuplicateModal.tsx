@@ -7,8 +7,8 @@ import { personState } from '../../../states/atoms';
 
 type DuplicateModalProps = {
   isOpen?: boolean;
-  closeModal: (person?: Person) => boolean;
-  onSelectPersonModal: (person?: Person) => boolean;
+  closeModal: (person?: Person) => void;
+  onSelectPersonModal: (person?: Person) => void;
   persons: Person[];
 }
 

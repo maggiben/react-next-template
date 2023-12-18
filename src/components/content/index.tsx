@@ -1,10 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { Heading, TextBody, ButtonGroup, Checkbox, Label, Grid, GridItem, DropdownButton, Button } from "@fravega-it/bumeran-ds-fvg";
-import { List, ListItem, ListHeader, ListDivider } from '@fravega-it/bumeran-ds-fvg'
-import { TextInput } from '@fravega-it/bumeran-ds-fvg'
-import { CheckCircleIcon, CloseCircleIcon } from '@fravega-it/bumeran-ds-fvg'
-import { TableView, Column, Cell } from '@fravega-it/bumeran-ds-fvg'
+import { Grid, GridItem, DropdownButton, Button } from "@fravega-it/bumeran-ds-fvg";
 import DuplicateModal from './DuplicateModal/DuplicateModal';
 import ClientCard from './ClientCard/ClientCard';
 import EmptyCard from './EmptyCard/EmptyCard';
@@ -14,7 +10,6 @@ import styled from "styled-components";
 import { personState } from '../../states/atoms';
 import getConfig from "next/config";
 import { useRouter } from 'next/router';
-import { result } from 'cypress/types/lodash';
 
 const Container = styled.div`
   display: block;
@@ -71,23 +66,20 @@ const Content = (): JSX.Element => {
   // const [personX, setPersonX] = useRecoilState(personState);
   const [open, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const closeModal = (): boolean =>  {
-    setIsModalOpen(false);
-    return false;
-  };
-
-  const onSelectPersonModal = (data?: Person): boolean =>  {
-    if (data) {
-      setPerson(data);
-    }
-    setIsModalOpen(false);
-    return false;
-  };
-
+  const [query, setQuery] = useState<FormValues | undefined>(undefined);
   const [persons, setPersons] = useState<Person[]>([]);
   const [person, setPerson] = useState<Person | undefined>(undefined);
 
+  const closeModal = (): void =>  {
+    return setIsModalOpen(false);
+  };
+
+  const onSelectPersonModal = (data?: Person): void =>  {
+    if (data) {
+      setPerson(data);
+    }
+    return setIsModalOpen(false);
+  };
 
   const fetchResults = async (data: FormValues) => {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -100,7 +92,7 @@ const Content = (): JSX.Element => {
     });
   };
 
-  const doSearch = (data: FormValues) => {
+  const doSearch = useCallback((data: FormValues) => {
     if (data) {
       fetchResults(data).then((persons) => {
         setPersons(persons);
@@ -113,7 +105,7 @@ const Content = (): JSX.Element => {
         }
       });
     }
-  };
+  }, []);
 
   const onSearch = (data?: FormValues) => {
     /*
@@ -132,7 +124,7 @@ const Content = (): JSX.Element => {
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.log('router.query', router.query)
+    // Query is not empty
     if (Object.keys(router.query).length) {
       doSearch(router.query);
     }
