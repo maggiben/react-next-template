@@ -23,26 +23,35 @@ const DuplicateModal = (props: DuplicateModalProps) => {
 
   const updatePersonSelectedStatus = useCallback(
     (id: string) => {
-      const p = personsObj.map((person) => {
-        if(person.id === id) {
-          person.selected = true;
-        } else {
-          person.selected = false;
-        }
-        return person;
-      });
-      setPersonsObj(p)
+      const setSelectedPerson = (id: string) => {
+        return personsObj.map((person) => {
+          if(person.id === id) {
+            person.selected = true;
+          } else {
+            person.selected = false;
+          }
+          return person;
+        });
+      }
+      const selectedPerson = setSelectedPerson(id);
+      setPersonsObj(selectedPerson)
     },
     [personsObj]
   );
 
-  const setSelectedPerson = () => {
-    setPerson(personsObj[personsObj.findIndex((person) => person.selected)]);
-  };
-
   const handleChange = (id: string, selected: boolean) => () => {
     updatePersonSelectedStatus(id);
   };
+
+  const onAccept = () => {
+    const selectedPerson = personsObj[personsObj.findIndex((person) => person.selected)];
+    if (selectedPerson) {
+      setPerson(selectedPerson);
+      onSelectPersonModal(selectedPerson);
+    } else {
+      alert('Debe seleccionar al menos una persona');
+    }
+  }
 
   return (
     <Modal onClose={closeModal} open={isOpen}>
@@ -58,23 +67,19 @@ const DuplicateModal = (props: DuplicateModalProps) => {
           renderColumns={() => (
             <>
               <Column minWidth={20} label="select" />
-              <Column minWidth={50} label="name" />
+              <Column minWidth={50} label="dni" />
               <Column minWidth={100} label="faceapi" />
               <Column minWidth={70} label="email" />
               <Column minWidth={70} label="email confirmed" />
               <Column minWidth={100} label="city" />
             </>
           )}
-          renderCells={({ id, name, selected, faceapi, email, city }) => (
+          renderCells={({ id, name, selected, faceapi, email, city, identification }) => (
             <>
-              {/* <Cell><Radio id={name} label="Radio" onChange={handleChange} name={name} value={name} /></Cell> */}
-              {/* <Cell><Radio id={name} label={name} value={name} onChange={handleChange}/></Cell> */}
-
-
               <Cell><Radio id={id} label={name} value={name} checked={selected}  onChange={handleChange(id, selected)}/></Cell>
-              <Cell>{name}</Cell>
+              <Cell>{identification.number}</Cell>
               <Cell><Label label={faceapi.toString()} color={faceapi ? "green" : "red"} /></Cell>
-              <Cell> {email.address}</Cell>
+              <Cell>{email.address}</Cell>
               <Cell><Label label={email.confirmed.toString()} color={email.confirmed ? "green" : "red"} /></Cell>
               <Cell> {city}</Cell>
             </>
@@ -87,7 +92,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
           size="s"
           align="left"
           primaryLabel="Accept"
-          onClickPrimary={() => {setSelectedPerson(); onSelectPersonModal(personsObj[personsObj.findIndex((person) => person.selected)]);}}
+          onClickPrimary={onAccept}
           secondaryLabel="Cancel"
           onClickSecondary={closeModal}
         />

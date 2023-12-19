@@ -2,23 +2,18 @@ import styled from "styled-components";
 import { 
   UserIcon, 
   CheckCircleIcon, 
-  TableView, 
-  Column, 
-  Cell, 
   CloseCircleIcon, 
   QuestionCircleIcon, 
   Grid, 
   GridItem, 
   Heading, 
   Label,
-  Button,
   IconButton,
   EditIcon,
 } from '@fravega-it/bumeran-ds-fvg'
 
 import { Person } from '../index';
-import ClientTable from '@components/content/ClientTable'
-import { Children } from "react";
+import ClientTable from '@components/content/ClientTable/ClientTable'
 
 const Card = styled.div`
   display: block;
