@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import getConfig from "next/config";
 import { useRouter } from 'next/router';
 
+import SelectComponent from './formComponents/SelectComponent';
+
 export type FormValues = {
   cuid?: string;
   documentType?: string;
@@ -53,10 +55,8 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     }
   };
   
-  const onSubmit = (data: FormValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  };
+  // eslint-disable-next-line no-console
+  const onSubmit = (data: FormValues) => console.log(data);
 
   return (
     <form onKeyDown={handleKeyDown}>
@@ -79,7 +79,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
           />
         </GridItem>
         <GridItem xs={4}>
-          <Controller
+          {/* <Controller
             control={control}
             name="documentType"
             defaultValue={props.documentType ?? 'dni'}
@@ -103,6 +103,21 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
                 />
               )
             }}
+          /> */}
+          <SelectComponent 
+            control={control}
+            name="documentType"
+            id="documentType"
+            label="Tipo de documento"
+            options={[
+              { id: 'dni', label: 'DNI' },
+              { id: 'lc', label: 'Libreta Cívica' },
+              { id: 'le', label: 'Libreta de Enrolamiento' },
+              { id: 'cuit', label: 'CUIT' },
+              { id: 'cuil', label: 'CUIL' },
+            ]}
+            defaultValue={props.documentType ?? 'dni'}
+            error={errors.documentType?.message}
           />
         </GridItem>
         <GridItem xs={4}>

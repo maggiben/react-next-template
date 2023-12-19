@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderer } from '@helpers/testing';
 import 'jest-styled-components';
-import ClientCard from './ClientCard';
+import ClientTable from './ClientTable';
 
 import { expect } from '@jest/globals';
 
@@ -28,6 +28,6 @@ test('Check ClientCard works', () => {
         color: 'green',
       }
     }
-    const tree = renderer.create(<ClientCard person={person} />).toJSON();
+    const tree = renderer.create(<ClientTable person={person} />).toJSON();
     expect(tree).toMatchSnapshot();
 });
