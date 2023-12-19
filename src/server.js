@@ -1,4 +1,4 @@
-const datadogTracer = require("dd-trace").init({ analytics: true });
+const datadogTracer = require('dd-trace').init({ analytics: true, runtimeMetrics: true });
 const OpenTracingMiddleware = require("express-opentracing").default;
 const express = require("express");
 const next = require("next");
