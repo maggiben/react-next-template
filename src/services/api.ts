@@ -5,6 +5,8 @@ class Api {
   private apiInstance: AxiosInstance
 
   constructor() {
+    // eslint-disable-next-line no-console
+    console.log('apiSearch', apiSearch);
     this.apiInstance = axios.create({
       baseURL: apiSearch,
     })
