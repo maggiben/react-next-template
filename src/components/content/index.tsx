@@ -86,7 +86,7 @@ const Content = (): JSX.Element => {
     Object.entries(data).filter(([key]) => ['documentType', 'documentNumber', 'email', 'cuid'].includes(key)).forEach((datum) => {
       urlSearchParams.append(datum[0], datum[1].toString());
     });
-    return api.get(`/searchResults.json?${urlSearchParams.toString()}`).then((result) => {
+    return api.get(`search?${urlSearchParams.toString()}`).then((result) => {
       setPersons(result);
       return result;
     });
