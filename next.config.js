@@ -1,13 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  publicRuntimeConfig: {
-    testEnvVar: process.env.TEST_VAR,
-  },
-
-  serverRuntimeConfig: {
-    testEnvVar: process.env.TEST_VAR,
-  },
-
   compiler: {
     styledComponents: true,
   },

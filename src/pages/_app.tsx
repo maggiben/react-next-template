@@ -1,3 +1,4 @@
+import App from 'next/app'
 import type { AppProps } from 'next/app';
 import { theme } from '@fravega-it/bumeran-ds-fvg';
 import styled, { ThemeProvider } from 'styled-components';
@@ -8,7 +9,7 @@ const Container = styled.div`
     background-color: ${({ theme }) => theme.colors.neutral[100]};
 `;
 
-const App = ({ Component, pageProps }: AppProps) => {
+const ClientFrontApp = ({ Component, pageProps }: AppProps) => {
     return (
         <ThemeProvider theme={theme}>
             <StyledComponentsRegistry>
@@ -22,4 +23,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     );
 };
 
-export default App;
+export default ClientFrontApp;
+
+ClientFrontApp.getInitialProps = async ( appContext: any ): Promise<any> => {
+    const appProps = await App.getInitialProps(appContext);
+    return { ...appProps };
+}
+  
