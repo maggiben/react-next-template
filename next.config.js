@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+// eslint-disable-next-line no-console
+console.log('process.env.SEARCH_ENDPOINT', process.env.SEARCH_ENDPOINT);
+
 const nextConfig = {
   compiler: {
     styledComponents: true,
