@@ -27,6 +27,8 @@ COPY --from=build /usr/app/node_modules/ ./node_modules/
 COPY --from=build /usr/app/package.json ./
 COPY --from=build /usr/app/next.config.js ./
 
-EXPOSE 3000
+ENV NODE_ENV=production
+ENV PORT=3000
+EXPOSE $PORT
 
 CMD ["npm", "start"]
