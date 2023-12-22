@@ -5,6 +5,7 @@ ARG CI_JOB_TOKEN
 WORKDIR /usr/app
 
 COPY package*.json  ./
+COPY next.config.js ./
 
 RUN echo -e "\\n\\n@fravega-it:registry=https://gitlab.com/api/v4/packages/npm/\\n//gitlab.com/api/v4/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
 
@@ -24,6 +25,7 @@ COPY --from=build /usr/app/.next/ ./.next
 COPY --from=build /usr/app/public/ ./public/
 COPY --from=build /usr/app/node_modules/ ./node_modules/
 COPY --from=build /usr/app/package.json ./
+COPY --from=build /usr/app/next.config.js ./
 
 EXPOSE 3000
 
