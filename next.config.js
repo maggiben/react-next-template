@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 // eslint-disable-next-line no-console
-console.log('nextConfig process.env.SEARCH_ENDPOINT', process.env.SEARCH_ENDPOINT);
+console.log('nextConfig process.env.NEXT_PUBLIC_SEARCH_ENDPOINT', process.env.NEXT_PUBLIC_SEARCH_ENDPOINT);
 // eslint-disable-next-line no-console
 console.log('nextConfig process.env', process.env);
 
@@ -10,10 +10,10 @@ const nextConfig = {
   },
   
   serverRuntimeConfig: {
-    apiSearch: process.env.SEARCH_ENDPOINT,
+    apiSearch: process.env.NEXT_PUBLIC_SEARCH_ENDPOINT,
   },
   publicRuntimeConfig: {
-    apiSearch: process.env.SEARCH_ENDPOINT,
+    apiSearch: process.env.NEXT_PUBLIC_SEARCH_ENDPOINT,
   },
 
   async redirects() {
