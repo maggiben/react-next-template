@@ -29,19 +29,17 @@ export default ClientFrontApp;
 ClientFrontApp.getInitialProps = async ( appContext: any ): Promise<any> => {
     const appProps = await App.getInitialProps(appContext);
     const config = getConfig();
-
-
     // eslint-disable-next-line no-console
     console.log('process.env:', process.env);
-    const searchEndpoint = process.env.SEARCH_ENDPOINT;
+    const searchEndpoint = process.env.NEXT_PUBLIC_SEARCH_ENDPOINT;
     // eslint-disable-next-line no-console
-    console.log('SEARCH_ENDPOINT:', searchEndpoint);
+    console.log('NEXT_PUBLIC_SEARCH_ENDPOINT:', searchEndpoint);
     // eslint-disable-next-line no-console
-    console.log('appProps', appProps);
+    console.log('appProps:', appProps);
     // eslint-disable-next-line no-console
-    console.log('appContext', appContext);
+    console.log('appContext:', appContext);
     // eslint-disable-next-line no-console
-    console.log('config', config);
+    console.log('config:', config);
     return { ...appProps, ...config };
 }
   
