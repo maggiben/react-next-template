@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 // eslint-disable-next-line no-console
-console.log('process.env.SEARCH_ENDPOINT', process.env.SEARCH_ENDPOINT);
+console.log('nextConfig process.env.SEARCH_ENDPOINT', process.env.SEARCH_ENDPOINT);
 // eslint-disable-next-line no-console
-console.log('process.env', process.env);
+console.log('nextConfig process.env', process.env);
 
 const nextConfig = {
   compiler: {
