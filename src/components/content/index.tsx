@@ -66,7 +66,6 @@ const Content = (): JSX.Element => {
     });
     setLoading(true);
     setPerson(undefined);
-    setPerson(undefined);
     return api.get(`search?${urlSearchParams.toString()}`)
       .then((result) => {
         setLoading(false);
