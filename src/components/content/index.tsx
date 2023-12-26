@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { Grid, GridItem, DropdownButton, Spinner } from "@fravega-it/bumeran-ds-fvg";
+import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import DuplicateModal from './DuplicateModal/DuplicateModal';
+import Waiting from './Waiting';
 import Card from './Card/Card';
 import FilterForm, { FormValues } from '../forms/FilterForm';
 import api from '../../services/api';
@@ -64,6 +65,8 @@ const Content = (): JSX.Element => {
       urlSearchParams.append(datum[0], datum[1].toString());
     });
     setLoading(true);
+    setPerson(undefined);
+    setPerson(undefined);
     return api.get(`search?${urlSearchParams.toString()}`)
       .then((result) => {
         setLoading(false);
@@ -122,7 +125,7 @@ const Content = (): JSX.Element => {
           </GridItem>
           <GridItem xs={12}>
             {
-              loading ? <Spinner size="l" /> : <Card person={person} />
+              loading ? <Waiting message="buscando clientes..." /> : <Card person={person} />
             }
           </GridItem>
         </Grid>
