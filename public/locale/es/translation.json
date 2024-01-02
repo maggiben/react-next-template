@@ -16,6 +16,8 @@
     "cancel": "Cancelar",
     "search": "Buscar",
     "reset": "Reset",
+    "true": "si",
+    "false": "no",
     "duplicated": "Duplicado",
     "duplicated customer": "Cliente duplicado",
     "all fields empty": "Debe completar al menos un campo"

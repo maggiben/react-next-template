@@ -4,7 +4,7 @@ import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import DuplicateModal from './DuplicateModal/DuplicateModal';
 import Waiting from './Waiting';
 import Card from './Card/Card';
-import FilterForm, { FormValues } from '../forms/FilterForm';
+import SearchForm, { FormValues } from '@components/forms/SearchForm/SearchForm';
 import api from '../../services/api';
 import styled from "styled-components";
 import { personState } from '../../states/atoms';
@@ -118,7 +118,7 @@ const Content = (): JSX.Element => {
         <Grid>
           <GridItem xs={4}>
             <DropdownButton label="Buscar por" open={open} onOpenChange={setIsOpen}>
-              <FilterForm onSearch={onSearch} {...router.query} />
+              <SearchForm onSearch={onSearch} {...router.query} />
             </DropdownButton>  
           </GridItem>
           <GridItem xs={12}>
