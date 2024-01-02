@@ -1,14 +1,14 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { apiSearch } from '../utils/nextConfigVariables';
+import { nextConfigVariables } from '@utils/index';
 
 class Api {
   private apiInstance: AxiosInstance
 
   constructor() {
     // eslint-disable-next-line no-console
-    console.log('apiSearch', apiSearch);
+    console.log('apiSearch', nextConfigVariables.apiSearch);
     this.apiInstance = axios.create({
-      baseURL: apiSearch,
+      baseURL: nextConfigVariables.apiSearch,
     })
   }
   
@@ -38,4 +38,5 @@ class Api {
   }
 }
 
-export default new Api()
+const searchApi = new Api();
+export default searchApi;

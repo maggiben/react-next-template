@@ -2,10 +2,12 @@
     {
         "id": "001",
         "name": "Federico",
-        "age": 25,
+        "lastname": "Garcia",
+        "age": "2022-07-15",
         "identification": {
             "type": "dni",
-            "number": 30000000
+            "number": 30000000,
+            "expiration": "2023-12-29T12:33:32.740Z"
         },
         "profession": "Ingeniero",
         "faceapi": true,
@@ -18,15 +20,30 @@
         "status": {
             "label": "not ok",
             "color": "red"
+        },
+        "renaper": {
+            "confirmed": true,
+            "expiration": "2023-12-29T12:33:32.740Z"
+        },
+        "address": {
+            "street": "Av J.B. Justo",
+            "number": "1500",
+            "floor": "7a",
+            "city": "CABA",
+            "province": "CABA",
+            "postalCode": "1314",
+            "country": "Argentina"
         }
     },
     {
         "id": "002",
         "name": "Facundo",
-        "age": 30,
+        "lastname": "Perez",
+        "age": "1992-05-22",
         "identification": {
             "type": "dni",
-            "number": 30000001
+            "number": 30000001,
+            "expiration": "2023-12-29T12:33:32.740Z"
         },
         "faceapi": false,
         "email": {
@@ -39,15 +56,30 @@
         "status": {
             "label": "okay",
             "color": "green"
+        },
+        "renaper": {
+            "confirmed": true,
+            "expiration": "2023-12-29T12:33:32.740Z"
+        },
+        "address": {
+            "street": "Av J.B. Justo",
+            "number": "1500",
+            "floor": "7a",
+            "city": "CABA",
+            "province": "CABA",
+            "postalCode": "1314",
+            "country": "Argentina"
         }
     },
     {
         "id": "003",
         "name": "Facundo",
-        "age": 30,
+        "lastname": "Perez",
+        "age": "1983-01-24",
         "identification": {
             "type": "dni",
-            "number": 30000001
+            "number": 30000001,
+            "expiration": "2023-12-29T12:33:32.740Z"
         },
         "faceapi": false,
         "email": {
@@ -60,15 +92,30 @@
         "status": {
             "label": "not ok",
             "color": "red"
+        },
+        "renaper": {
+            "confirmed": true,
+            "expiration": "2023-12-29T12:33:32.740Z"
+        },
+        "address": {
+            "street": "Av J.B. Justo",
+            "number": "1500",
+            "floor": "7a",
+            "city": "CABA",
+            "province": "CABA",
+            "postalCode": "1314",
+            "country": "Argentina"
         }
     },
     {
         "id": "004",
         "name": "Jeremías",
-        "age": 35,
+        "lastname": "Springfield",
+        "age": "2003-06-05",
         "identification": {
             "type": "dni",
-            "number": 30000002
+            "number": 30000002,
+            "expiration": "2023-12-29T12:33:32.740Z"
         },
         "faceapi": true,
         "email": {
@@ -81,6 +128,19 @@
         "status": {
             "label": "okay",
             "color": "green"
+        },
+        "renaper": {
+            "confirmed": true,
+            "expiration": "2023-12-29T12:33:32.740Z"
+        },
+        "address": {
+            "street": "Av J.B. Justo",
+            "number": "1500",
+            "floor": "7a",
+            "city": "CABA",
+            "province": "CABA",
+            "postalCode": "1314",
+            "country": "Argentina"
         }
     }
 ]

@@ -2,7 +2,6 @@ import React from 'react';
 import { renderer } from '@helpers/testing';
 import 'jest-styled-components';
 import ClientTable from './ClientTable';
-
 import { expect } from '@jest/globals';
 
 test('Check ClientCard works', () => {

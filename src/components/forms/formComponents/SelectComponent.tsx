@@ -28,6 +28,7 @@ const SelectComponent = (props: SelectComponentProps): JSX.Element => {
           <Select
             id={id}
             label={label}
+            name={name ?? id}
             options={options}
             value={defaultValue}
             errorMessage={error}
