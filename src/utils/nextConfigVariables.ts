@@ -9,7 +9,7 @@ if (typeof window === 'undefined') {
   apiSearch = serverRuntimeConfig?.apiSearch
 }
 
-export {
+export default {
   apiSearch,
   gtmId
 }

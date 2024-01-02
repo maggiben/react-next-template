@@ -2,7 +2,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { Modal, ModalHeader, ModalBody, ModalFooter, NotificationIcon, TextBody, ButtonGroup, Button } from '@fravega-it/bumeran-ds-fvg';
 import { TableView, Column, Cell, Label, Radio } from '@fravega-it/bumeran-ds-fvg'
-import { Person } from '../index';
+import { Person } from 'types/type';
+import { useTranslation } from 'react-i18next';
 import { personState } from '../../../states/atoms';
 
 type DuplicateModalProps = {
@@ -13,6 +14,7 @@ type DuplicateModalProps = {
 }
 
 const DuplicateModal = (props: DuplicateModalProps) => {
+  const { t } = useTranslation();
   const [person, setPerson] = useRecoilState(personState);
   const {isOpen, onSelectPersonModal, closeModal, persons} = props;
   const [personsObj, setPersonsObj] = useState<Person[]>({...props.persons});
@@ -49,7 +51,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
       setPerson(selectedPerson);
       onSelectPersonModal(selectedPerson);
     } else {
-      alert('Debe seleccionar al menos una persona');
+      alert(t('all fields empty'));
     }
   }
 
@@ -57,8 +59,8 @@ const DuplicateModal = (props: DuplicateModalProps) => {
     <Modal onClose={closeModal} open={isOpen}>
       <ModalHeader
         leftIcon={<NotificationIcon />}
-        title="Duplicado"
-        description="Cliente duplicado"
+        title={t('duplicated')}
+        description={t('duplicated customer')}
       />
 
       <ModalBody>
@@ -91,9 +93,9 @@ const DuplicateModal = (props: DuplicateModalProps) => {
         <ButtonGroup
           size="s"
           align="left"
-          primaryLabel="Accept"
+          primaryLabel={t('accept')}
           onClickPrimary={onAccept}
-          secondaryLabel="Cancel"
+          secondaryLabel={t('cancel')}
           onClickSecondary={closeModal}
         />
       </ModalFooter>
