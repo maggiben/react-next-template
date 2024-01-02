@@ -7,8 +7,8 @@ import * as yup from 'yup';
 import getConfig from "next/config";
 import { useRouter } from 'next/router';
 
-import TextInputComponent from './inputs/TextInputComponent';
-import SelectComponent from './inputs/SelectComponent';
+import TextInputComponent from '../inputs/TextInputComponent';
+import SelectComponent from '../inputs/SelectComponent';
 
 export type FormValues = {
   cuid?: string;
@@ -17,7 +17,7 @@ export type FormValues = {
   email?: string;
 }
   
-const schema = yup
+const searchSchema = yup
   .object()
   .shape({
     cuid: yup.string(),
@@ -32,7 +32,7 @@ const schema = yup
   })
   .required();
 
-type FilterFormProps = {
+type SearchFormProps = {
   onSearch: (data: FormValues) => void;
   documentType?: string;
   documentNumber?: number;
@@ -40,13 +40,11 @@ type FilterFormProps = {
   email?: string;
 }
   
-const FilterForm = (props: FilterFormProps): JSX.Element => {
-  const router = useRouter();
+const SearchForm = (props: SearchFormProps): JSX.Element => {
   const { t } = useTranslation();
   const { onSearch } = props;
-  const config = getConfig();
   const { handleSubmit, control, reset, formState: { errors } } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(searchSchema),
   });
   
   const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
@@ -122,4 +120,4 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
   );
 };
 
-export default FilterForm;
+export default SearchForm;

@@ -4,6 +4,7 @@ import { Controller, Control, FieldValues } from 'react-hook-form';
 type TextInputComponentProps = {
   defaultValue?: number;
   name?: string;
+  disabled?: boolean,
   min?: number;
   max?: number;
   error?: string;
@@ -13,7 +14,7 @@ type TextInputComponentProps = {
 }
   
 const TextInputComponent = (props: TextInputComponentProps): JSX.Element => {
-  const { defaultValue, name, error, id, label, control, min, max } = props;
+  const { defaultValue, name, error, id, label, control, min, max, disabled = false } = props;
   return (
     <Controller
       name={name ?? id}
@@ -29,6 +30,7 @@ const TextInputComponent = (props: TextInputComponentProps): JSX.Element => {
             errorMessage={error}
             min={min}
             max={max}
+            disabled={disabled}
             onChange={onChange} // send value to hook form
             onBlur={onBlur} // notify when input is touched/blur
           />
