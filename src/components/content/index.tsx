@@ -61,9 +61,6 @@ const Content = (): JSX.Element => {
 
   const fetchResults = async (data: FormValues) => {
     const urlSearchParams = new URLSearchParams(window.location.search);
-    Object.entries(data).filter(([key]) => ['documentType', 'documentNumber', 'email', 'cuid'].includes(key)).forEach((datum) => {
-      urlSearchParams.append(datum[0], datum[1].toString());
-    });
     setLoading(true);
     setPerson(undefined);
     return api.get(`api/search?${urlSearchParams.toString()}`)
