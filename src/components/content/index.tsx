@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { Grid, GridItem, DropdownButton, Button } from "@fravega-it/bumeran-ds-fvg";
+import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import DuplicateModal from './DuplicateModal/DuplicateModal';
-import ClientCard from './ClientCard/ClientCard';
-import EmptyCard from './EmptyCard/EmptyCard';
-import FilterForm, { FormValues } from '../forms/FilterForm';
+import Waiting from './Waiting';
+import Card from './Card/Card';
+import SearchForm, { FormValues } from '@components/forms/SearchForm/SearchForm';
 import api from '../../services/api';
 import styled from "styled-components";
 import { personState } from '../../states/atoms';
 import getConfig from "next/config";
 import { useRouter } from 'next/router';
+import { Person } from 'types/type';
 
 const Container = styled.div`
   display: block;
@@ -36,37 +37,14 @@ const Centered = styled.div`
   align-items: center;
 `;
 
-
-export type Person = {
-  id: string;
-  name: string;
-  age: number,
-  identification: {
-    type: string,
-    number: number;
-  },
-  profession: string;
-  faceapi: boolean;
-  email: {
-    address: string;
-    confirmed: boolean;
-  }
-  city: string;
-  cp: string;  
-  selected: boolean;
-  status: {
-    label: string;
-    color: string;
-  }
-}
-
 const Content = (): JSX.Element => {
   const config = getConfig();
   const router = useRouter();
   // const [personX, setPersonX] = useRecoilState(personState);
   const [open, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [query, setQuery] = useState<FormValues | undefined>(undefined);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [persons, setPersons] = useState<Person[]>([]);
   const [person, setPerson] = useState<Person | undefined>(undefined);
 
@@ -86,10 +64,14 @@ const Content = (): JSX.Element => {
     Object.entries(data).filter(([key]) => ['documentType', 'documentNumber', 'email', 'cuid'].includes(key)).forEach((datum) => {
       urlSearchParams.append(datum[0], datum[1].toString());
     });
-    return api.get(`/searchResults.json?${urlSearchParams.toString()}`).then((result) => {
-      setPersons(result);
-      return result;
-    });
+    setLoading(true);
+    setPerson(undefined);
+    return api.get(`api/search?${urlSearchParams.toString()}`)
+      .then((result) => {
+        setLoading(false);
+        return result;
+      })
+      .catch(setError);
   };
 
   const doSearch = useCallback((data: FormValues) => {
@@ -136,12 +118,13 @@ const Content = (): JSX.Element => {
         <Grid>
           <GridItem xs={4}>
             <DropdownButton label="Buscar por" open={open} onOpenChange={setIsOpen}>
-              <FilterForm onSearch={onSearch} {...router.query} />
+              <SearchForm onSearch={onSearch} {...router.query} />
             </DropdownButton>  
           </GridItem>
           <GridItem xs={12}>
-            { person && <ClientCard person={person} /> }
-            { !person && <EmptyCard /> }
+            {
+              loading ? <Waiting message="buscando clientes..." /> : <Card person={person} />
+            }
           </GridItem>
         </Grid>
       </Container>

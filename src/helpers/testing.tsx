@@ -12,8 +12,8 @@ interface IRenderer {
 }
 
 export const renderer: IRenderer = {
-    create: (children: ReactElement) =>
-        baseRenderer.create(
-            <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        ),
+  create: (children: ReactElement) =>
+    baseRenderer.create(
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    ),
 };

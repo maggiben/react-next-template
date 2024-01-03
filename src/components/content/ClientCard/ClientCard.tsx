@@ -2,23 +2,19 @@ import styled from "styled-components";
 import { 
   UserIcon, 
   CheckCircleIcon, 
-  TableView, 
-  Column, 
-  Cell, 
   CloseCircleIcon, 
   QuestionCircleIcon, 
   Grid, 
   GridItem, 
   Heading, 
   Label,
-  Button,
   IconButton,
   EditIcon,
 } from '@fravega-it/bumeran-ds-fvg'
 
-import { Person } from '../index';
-import ClientTable from '@components/content/ClientTable'
-import { Children } from "react";
+import { Person } from 'types/type';
+import { useTranslation } from 'react-i18next';
+import ClientTable from '@components/content/ClientTable/ClientTable'
 
 const Card = styled.div`
   display: block;
@@ -48,17 +44,18 @@ type ClientCardProps = {
   
 const ClientCard = (props: ClientCardProps) => {
   const { person } = props;
+  const { t } = useTranslation();
   return (
     <Card>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
-            <UserIcon size="l" color="violet" colorTone="600" /><Heading size="s">Name: {person.name}</Heading>
+            <UserIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('name')}: {person.name}</Heading>
           </Centered>
         </GridItem>
         <GridItem xs={5} alignSelf="center" justifySelf="center">
           <Centered>
-            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">Status:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status.label} color={person.status.color as 'red' | 'green'}/>
+            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('status')}:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status.label} color={person.status.color as 'red' | 'green'}/>
           </Centered>
         </GridItem>
         <GridItem xs={1} alignSelf="center" justifySelf="end">

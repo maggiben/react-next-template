@@ -1,13 +1,15 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { apiSearch } from '../utils/nextConfigVariables';
+import { nextConfigVariables } from '@utils/index';
 
 class Api {
   private apiInstance: AxiosInstance
 
   constructor() {
+    // eslint-disable-next-line no-console
+    // console.log('apiSearch', nextConfigVariables.apiSearch);
     this.apiInstance = axios.create({
-      baseURL: apiSearch,
-    })
+      // baseURL: nextConfigVariables.apiSearch,
+    });
   }
   
   async get<T = any>(url: string, params?: object): Promise<T> {
@@ -36,4 +38,5 @@ class Api {
   }
 }
 
-export default new Api()
+const searchApi = new Api();
+export default searchApi;

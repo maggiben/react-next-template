@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 import { Heading } from '@fravega-it/bumeran-ds-fvg'
 
 const Card = styled.div`
@@ -11,9 +12,10 @@ const Card = styled.div`
 `;
 
 const EmptyCard = () => {
+  const { t } = useTranslation();
   return (
     <Card>
-      <Heading>Bienvenido al buscador de clientes</Heading>
+      <Heading>{t('welcome message')}</Heading>
     </Card>
   );
 };
