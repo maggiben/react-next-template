@@ -91,6 +91,7 @@ const Content = (): JSX.Element => {
       TODO:
       resolver problema multiples personas mismo id, email, etc...
     */
+    setIsOpen(false);
     // eslint-disable-next-line no-console
     if (data) {
       router.push({
