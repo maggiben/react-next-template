@@ -6,10 +6,10 @@ class Api {
 
   constructor() {
     // eslint-disable-next-line no-console
-    console.log('apiSearch', nextConfigVariables.apiSearch);
+    // console.log('apiSearch', nextConfigVariables.apiSearch);
     this.apiInstance = axios.create({
-      baseURL: nextConfigVariables.apiSearch,
-    })
+      // baseURL: nextConfigVariables.apiSearch,
+    });
   }
   
   async get<T = any>(url: string, params?: object): Promise<T> {
