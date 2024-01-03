@@ -17,7 +17,7 @@ const DuplicateModal = (props: DuplicateModalProps) => {
   const { t } = useTranslation();
   const [person, setPerson] = useRecoilState(personState);
   const {isOpen, onSelectPersonModal, closeModal, persons} = props;
-  const [personsObj, setPersonsObj] = useState<Person[]>({...props.persons});
+  const [personsObj, setPersonsObj] = useState<Person[]>([...props.persons]);
 
   useEffect(() => {
     setPersonsObj(props.persons);
