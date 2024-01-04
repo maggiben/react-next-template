@@ -58,6 +58,9 @@ const ClientCard = (props: ClientCardProps) => {
     // si no hay personas pero ya fecheamos los datos setear
     if (!persons && data && Array.isArray(data)) {
       setPersons(data);
+      if (data.length === 1) {
+        setPerson(data[0]);
+      }
     }
     if (multipleResults && !person) {
       setIsOpenModal(true);
