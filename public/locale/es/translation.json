@@ -12,13 +12,17 @@
     "confirmed email": "Email confirmado",
     "resend": "reenviar",
     "welcome message": "Bienvenido al buscador de clientes",
+    "client finder": "Buscador de Clientes",
     "accept": "Aceptar",
     "cancel": "Cancelar",
     "search": "Buscar",
+    "searching": "Buscando",
+    "search by": "Buscar por",
     "reset": "Reset",
     "true": "si",
     "false": "no",
     "duplicated": "Duplicado",
     "duplicated customer": "Cliente duplicado",
+    "select": "seleccionar",
     "all fields empty": "Debe completar al menos un campo"
 }

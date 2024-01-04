@@ -1,7 +1,7 @@
 import App from 'next/app'
 import type { AppProps } from 'next/app';
-import i18next from "i18next";
-import { initReactI18next, useTranslation } from "react-i18next";
+import i18n from '@utils/i18n';
+import { I18nextProvider } from 'react-i18next';
 import { theme } from '@fravega-it/bumeran-ds-fvg';
 import styled, { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
@@ -17,9 +17,11 @@ const ClientFrontApp = ({ Component, pageProps }: AppProps) => {
     <ThemeProvider theme={theme}>
       <StyledComponentsRegistry>
         <RecoilRoot>
-          <Container>
-            <Component {...pageProps} />
-          </Container>
+          <I18nextProvider i18n={i18n}>
+            <Container>
+              <Component {...pageProps} />
+            </Container>
+          </I18nextProvider>
         </RecoilRoot>
       </StyledComponentsRegistry>
     </ThemeProvider>
