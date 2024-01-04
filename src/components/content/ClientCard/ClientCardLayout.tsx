@@ -31,12 +31,6 @@ const Centered = styled.div`
   align-items: center;
 `;
 
-const Start = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-`;
-
 type ClientCardLayoutProps = {
   person: Person;
 }

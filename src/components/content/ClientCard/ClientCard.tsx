@@ -1,18 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import styled from "styled-components";
-import { 
-  UserIcon, 
-  CheckCircleIcon, 
-  CloseCircleIcon, 
-  QuestionCircleIcon, 
-  Grid, 
-  GridItem, 
-  Heading, 
-  Label,
-  IconButton,
-  EditIcon,
-} from '@fravega-it/bumeran-ds-fvg'
 import DuplicateModal from '../DuplicateModal/DuplicateModal';
 import Waiting from '../Waiting';
 import { useRouter } from 'next/router';
@@ -22,31 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { useFetch } from "@hooks/useFetch";
 import ClientCardLayout from './ClientCardLayout';
 import { personState, personsState } from '@states/atoms';
-import getConfig from "next/config";
-
-import ClientTable from '@components/content/ClientTable/ClientTable'
-import { FormValues } from '@components/forms/SearchForm/SearchForm';
-
-const Card = styled.div`
-  display: block;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${({ theme }) => theme.colors.neutral[300]};
-  border-radius: ${({ theme }) => theme.borderRadius.m};
-`;
-
-const Centered = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Start = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-`;
 
 type ClientCardProps = {
   isOpen?: boolean;
@@ -62,7 +24,12 @@ const ClientCard = (props: ClientCardProps) => {
   const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
 
   const closeModal = useCallback((): void =>  {
-    return setIsOpenModal(false);
+    setPersons(undefined);
+    setIsOpenModal(false);
+    // erase search history
+    router.push({
+      pathname: document.location.pathname,
+    });
   }, []);
 
   const onSelectPersonModal = useCallback((data?: Person): void =>  {
@@ -89,11 +56,11 @@ const ClientCard = (props: ClientCardProps) => {
   }, [ data, person, persons ])
 
   return (
-    <Card>
-      { persons && <DuplicateModal isOpen={isOpenModal} persons={persons} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
+    <>
+      { persons && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
       { person && <ClientCardLayout person={person} /> }
       { !person && !persons && <Waiting message={t('searching')} /> }
-    </Card>
+    </>
   )
 };
 
