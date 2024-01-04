@@ -1,15 +1,13 @@
+import { useMemo } from 'react';
+import { useRouter } from 'next/router';
 import ClientCard from '../ClientCard/ClientCard';
 import EmptyCard from '../EmptyCard/EmptyCard';
-import { Person } from 'types/type';
 
-interface CardProps {
-  person?: Person;
-}
-const Card = (props: CardProps): JSX.Element => {
-  if (props.person) {
-    return <ClientCard person={props?.person} />
-  }
-  return <EmptyCard />;
+const Card = (): JSX.Element => {
+  const router = useRouter();
+  const hasQuery = useMemo(() => router.query && Object.keys(router.query as Record<string, unknown>).length > 0, [ router.query ]);
+
+  return hasQuery ? <ClientCard /> : <EmptyCard />;
 };
 
 export default Card;

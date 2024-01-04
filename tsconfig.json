@@ -26,7 +26,8 @@
             "@images/*": ["../public/static/images/*"],
             "@helpers/*": ["helpers/*"],
             "@translation/*": [ "../public/locale/*" ],
-            "@utils/*": ["utils/*"]
+            "@utils/*": ["utils/*"],
+            "@states/*": ["states/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

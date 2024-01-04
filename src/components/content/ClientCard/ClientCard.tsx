@@ -1,3 +1,5 @@
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from "styled-components";
 import { 
   UserIcon, 
@@ -11,10 +13,19 @@ import {
   IconButton,
   EditIcon,
 } from '@fravega-it/bumeran-ds-fvg'
+import DuplicateModal from '../DuplicateModal/DuplicateModal';
+import Waiting from '../Waiting';
+import { useRouter } from 'next/router';
 
 import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
+import { useFetch } from "@hooks/useFetch";
+import ClientCardLayout from './ClientCardLayout';
+import { personState, personsState } from '@states/atoms';
+import getConfig from "next/config";
+
 import ClientTable from '@components/content/ClientTable/ClientTable'
+import { FormValues } from '@components/forms/SearchForm/SearchForm';
 
 const Card = styled.div`
   display: block;
@@ -39,32 +50,49 @@ const Start = styled.div`
 
 type ClientCardProps = {
   isOpen?: boolean;
-  person: Person;
 }
   
 const ClientCard = (props: ClientCardProps) => {
-  const { person } = props;
   const { t } = useTranslation();
+  const router = useRouter();
+  const [person, setPerson] = useRecoilState(personState);
+  const [persons, setPersons] = useRecoilState(personsState);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const searchParams = new URLSearchParams(router.query as Record<string, string>);
+  const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
+
+  const closeModal = useCallback((): void =>  {
+    return setIsOpenModal(false);
+  }, []);
+
+  const onSelectPersonModal = useCallback((data?: Person): void =>  {
+    if (data) {
+      setPerson(data);
+    }
+    return setIsOpenModal(false);
+  }, []);
+
+  const multipleResults = useMemo(() => {
+    return data && Array.isArray(data) && data.length > 1;
+  }, [ data ]);
+
+  useEffect(() => {
+    // si no hay personas pero ya fecheamos los datos setear
+    if (!persons && data && Array.isArray(data)) {
+      setPersons(data);
+    }
+    if (multipleResults && !person) {
+      setIsOpenModal(true);
+    } else {
+      setIsOpenModal(false);
+    }
+  }, [ data, person, persons ])
+
   return (
     <Card>
-      <Grid>
-        <GridItem xs={6} justifySelf="start" alignSelf="center">
-          <Centered>
-            <UserIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('name')}: {person.name}</Heading>
-          </Centered>
-        </GridItem>
-        <GridItem xs={5} alignSelf="center" justifySelf="center">
-          <Centered>
-            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('status')}:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status.label} color={person.status.color as 'red' | 'green'}/>
-          </Centered>
-        </GridItem>
-        <GridItem xs={1} alignSelf="center" justifySelf="end">
-          <IconButton icon={<EditIcon />} size="s" />
-        </GridItem>
-        <GridItem xs={12}>
-          <ClientTable person={person} />
-        </GridItem>
-      </Grid>
+      { persons && <DuplicateModal isOpen={isOpenModal} persons={persons} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
+      { person && <ClientCardLayout person={person} /> }
+      { !person && !persons && <Waiting message={t('searching')} /> }
     </Card>
   )
 };
