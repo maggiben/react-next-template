@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import DuplicateModal from '../DuplicateModal/DuplicateModal';
-import Waiting from '../Waiting';
+import Waiting from '@components/Waiting';
 import { useRouter } from 'next/router';
 
 import { Person } from 'types/type';

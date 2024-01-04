@@ -1,6 +1,7 @@
 {
   "name": "client-frontend",
   "version": "1.0.1",
+  "description": "Cliente Frontend",
   "private": true,
   "scripts": {
     "prepare": "husky install",

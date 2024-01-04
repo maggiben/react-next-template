@@ -27,7 +27,8 @@
             "@helpers/*": ["helpers/*"],
             "@translation/*": [ "../public/locale/*" ],
             "@utils/*": ["utils/*"],
-            "@states/*": ["states/*"]
+            "@states/*": ["states/*"],
+            "@pjson": ["../package.json"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

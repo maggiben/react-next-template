@@ -10,7 +10,7 @@ import { personState, personsState } from '@states/atoms';
 
 const Container = styled.div`
   display: block;
-  height: 100vh;
+  height: calc(100vh - (80px + 2rem));
   width: 100%;
 `;
 
