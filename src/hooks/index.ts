@@ -1,1 +1,1 @@
-export { default as useApiCall } from './useApiCall';
+export * as useFetch from './useFetch';

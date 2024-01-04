@@ -44,6 +44,17 @@ const ClientCard = (props: ClientCardProps) => {
   }, [ data ]);
 
   useEffect(() => {
+    if (error) {
+      router.push({
+        pathname: `/${error.response?.status}`,
+        query: {
+          message: error.message
+        },
+      });
+    }
+  }, [error]);
+
+  useEffect(() => {
     // si no hay personas pero ya fecheamos los datos setear
     if (!persons && data && Array.isArray(data)) {
       setPersons(data);

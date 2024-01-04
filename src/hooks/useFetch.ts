@@ -2,16 +2,27 @@ import { useEffect, useReducer, useRef } from 'react';
 
 interface State<T> {
   data?: T;
-  error?: Error;
+  error?: CustomNetworkError;
 };
 
 type Cache<T> = { [url: string]: T };
+
+export class CustomNetworkError extends Error {
+  constructor(
+    public name: string = 'CustomNetworkError',
+    public message: string,
+    public response?: Response
+  ) {
+    super(message);
+  }
+}
 
 // discriminated union type
 type Action<T> =
   | { type: 'loading' }
   | { type: 'fetched'; payload: T }
-  | { type: 'error'; payload: Error };
+  | { type: 'error'; payload: CustomNetworkError
+  };
 
 export function useFetch<T = unknown>(
   url?: string,
@@ -61,7 +72,7 @@ export function useFetch<T = unknown>(
       try {
         const response = await fetch(url, options);
         if (!response.ok) {
-          throw new Error(response.statusText);
+          throw new CustomNetworkError('NetworkError', response.statusText, response);
         }
 
         const data = (await response.json()) as T;
@@ -69,10 +80,10 @@ export function useFetch<T = unknown>(
         if (cancelRequest.current) return;
 
         dispatch({ type: 'fetched', payload: data });
-      } catch (error) {
+      } catch (error) { 
         if (cancelRequest.current) return;
 
-        dispatch({ type: 'error', payload: error as Error });
+        dispatch({ type: 'error', payload: error as CustomNetworkError });
       }
     };
 
