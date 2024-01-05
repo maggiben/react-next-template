@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import Card from './Card/Card';
@@ -25,14 +25,10 @@ const Centered = styled.div`
 const Content = (): JSX.Element => {
   const router = useRouter();
   const { t } = useTranslation();
-  const [, setPerson] = useRecoilState(personState);
-  const [, setPersons] = useRecoilState(personsState);
   const [dropdownButtonOpen, setDropdownButtonOpen] = useState<boolean>(false);
 
   const onSearch = (query?: FormValues) => {
     setDropdownButtonOpen(false);
-    setPerson(undefined);
-    setPersons(undefined);
     if (query) {
       router.push({
         pathname: document.location.pathname,
