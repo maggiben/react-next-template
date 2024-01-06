@@ -1,9 +1,7 @@
 FROM registry.gitlab.com/fravega-it/arquitectura/docker-node:16.13.0 as build
 
 ARG CI_JOB_TOKEN
-ARG CI_COMMIT_SHA
-ARG CI_COMMIT_SHORT_SHA
-ARG CI_COMMIT_BRANCH
+ARG ENVIRONMENT
 ARG SEARCH_ENDPOINT
 
 WORKDIR /usr/app
@@ -31,11 +29,7 @@ COPY --from=build /usr/app/node_modules/ ./node_modules/
 COPY --from=build /usr/app/package.json ./
 COPY --from=build /usr/app/next.config.js ./
 
-ENV NODE_ENV=ENVIRONMENT
-ENV COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
-ENV CI_COMMIT_SHA=$CI_COMMIT_SHA
-ENV CI_COMMIT_BRANCH=$CI_COMMIT_BRANCH
-
+ENV NODE_ENV=$ENVIRONMENT
 ENV SEARCH_ENDPOINT=$SEARCH_ENDPOINT
 ENV PORT=3000
 EXPOSE $PORT
