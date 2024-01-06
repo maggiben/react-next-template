@@ -11,6 +11,8 @@ const Container = styled.div`
 `;
 
 const Right = styled.div`
+  line-height: 2rem;
+  padding-right: 6px;
   text-align: right;
 `;
 

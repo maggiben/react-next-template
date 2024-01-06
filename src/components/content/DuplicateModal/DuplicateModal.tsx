@@ -1,19 +1,10 @@
-import { useEffect, useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import * as utils from '@utils/index';
 import { Modal, ModalHeader, ModalBody, ModalFooter, NotificationIcon, TextBody, ButtonGroup, Button } from '@fravega-it/bumeran-ds-fvg';
-import { 
-  TableView, 
-  Column, 
-  Cell, 
-  Label, 
-  Radio, 
-  CheckCircleIcon, 
-  CloseCircleIcon
-} from '@fravega-it/bumeran-ds-fvg'
 import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
-import { personsState } from '../../../states/atoms';
+import { personsState } from '@states/atoms';
+import DuplicateModalBody from './DuplicateModalBody';
+
 
 type DuplicateModalProps = {
   isOpen?: boolean;
@@ -26,10 +17,10 @@ const DuplicateModal = (props: DuplicateModalProps) => {
   const {isOpen, onSelectPersonModal, closeModal} = props;
   const [persons, setPersons] = useRecoilState(personsState);
 
-  const handleChange = (id: string, selected: boolean) => () => {
+  const handleChange = (checked: boolean, meta: { event: React.ChangeEvent<HTMLInputElement>; value: string; }): void => {
     setPersons((prev: Person[] | undefined) => {
       return prev && structuredClone(prev).map((value: Person) => {
-        value.selected = (value.id === id) ? true : false;
+        value.selected = checked && (value.id === meta.value) ? true : false;
         return value;
       });
     }); 
@@ -51,36 +42,9 @@ const DuplicateModal = (props: DuplicateModalProps) => {
         title={t('duplicated')}
         description={t('duplicated customer')}
       />
-
       <ModalBody>
-        { persons && <TableView
-          items={persons}
-          renderColumns={() => (
-            <>
-              <Column minWidth={20} label={t('select')} />
-              <Column minWidth={50} label="dni" />
-              <Column minWidth={100} label={t('facephi')} />
-              <Column minWidth={70} label={t('email')} />
-              <Column minWidth={100} label={t('renaper')} />
-            </>
-          )}
-          renderCells={({ id, name, selected, faceapi, email, renaper, identification }) => (
-            <>
-              <Cell><Radio id={id} label={name} value={name} checked={selected}  onChange={handleChange(id, selected)}/></Cell>
-              <Cell>{identification.number}</Cell>
-              <Cell>
-                <Label leftIcon={faceapi ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={utils.string.booleanToText(faceapi)} color={faceapi ? "green" : "red"}/>                  
-              </Cell>
-              <Cell>{email.address}</Cell>
-              <Cell>
-                <Label leftIcon={renaper.confirmed ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={utils.string.booleanToText(renaper.confirmed)} color={renaper.confirmed ? "green" : "red"}/>
-              </Cell>
-            </>
-          )}
-          />
-        }
+        <DuplicateModalBody persons={persons ?? []} handleSelection={handleChange} />
       </ModalBody>
-
       <ModalFooter>
         <ButtonGroup
           size="s"

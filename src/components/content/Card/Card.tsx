@@ -1,24 +1,24 @@
 import { useMemo, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import ClientCard from '../ClientCard/ClientCard';
 import EmptyCard from '../EmptyCard/EmptyCard';
 import { personState, personsState } from '@states/atoms';
 
 const Card = (): JSX.Element => {
   const router = useRouter();
-  const [person, setPerson] = useRecoilState(personState);
-  const [persons, setPersons] = useRecoilState(personsState);
+  const resetPerson = useResetRecoilState(personState);
+  const resetPersons = useResetRecoilState(personsState);
+  const [, setPersons] = useRecoilState(personsState);
   const currentUrlRef = useRef(router.asPath);
   useEffect(() => {
     const handleRouteChangeComplete = (url: any) => {
       if (url !== currentUrlRef.current) {
-        setPerson(undefined);
-        // borra personas si la url es distinta
-        setPersons(undefined);
+        resetPerson();
+        resetPersons();
         currentUrlRef.current = url;
       } else {
-        setPerson(undefined);
+        resetPerson();
         // si la url es la misma mantiene la lista de personas pero le quita el estado
         // de seleccion
         setPersons((prev) => {

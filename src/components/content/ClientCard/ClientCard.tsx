@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import DuplicateModal from '../DuplicateModal/DuplicateModal';
 import Waiting from '@components/Waiting';
 import { useRouter } from 'next/router';
@@ -9,6 +9,10 @@ import { useTranslation } from 'react-i18next';
 import { useFetch } from "@hooks/useFetch";
 import ClientCardLayout from './ClientCardLayout';
 import { personState, personsState } from '@states/atoms';
+import {
+  hasSelectedPerson as hasSelectedPersonSelector,
+  hasMultiplePerson as hasMultiplePersonSelector
+} from '@states/selectors';
 import array from '@utils/array';
 
 type ClientCardProps = {
@@ -20,15 +24,13 @@ const ClientCard = (props: ClientCardProps) => {
   const router = useRouter();
   const [person, setPerson] = useRecoilState(personState);
   const [persons, setPersons] = useRecoilState(personsState);
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const hasSelectedPerson = useRecoilValue(hasSelectedPersonSelector);
+  const hasMultiplePerson = useRecoilValue(hasMultiplePersonSelector);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const searchParams = useMemo(() => {
     return new URLSearchParams(router.query as Record<string, string>);
   }, [router.query]);
   const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
-
-  const multipleResults = useMemo(() => {
-    return persons && Array.isArray(persons) && persons.length > 1;
-  }, [ persons ]);
 
   const closeModal = useCallback((): void =>  {
     setPersons(undefined);
@@ -40,10 +42,10 @@ const ClientCard = (props: ClientCardProps) => {
   }, []);
 
   const onSelectPersonModal = useCallback((data?: Person): void =>  {
+    setIsOpenModal(false);
     if (data) {
       setPerson(data);
     }
-    return setIsOpenModal(false);
   }, []);
 
   useEffect(() => {
@@ -58,11 +60,16 @@ const ClientCard = (props: ClientCardProps) => {
   }, [error]);
     
   useEffect(() => {
+    /*
+      Quitamos la prop: 'selected' que es dinamica (se usa en los radio buttons)
+      El resto de los objetos deberia permanecer inmutado y la comparacion
+      ser equivalente
+     */
+
     const a = array.removeProperty(data ?? [], 'selected');
     const b = array.removeProperty(persons ?? [], 'selected');
-    const dataInSync = array.isEqual(a, b);
 
-    if (data && !dataInSync) {
+    if (data && !array.isEqual(a, b)) {
       setPersons(data);
       if (data.length === 1) {
         setIsOpenModal(false);
@@ -71,22 +78,11 @@ const ClientCard = (props: ClientCardProps) => {
     }
   }, [ data ]);
 
-  /*
-    Tengo un modal dentro de un useEffect que solo se abre cuando el objeto person esta vacío y 
-    el array persons contiene mas de un objeto de tipo person,
-    pero cuando el router setea el valor de person como undefined pero todavia tenemos multiples resultados
-    en persons porque no ha cambiado el modal se vuelve a abrir, como evito esto ?
-  */
-
-  const hasSelected = useMemo(() => {
-    return persons && Array.isArray(persons) && persons.some(({ selected }) => selected);
-  }, [ persons ]);
-
   useEffect(() => {
-    if (multipleResults && !person && !hasSelected) {
+    if (hasMultiplePerson && !hasSelectedPerson && !person ) {
       setIsOpenModal(true);
     } 
-  }, [ multipleResults, hasSelected ]);
+  }, [ hasMultiplePerson, hasSelectedPerson ]);
 
   return (
     <>
