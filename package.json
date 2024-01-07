@@ -1,6 +1,6 @@
 {
   "name": "client-frontend",
-  "version": "1.0.1",
+  "version": "1.0.1-sat",
   "description": "Cliente Frontend",
   "private": true,
   "scripts": {
