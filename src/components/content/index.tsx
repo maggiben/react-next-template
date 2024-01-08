@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useState } from 'react';
 import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import Card from './Card/Card';
 import SearchForm, { FormValues } from '@components/forms/SearchForm/SearchForm';
 import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 import { useRouter } from 'next/router';
-import { personState, personsState } from '@states/atoms';
 
 const Container = styled.div`
   display: block;

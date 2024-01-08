@@ -34,7 +34,7 @@ const Centered = styled.div`
 type ClientCardLayoutProps = {
   person: Person;
 }
-  
+
 const ClientCardLayout = (props: ClientCardLayoutProps) => {
   const { t } = useTranslation();
   const { person } = props;
@@ -48,7 +48,9 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
         </GridItem>
         <GridItem xs={5} alignSelf="center" justifySelf="center">
           <Centered>
-            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('status')}:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status?.label} color={person.status?.color as 'red' | 'green'}/>
+            <QuestionCircleIcon size="l" color="violet" colorTone="600" />
+            <Heading size="s">{t('status')}:</Heading>
+            <Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status?.label} color={person.status?.color as 'red' | 'green'}/>
           </Centered>
         </GridItem>
         <GridItem xs={1} alignSelf="center" justifySelf="end">
