@@ -12,6 +12,19 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const Background = styled.div `
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    height: calc(100vh - (80px + 2rem));
+    background-image: url("./static/images/background-trama.png");
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.045;
+`;
+
 const Centered = styled.div`
   display: flex;
   width: 100%;
@@ -37,6 +50,7 @@ const Content = (): JSX.Element => {
 
   return (
     <Centered>
+      <Background />
       <Container>
         <Grid>
           <GridItem xs={4}>

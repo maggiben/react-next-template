@@ -17,10 +17,12 @@ import ClientTable from '@components/content/ClientTable/ClientTable'
 
 
 const Card = styled.div`
+  position: relative;
   display: block;
   width: 100%;
   border-width: 1px;
   border-style: solid;
+  background-color: ${({ theme }) => theme.colors.neutral[100]};
   border-color: ${({ theme }) => theme.colors.neutral[300]};
   border-radius: ${({ theme }) => theme.borderRadius.m};
 `;
