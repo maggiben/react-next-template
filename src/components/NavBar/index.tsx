@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { SearchIcon, UserIcon, Heading, IconButton, Grid, GridItem } from '@fravega-it/bumeran-ds-fvg'
+import { SearchIcon, UserIcon, Heading, IconButton, Grid, GridItem } from '@fravega-it/bumeran-ds-fvg';
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import styled from "styled-components";
 
@@ -24,13 +25,14 @@ const User = styled.div`
 `;
 
 export default function NavBar(): JSX.Element {
+  const { t } = useTranslation();
   return (
     <Header>
       <Grid>
         <GridItem xs={8} justifySelf="stretch" alignSelf="center">
           <Logo>
             <SearchIcon size="l" color="white" colorTone="600" />
-            <Heading color="white">Buscador de Clientes</Heading>
+            <Heading color="white">{t('client finder')}</Heading>
           </Logo>
         </GridItem>
         <GridItem xs={4} justifySelf="end" alignSelf="center">

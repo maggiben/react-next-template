@@ -1,6 +1,7 @@
 {
-  "name": "react-next-template",
-  "version": "0.1.0",
+  "name": "client-frontend",
+  "version": "1.0.1-footer",
+  "description": "Cliente Frontend",
   "private": true,
   "scripts": {
     "prepare": "husky install",

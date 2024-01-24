@@ -10,10 +10,10 @@ const nextConfig = {
   },
   
   serverRuntimeConfig: {
-    apiSearch: process.env.NEXT_PUBLIC_SEARCH_ENDPOINT,
+    apiSearch: process.env.SEARCH_ENDPOINT,
   },
   publicRuntimeConfig: {
-    apiSearch: process.env.NEXT_PUBLIC_SEARCH_ENDPOINT,
+    apiSearch: process.env.SEARCH_ENDPOINT,
   },
 
   async redirects() {

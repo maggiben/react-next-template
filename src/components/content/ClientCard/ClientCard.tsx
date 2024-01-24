@@ -1,71 +1,95 @@
-import styled from "styled-components";
-import { 
-  UserIcon, 
-  CheckCircleIcon, 
-  CloseCircleIcon, 
-  QuestionCircleIcon, 
-  Grid, 
-  GridItem, 
-  Heading, 
-  Label,
-  IconButton,
-  EditIcon,
-} from '@fravega-it/bumeran-ds-fvg'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import DuplicateModal from '../DuplicateModal/DuplicateModal';
+import Waiting from '@components/Waiting';
+import { useRouter } from 'next/router';
 
 import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
-import ClientTable from '@components/content/ClientTable/ClientTable'
-
-const Card = styled.div`
-  display: block;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${({ theme }) => theme.colors.neutral[300]};
-  border-radius: ${({ theme }) => theme.borderRadius.m};
-`;
-
-const Centered = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Start = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-`;
+import { useFetch } from "@hooks/useFetch";
+import ClientCardLayout from './ClientCardLayout';
+import { personState, personsState } from '@states/atoms';
+import {
+  hasSelectedPerson as hasSelectedPersonSelector,
+  hasMultiplePerson as hasMultiplePersonSelector
+} from '@states/selectors';
+import array from '@utils/array';
 
 type ClientCardProps = {
   isOpen?: boolean;
-  person: Person;
 }
   
 const ClientCard = (props: ClientCardProps) => {
-  const { person } = props;
   const { t } = useTranslation();
+  const router = useRouter();
+  const [person, setPerson] = useRecoilState(personState);
+  const [persons, setPersons] = useRecoilState(personsState);
+  const hasSelectedPerson = useRecoilValue(hasSelectedPersonSelector);
+  const hasMultiplePerson = useRecoilValue(hasMultiplePersonSelector);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const searchParams = useMemo(() => {
+    return new URLSearchParams(router.query as Record<string, string>);
+  }, [router.query]);
+  const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
+
+  const closeModal = useCallback((): void =>  {
+    setPersons(undefined);
+    setIsOpenModal(false);
+    // erase search history
+    router.push({
+      pathname: document.location.pathname,
+    });
+  }, []);
+
+  const onSelectPersonModal = useCallback((data?: Person): void =>  {
+    setIsOpenModal(false);
+    if (data) {
+      setPerson(data);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (error) {
+      router.push({
+        pathname: `/${error.response?.status}`,
+        query: {
+          message: error.message
+        },
+      });
+    }
+  }, [error]);
+    
+  useEffect(() => {
+    /*
+      Quitamos la prop: 'selected' que es dinamica (se usa en los radio buttons)
+      El resto de los objetos deberia permanecer inmutado y la comparacion
+      ser equivalente
+     */
+
+    const a = array.removeProperty(data ?? [], 'selected');
+    const b = array.removeProperty(persons ?? [], 'selected');
+
+    if (data && !array.isEqual(a, b)) {
+      setPersons(data);
+      if (data.length === 1) {
+        setIsOpenModal(false);
+        setPerson(data[0]);
+      }
+    }
+  }, [ data ]);
+
+  useEffect(() => {
+    if (hasMultiplePerson && !hasSelectedPerson && !person ) {
+      setIsOpenModal(true);
+    } 
+  }, [ hasMultiplePerson, hasSelectedPerson ]);
+
   return (
-    <Card>
-      <Grid>
-        <GridItem xs={6} justifySelf="start" alignSelf="center">
-          <Centered>
-            <UserIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('name')}: {person.name}</Heading>
-          </Centered>
-        </GridItem>
-        <GridItem xs={5} alignSelf="center" justifySelf="center">
-          <Centered>
-            <QuestionCircleIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('status')}:</Heading><Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status.label} color={person.status.color as 'red' | 'green'}/>
-          </Centered>
-        </GridItem>
-        <GridItem xs={1} alignSelf="center" justifySelf="end">
-          <IconButton icon={<EditIcon />} size="s" />
-        </GridItem>
-        <GridItem xs={12}>
-          <ClientTable person={person} />
-        </GridItem>
-      </Grid>
-    </Card>
+    <>
+      { persons && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
+      { person && <ClientCardLayout person={person} /> }
+      { !person && !persons && <Waiting message={t('searching')} /> }
+    </>
   )
 };
 
