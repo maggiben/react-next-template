@@ -9,11 +9,14 @@ import {
   Heading, 
   Label,
   IconButton,
+  Button,
   EditIcon,
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
-import ClientTable from '@components/content/ClientTable/ClientTable'
+// import ClientTable from '@components/content/ClientTable/ClientTable';
+import ValidationList from '../ValidationList/ValidationList';
+import ClientData from '../ClientData/ClientData';
 
 
 const Card = styled.div`
@@ -22,7 +25,8 @@ const Card = styled.div`
   width: 100%;
   border-width: 1px;
   border-style: solid;
-  background-color: ${({ theme }) => theme.colors.neutral[100]};
+  padding: 16px;
+  background-color: ${({ theme }) => theme.colors.white};
   border-color: ${({ theme }) => theme.colors.neutral[300]};
   border-radius: ${({ theme }) => theme.borderRadius.m};
 `;
@@ -37,29 +41,43 @@ type ClientCardLayoutProps = {
   person: Person;
 }
 
+const SpaceRight = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
+  margin-right: ${({ theme, size }) => theme.spacing[size]};
+`;
+
+const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
+  margin-top: ${({ theme, size }) => theme.spacing[size]};
+`;
+
 const ClientCardLayout = (props: ClientCardLayoutProps) => {
   const { t } = useTranslation();
   const { person } = props;
+
+
+  const data: Record<string, string>[] = [
+    {[t('birth date')]: new Date(person.age).toLocaleDateString()}, 
+    {[t('email')]: person.email.address}, 
+    {[t('address')]: person.address.street}, 
+    {[t(person.identification.type)]: person.identification.number.toString()}, 
+    {[t('id expiration date')]: new Date(person.identification.expiration).toLocaleDateString()}, 
+  ];
+
   return (
     <Card>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
-            <UserIcon size="l" color="violet" colorTone="600" /><Heading size="s">{t('name')}: {person.name}</Heading>
+            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={person.status?.label} color={person.status?.color as 'red' | 'green'}/>
           </Centered>
         </GridItem>
-        <GridItem xs={5} alignSelf="center" justifySelf="center">
-          <Centered>
-            <QuestionCircleIcon size="l" color="violet" colorTone="600" />
-            <Heading size="s">{t('status')}:</Heading>
-            <Label leftIcon={person.profession ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={person.status?.label} color={person.status?.color as 'red' | 'green'}/>
-          </Centered>
-        </GridItem>
-        <GridItem xs={1} alignSelf="center" justifySelf="end">
-          <IconButton icon={<EditIcon />} size="s" />
+        <GridItem xs={6} alignSelf="center" justifySelf="end">
+          <Button label={t('resend email')} variant="primary" size="s" onClick={() => alert('hola')}/>
         </GridItem>
         <GridItem xs={12}>
-          <ClientTable person={person} />
+          <ValidationList person={person} />
+          <SpaceTop size="s" />
+          <ClientData data={data} />
+          {/* <ClientTable person={person} /> */}
         </GridItem>
       </Grid>
     </Card>

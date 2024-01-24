@@ -4,21 +4,18 @@ export type Person = {
   id: string;
   name: string;
   lastname: string;
-  age: number,
+  age: string;
+  validations: Record<string, boolean>;
   identification: {
     type: string,
     number: number;
     expiration: string;
   },
-  profession: string;
-  faceapi: boolean;
   email: {
     address: string;
     confirmed: boolean;
     expiration: string;
   }
-  city: string;
-  cp: string;  
   selected: boolean;
   status: {
     label: string;

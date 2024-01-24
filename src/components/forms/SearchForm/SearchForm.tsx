@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react';
-import { ButtonGroup, Grid, GridItem } from "@fravega-it/bumeran-ds-fvg";
+import { Button, Grid, GridItem, Link } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import getConfig from "next/config";
-import { useRouter } from 'next/router';
-
+import styled from "styled-components";
 import TextInputComponent from '../inputs/TextInputComponent';
 import SelectComponent from '../inputs/SelectComponent';
+
+const FormContainer = styled.div`
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.neutral[100]};
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+`;
+
+const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
+  margin-top: ${({ theme, size }) => theme.spacing[size]};
+`;
 
 export type FormValues = {
   cuid?: string;
@@ -58,65 +69,53 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
   const onSubmit = (data: FormValues) => console.log(data);
 
   return (
-    <form onKeyDown={handleKeyDown} onSubmit={handleSubmit(onSearch ?? onSubmit)}>
-      <Grid>
-        <GridItem xs={4}>
-          <TextInputComponent
-            id="cuid"
-            label="CUID"
-            defaultValue={props.cuid?.toString()}
-            error={errors.cuid?.message}
-            control={control}
-          />
-        </GridItem>
-        <GridItem xs={4}>
-          <SelectComponent 
-            control={control}
-            id="documentType"
-            label="Tipo de documento"
-            options={[
-              { id: 'dni', label: 'DNI' },
-              { id: 'lc', label: 'Libreta Cívica' },
-              { id: 'le', label: 'Libreta de Enrolamiento' },
-              { id: 'cuit', label: 'CUIT' },
-              { id: 'cuil', label: 'CUIL' },
-            ]}
-            defaultValue={props.documentType ?? 'dni'}
-            error={errors.documentType?.message}
-          />
-        </GridItem>
-        <GridItem xs={4}>
-          <TextInputComponent
-            control={control}
-            id="documentNumber"
-            defaultValue={props.documentNumber?.toString()}
-            label="Número"
-            error={errors.documentNumber?.message}
-          />
-        </GridItem>
-        <GridItem xs={4}>
-        <TextInputComponent
-            control={control}
-            id="email"
-            defaultValue={props.email}
-            label="Email"
-            error={errors.email?.message}
-          />
-        </GridItem>
-        <GridItem xs={3} alignSelf="center" justifySelf="center">
-          {errors.all && <div>Errors: {errors.all.message}</div>}
+    <FormContainer>
+      <form onKeyDown={handleKeyDown} onSubmit={handleSubmit(onSearch ?? onSubmit)} style={{ width: '100%'}}>
+        <Grid>
+          <GridItem xs={4}>
+            <SelectComponent 
+              control={control}
+              id="documentType"
+              label="Buscar por..."
+              options={[
+                { id: 'dni', label: 'DNI' },
+                { id: 'email', label: 'Email' },
+              ]}
+              defaultValue={props.documentType ?? 'dni'}
+              error={errors.documentType?.message}
+            />
+          </GridItem>
+          <GridItem xs={4}>
+            <TextInputComponent
+              control={control}
+              id="documentNumber"
+              defaultValue={props.documentNumber?.toString()}
+              label="Número"
+              error={errors.documentNumber?.message}
+            />
+          </GridItem>
           
-        </GridItem>
-        <GridItem xs={5} alignSelf="end" justifySelf="end">
-          <ButtonGroup
-            primaryLabel={t('search')}
-            secondaryLabel={t('reset')}
-            onClickPrimary={handleSubmit(onSearch ?? onSubmit)}
-            onClickSecondary={reset}
-          />
-        </GridItem>
-      </Grid>
-    </form>
+          <GridItem xs={4} alignSelf="end" justifySelf="start">
+            <Button 
+              label={t('search')} 
+              variant="primary"
+              onClick={handleSubmit(onSearch ?? onSubmit)}
+            />
+          </GridItem>
+        </Grid>
+        <SpaceTop size="s" />
+        <Grid>
+          <GridItem xs={4} alignSelf="end" justifySelf="start">
+            <Link>
+              <a onClick={() => alert('hola')}>{t('clan filters')}</a>
+            </Link>
+          </GridItem>
+          <GridItem xs={3} alignSelf="center" justifySelf="center">
+            {errors.all && <div>Errors: {errors.all.message}</div>}
+          </GridItem>
+        </Grid>
+      </form>
+    </FormContainer>
   );
 };
 

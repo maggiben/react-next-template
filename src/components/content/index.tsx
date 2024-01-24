@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import Card from './Card/Card';
-import SearchForm, { FormValues } from '@components/forms/SearchForm/SearchForm';
+import { FormValues } from '@components/forms/SearchForm/SearchForm';
 import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 import { useRouter } from 'next/router';
+import Welcome from '@components/content/Welcome/Welcome';
+import SearchForm from '@components/forms/SearchForm/SearchForm';
 
 const Container = styled.div`
   display: block;
@@ -19,10 +21,10 @@ const Background = styled.div `
     top: 80px;
     width: 100%;
     height: calc(100vh - (80px + 2rem));
-    background-image: url("./static/images/background-trama.png");
-    background-repeat: repeat;
-    background-position: center;
-    opacity: 0.045;
+    // background-image: url("./static/images/background-trama.png");
+    // background-repeat: repeat;
+    // background-position: center;
+    // opacity: 0.045;
 `;
 
 const Centered = styled.div`
@@ -31,6 +33,10 @@ const Centered = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+`;
+
+const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
+  margin-top: ${({ theme, size }) => theme.spacing[size]};
 `;
 
 const Content = (): JSX.Element => {
@@ -50,15 +56,18 @@ const Content = (): JSX.Element => {
 
   return (
     <Centered>
-      <Background />
       <Container>
         <Grid>
-          <GridItem xs={4}>
+          {/* <GridItem xs={4}>
             <DropdownButton label={t('search by')} open={dropdownButtonOpen} onOpenChange={setDropdownButtonOpen}>
               <SearchForm onSearch={onSearch} {...router.query} />
-            </DropdownButton>  
-          </GridItem>
+            </DropdownButton>
+          </GridItem> */}
           <GridItem xs={12}>
+            <Welcome />
+            <SpaceTop size='xl' />
+            <SearchForm onSearch={onSearch} {...router.query} />
+            <SpaceTop size='xl' />
             <Card/>
           </GridItem>
         </Grid>

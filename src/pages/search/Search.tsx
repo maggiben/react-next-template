@@ -5,7 +5,7 @@ import Content from '@components/content';
 import pjson from '@pjson';
 import Head from 'next/head';
 
-export default function Welcome(): JSX.Element {
+export default function Search(): JSX.Element {
   return (
     <>
       <Head>
