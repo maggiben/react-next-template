@@ -15,7 +15,7 @@ const Waiting = (props: WaitingProps) => {
   return (
     <Center>
       <Heading>{props.message}</Heading>
-      <Spinner size={'l'} />
+      <Spinner size="l" />
     </Center>
   )
 }
