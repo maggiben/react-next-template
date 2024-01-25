@@ -53,7 +53,7 @@ type SearchFormProps = {
 const SearchForm = (props: SearchFormProps): JSX.Element => {
   const { t } = useTranslation();
   const [search, setSearch] = useState<string>('');
-  const [documentType, setDocumentType] = useState<string>('');
+  const [documentType, setDocumentType] = useState<string>('dni');
   const router = useRouter();
   const { onSearch } = props;
   
@@ -79,10 +79,21 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
   };
 
   const handleOnSearch = () => {
-    onSearch({
-      documentType,
-      search,
-    });
+    switch(documentType) {
+      case 'dni': {
+        onSearch({
+          documentType,
+          documentNumber: search,
+        });
+        break;
+      }
+      case 'email': {
+        onSearch({
+          email: search,
+        });
+        break;
+      }
+    }
   }
   
   return (
@@ -91,15 +102,14 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         <Grid>
           <GridItem xs={4}>
             <Select
-              id="filterType"
-              name="filterType"
+              id="documentType"
               label={t('search by')}
               options={[
                 { id: 'dni', label: 'DNI' },
                 { id: 'email', label: 'Email' },
               ]}
               onChange={handleDocumentTypeChange}
-              value={props.documentType ?? 'dni'}
+              value={documentType}
             />
           </GridItem>
           <GridItem xs={4}>
