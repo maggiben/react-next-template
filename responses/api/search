@@ -7,7 +7,8 @@
         "validations": {
             "facephi": true,
             "renaper": true,
-            "email": false
+            "email": false,
+            "phone": true
         },
         "identification": {
             "type": "dni",
@@ -41,7 +42,8 @@
         "validations": {
             "facephi": false,
             "renaper": true,
-            "email": true
+            "email": true,
+            "phone": false
         },
         "identification": {
             "type": "dni",
@@ -49,8 +51,7 @@
             "expiration": "2023-12-29T12:33:32.740Z"
         },
         "email": {
-            "address": "facundo@gmail.com",
-            "confirmed": false
+            "address": "facundo@gmail.com"
         },
         "selected": false,
         "status": {
@@ -79,7 +80,8 @@
         "validations": {
             "facephi": true,
             "renaper": false,
-            "email": false
+            "email": false,
+            "phone": false
         },
         "identification": {
             "type": "dni",
@@ -117,7 +119,8 @@
         "validations": {
             "facephi": true,
             "renaper": false,
-            "email": false
+            "email": false,
+            "phone": true
         },
         "identification": {
             "type": "dni",

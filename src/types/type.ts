@@ -13,17 +13,13 @@ export type Person = {
   },
   email: {
     address: string;
-    confirmed: boolean;
+    confirmed?: boolean;
     expiration: string;
   }
-  selected: boolean;
+  selected?: boolean;
   status: {
     label: string;
     color: string;
-  };
-  renaper: {
-    confirmed: boolean;
-    expiration: string;
   };
   address: {
     street: string;

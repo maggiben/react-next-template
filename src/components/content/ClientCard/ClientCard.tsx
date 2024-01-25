@@ -15,11 +15,7 @@ import {
 } from '@states/selectors';
 import array from '@utils/array';
 
-type ClientCardProps = {
-  isOpen?: boolean;
-}
-  
-const ClientCard = (props: ClientCardProps) => {
+const ClientCard = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const [person, setPerson] = useRecoilState(personState);

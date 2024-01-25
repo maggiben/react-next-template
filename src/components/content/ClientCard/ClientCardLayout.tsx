@@ -76,8 +76,7 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
         <GridItem xs={12}>
           <ValidationList person={person} />
           <SpaceTop size="s" />
-          <ClientData data={data} />
-          {/* <ClientTable person={person} /> */}
+          <ClientData data={data} columns={3}/>
         </GridItem>
       </Grid>
     </Card>

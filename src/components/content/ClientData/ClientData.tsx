@@ -53,17 +53,15 @@ const ClientData = ({ data, columns = 3 }: { data: Array<Record<string, string>>
             {tuple.map((value, columnIndex) => {
               return (
                 <td key={columnIndex}>
-                  <Centered>
-                    {
-                      Object.entries(value).map(([key, val]) => (
-                        <>
-                          <TextBody size="m" color="neutral">{key}</TextBody>
-                          <SpaceRight size="s" />
-                          <TextBody size="m">{val}</TextBody>
-                        </>
-                      ))
-                    }
-                  </Centered>
+                  {
+                    Object.entries(value).map(([key, val]) => (
+                      <Centered key={key}>
+                        <TextBody size="m" color="neutral">{key}</TextBody>
+                        <SpaceRight size="s" />
+                        <TextBody size="m">{val}</TextBody>
+                      </Centered>
+                    ))
+                  }
                 </td>
               );
             })
