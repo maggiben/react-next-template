@@ -53,12 +53,6 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
   const { t } = useTranslation();
   const { person } = props;
 
-  `
-  display: flex;
-  justify-content: start;
-  align-items: center;
-`;
-
   const data: Record<string, string>[] = [
     {[t('birth date')]: new Date(person.age).toLocaleDateString()}, 
     {[t('email')]: person.email.address}, 
