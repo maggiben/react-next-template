@@ -21,13 +21,19 @@ export type Person = {
     label: string;
     color: string;
   };
+  phone: {
+    number: number;
+    prefix: number;
+    codeArea: number;
+  };
   address: {
+    zipCode: string;
     street: string;
     number: string;
     floor: string;
+    apartment: string;
     city: string;
-    province: string;
-    postalCode: string;
+    state: string | null;
     country: string;
   };
 }

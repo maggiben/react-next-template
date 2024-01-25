@@ -3,6 +3,7 @@
     "lastname": "Apellido",
     "email": "Email",
     "dni": "DNI",
+    "phone": "Teléfono",
     "address": "Dirección",
     "facephi": "Facephi",
     "renaper": "Renaper",
@@ -29,5 +30,18 @@
     "duplicated": "Duplicado",
     "duplicated customer": "Cliente duplicado",
     "select": "seleccionar",
-    "all fields empty": "Debe completar al menos un campo"
+    "all fields empty": "Debe completar al menos un campo",
+    "validated email": "Email Validado",
+    "not validated email": "Falta Email",
+    "validated email description": "El cliente ya validó su correo electrónico",
+    "not validated email description": "El cliente todavía no validó su correo electrónico",
+    "validated renaper": "Validado en Renaper",
+    "not validated renaper": "No Validado en Renaper",
+    "validated renaper description":"El cliente ya validó su identidad en el Registro Nacional de las Personas",
+    "not validated renaper description":"El cliente no validó su identidad en el Registro Nacional de las Personas",
+    "validated facephi": "Validado en Facephi",
+    "not validated facephi": "No Validado en Facephi",
+    "validated facephi description": "El cliente ya validó su identidad biométrica",
+    "not validated facephi description": "El cliente no validó su identidad biométrica"
+
 }

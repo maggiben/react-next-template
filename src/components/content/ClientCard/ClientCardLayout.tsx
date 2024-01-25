@@ -53,11 +53,17 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
   const { t } = useTranslation();
   const { person } = props;
 
+  `
+  display: flex;
+  justify-content: start;
+  align-items: center;
+`;
 
   const data: Record<string, string>[] = [
     {[t('birth date')]: new Date(person.age).toLocaleDateString()}, 
     {[t('email')]: person.email.address}, 
-    {[t('address')]: person.address.street}, 
+    {[t('address')]: `${person.address.street} • ${person.address.number} • ${person.address.city}`}, 
+    {[t('phone')]: `${person.phone.codeArea.toString()} - ${person.phone.number.toString()}`},
     {[t(person.identification.type)]: person.identification.number.toString()}, 
     {[t('id expiration date')]: new Date(person.identification.expiration).toLocaleDateString()}, 
   ];

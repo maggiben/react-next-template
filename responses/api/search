@@ -7,8 +7,9 @@
         "validations": {
             "facephi": true,
             "renaper": true,
-            "email": false,
-            "phone": true
+            "email": true,
+            "phone": true,
+            "identificationExpired": true
         },
         "identification": {
             "type": "dni",
@@ -20,18 +21,21 @@
             "confirmed": false
         },
         "selected": false,
-        "status": {
-            "label": "not ok",
-            "color": "red"
+        "phone": {
+            "number": 55512345,
+            "prefix": 11,
+            "codeArea": 356
         },
+        "status": "onBoardingFull",
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "zipCode": "1100",
+            "street": "AV. Corrientes",
+            "number": "1700",
+            "floor": "0",
+            "apartment": "C",
+            "city": "Neuquen",
+            "state": "Neuquen",
+            "country": "Arg"
         }
     },
     {
@@ -43,45 +47,8 @@
             "facephi": false,
             "renaper": true,
             "email": true,
-            "phone": false
-        },
-        "identification": {
-            "type": "dni",
-            "number": 30000001,
-            "expiration": "2023-12-29T12:33:32.740Z"
-        },
-        "email": {
-            "address": "facundo@gmail.com"
-        },
-        "selected": false,
-        "status": {
-            "label": "okay",
-            "color": "green"
-        },
-        "renaper": {
-            "confirmed": true,
-            "expiration": "2023-12-29T12:33:32.740Z"
-        },
-        "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
-        }
-    },
-    {
-        "id": "003",
-        "name": "Facundo",
-        "lastname": "Perez",
-        "age": "1961-02-24",
-        "validations": {
-            "facephi": true,
-            "renaper": false,
-            "email": false,
-            "phone": false
+            "phone": false,
+            "identificationExpired": false
         },
         "identification": {
             "type": "dni",
@@ -93,6 +60,57 @@
             "confirmed": false
         },
         "selected": false,
+        "phone": {
+            "number": 55512345,
+            "prefix": 11,
+            "codeArea": 299
+        },
+        "status": {
+            "label": "okay",
+            "color": "green"
+        },
+        "renaper": {
+            "confirmed": true,
+            "expiration": "2023-12-29T12:33:32.740Z"
+        },
+        "address": {
+            "zipCode": "1414",
+            "street": "Castillo",
+            "number": "1414",
+            "floor": "1",
+            "apartment": "A",
+            "city": "CABA",
+            "state": "CABA",
+            "country": "Arg"
+        }
+    },
+    {
+        "id": "003",
+        "name": "Facundo",
+        "lastname": "Perez",
+        "age": "1961-02-24",
+        "validations": {
+            "facephi": true,
+            "renaper": false,
+            "email": false,
+            "phone": false,
+            "identificationExpired": true
+        },
+        "identification": {
+            "type": "dni",
+            "number": 30000001,
+            "expiration": "2023-12-29T12:33:32.740Z"
+        },
+        "email": {
+            "address": "facundo@gmail.com",
+            "confirmed": false
+        },
+        "selected": false,
+        "phone": {
+            "number": 1234567,
+            "prefix": 11,
+            "codeArea": 264
+        },
         "status": {
             "label": "not ok",
             "color": "red"
@@ -102,13 +120,14 @@
             "expiration": "2023-12-29T12:33:32.740Z"
         },
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "zipCode": "8400",
+            "street": "Mitre",
+            "number": "12",
+            "floor": "1",
+            "apartment": "A",
+            "city": "S.C. de Bariloche",
+            "state": "Rio Negro",
+            "country": "Arg"
         }
     },
     {
@@ -120,7 +139,8 @@
             "facephi": true,
             "renaper": false,
             "email": false,
-            "phone": true
+            "phone": true,
+            "identificationExpired": false
         },
         "identification": {
             "type": "dni",
@@ -132,6 +152,11 @@
             "confirmed": true
         },
         "selected": false,
+        "phone": {
+            "number": 5559876,
+            "prefix": 22,
+            "codeArea": 987
+        },
         "status": {
             "label": "okay",
             "color": "green"
@@ -141,13 +166,14 @@
             "expiration": "2023-12-29T12:33:32.740Z"
         },
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "zipCode": "4400",
+            "street": "Palacios",
+            "number": "12",
+            "floor": "7",
+            "apartment": "A",
+            "city": "Salta",
+            "state": "Salta",
+            "country": "Arg"
         }
     }
 ]

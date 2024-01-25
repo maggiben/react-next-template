@@ -22,10 +22,6 @@ const Centered = styled.div`
   align-items: center;
 `;
 
-type ClientCardLayoutProps = {
-  person: Person;
-}
-
 const SpaceRight = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
   margin-right: ${({ theme, size }) => theme.spacing[size]};
 `;
@@ -34,42 +30,100 @@ const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'x
   margin-top: ${({ theme, size }) => theme.spacing[size]};
 `;
 
+const StatusIcon = (type: Boolean) => type ? <CheckIcon /> : <AlertIcon />;
+
+type ClientCardLayoutProps = {
+  person: Person;
+}
+
 const ValidationList = (props: ClientCardLayoutProps) => {
   const { t } = useTranslation();
   const { person } = props;
+  const validationLayout = {
+    email: {
+      icon: StatusIcon(person.validations.email),
+      color: person.validations.email ? 'green' : 'red' as 'red' | 'green',
+      label: person.validations.email ? t('validated email') : t('not validated email'),
+      description: person.validations.email ? t('validated email description') : t('not validated email description')
+    },
+    renaper: {
+      icon: StatusIcon(person.validations.renaper),
+      color: person.validations.renaper ? 'green' : 'red' as 'red' | 'green',
+      label: person.validations.renaper ? t('validated renaper') : t('not validated renaper'),
+      description: person.validations.renaper ? t('validated renaper description') : t('not validated renaper description')
+    },
+    facephi: {
+      icon: StatusIcon(person.validations.facephi),
+      color: person.validations.facephi ? 'green' : 'red' as 'red' | 'green',
+      label: person.validations.facephi ? t('validated facephi') : t('not validated facephi'),
+      description: person.validations.facephi ? t('validated facephi description') : t('not validated facephi description')
+    }
+  };
+
   return (
     <Card>
-      <Grid spacing="s" rowSpacing="s">
+      {
+        Object.entries(validationLayout).map(([validation, properties], index) => (
+          <>
+            <Grid spacing="s" rowSpacing="s">
+              <GridItem xs={12} alignSelf="center" justifySelf="start" >
+                <Centered>
+                  <Label leftIcon={properties.icon} label={properties.label} color={properties.color}/>
+                  <SpaceRight size="xs" />
+                  <TextBody size="m" color="neutral">{properties.description}</TextBody>
+                </Centered>
+              </GridItem>
+            </Grid>
+            <SpaceTop size="xs" />
+          </>
+        ))
+      }
+      {/* <Grid spacing="s" rowSpacing="s">
         <GridItem xs={12} alignSelf="center" justifySelf="start" >
           <Centered>
-            <Label leftIcon={<AlertIcon />} label="Falta Email" color={person.status?.color as 'red' | 'green'}/>
+            <Label leftIcon={<AlertIcon />} label={'pepe'} color={person.status?.color as 'red' | 'green'}/>
             <SpaceRight size="xs" />
-            <TextBody size="m" color="neutral">El cliente todavía no validó su correo electrónico</TextBody>
+            <TextBody size="m" color="neutral">{t('validated email description')}</TextBody>
           </Centered>
         </GridItem>
       </Grid>
-      <SpaceTop size="xs" />
-      <Grid spacing="s" rowSpacing="s">
-        <GridItem xs={12} alignSelf="center" justifySelf="start">
-          <Centered>
-            <Label leftIcon={<CheckIcon />} label="Validado en Renaper" color={'green'}/>
-            <SpaceRight size="xs" />
-            <TextBody size="m" color="neutral">El cliente ya validó su identidad en el Registro Nacional de las Personas</TextBody>
-          </Centered>
-        </GridItem>
-      </Grid>
-      <SpaceTop size="xs" />
-      <Grid spacing="s" rowSpacing="s">
-        <GridItem xs={12} alignSelf="center" justifySelf="start">
-          <Centered>
-            <Label leftIcon={<CheckIcon />} label="Validado en Facephi" color={'green'}/>
-            <SpaceRight size="xs" />
-            <TextBody size="m" color="neutral">El cliente ya validó su identidad biométrica</TextBody>
-          </Centered>
-        </GridItem>
-      </Grid>
+      <SpaceTop size="xs" /> */}
     </Card>
-  )
+  );
+
+  // return (
+  //   <Card>
+  //     <Grid spacing="s" rowSpacing="s">
+  //       <GridItem xs={12} alignSelf="center" justifySelf="start" >
+  //         <Centered>
+  //           <Label leftIcon={<AlertIcon />} label={} color={person.status?.color as 'red' | 'green'}/>
+  //           <SpaceRight size="xs" />
+  //           <TextBody size="m" color="neutral">{t('validated email description')}</TextBody>
+  //         </Centered>
+  //       </GridItem>
+  //     </Grid>
+  //     <SpaceTop size="xs" />
+  //     <Grid spacing="s" rowSpacing="s">
+  //       <GridItem xs={12} alignSelf="center" justifySelf="start">
+  //         <Centered>
+  //           <Label leftIcon={<CheckIcon />} label={t('validated renaper')} color={'green'}/>
+  //           <SpaceRight size="xs" />
+  //           <TextBody size="m" color="neutral">{t('validated renaper description')}</TextBody>
+  //         </Centered>
+  //       </GridItem>
+  //     </Grid>
+  //     <SpaceTop size="xs" />
+  //     <Grid spacing="s" rowSpacing="s">
+  //       <GridItem xs={12} alignSelf="center" justifySelf="start">
+  //         <Centered>
+  //           <Label leftIcon={<CheckIcon />} label={t('validated facephi')} color={'green'}/>
+  //           <SpaceRight size="xs" />
+  //           <TextBody size="m" color="neutral">{t('validated facephi description')}</TextBody>
+  //         </Centered>
+  //       </GridItem>
+  //     </Grid>
+  //   </Card>
+  // );
 };
 
   export default ValidationList;
