@@ -1,14 +1,13 @@
-import { Button, Grid, GridItem, Link } from "@fravega-it/bumeran-ds-fvg";
+import { useState, useRef } from 'react';
+import { Button, Grid, GridItem, Link, TextInput, Select, SearchIcon } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import * as yup from 'yup';
 import styled from "styled-components";
-import TextInputComponent from '../inputs/TextInputComponent';
-import SelectComponent from '../inputs/SelectComponent';
 
 const FormContainer = styled.div`
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.m};
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.neutral[100]};
   display: flex;
   padding: 16px;
@@ -24,16 +23,16 @@ const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'x
 export type FormValues = {
   cuid?: string;
   documentType?: string;
-  documentNumber?: number;
+  documentNumber?: string;
   email?: string;
 }
   
 const searchSchema = yup
   .object()
   .shape({
-    cuid: yup.string(),
     documentType: yup.string(),
-    documentNumber: yup.number(),
+    search: yup.string(),
+    documentNumber: yup.string(),
     email: yup.string().email(),
     all: yup.string(),
   })
@@ -46,52 +45,71 @@ const searchSchema = yup
 type SearchFormProps = {
   onSearch: (data: FormValues) => void;
   documentType?: string;
-  documentNumber?: number;
+  search?: string;
   cuid?: number;
   email?: string;
 }
-  
+
 const SearchForm = (props: SearchFormProps): JSX.Element => {
   const { t } = useTranslation();
+  const [search, setSearch] = useState<string>('');
+  const [documentType, setDocumentType] = useState<string>('');
+  const router = useRouter();
   const { onSearch } = props;
-  const { handleSubmit, control, reset, formState: { errors } } = useForm({
-    resolver: yupResolver(searchSchema),
-  });
   
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     // Check if the pressed key is Enter (key code 13)
     if (event.key === 'Enter') {
-      return handleSubmit(onSearch ?? onSubmit);
+      onSearch({
+      });
     }
   };
-  
-  // eslint-disable-next-line no-console
-  const onSubmit = (data: FormValues) => console.log(data);
 
+  const handleReset = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    setSearch('');
+  }
+
+  const handleChange = (value: string) => {
+    setSearch(value);
+  }
+
+  const handleDocumentTypeChange = ({id, label}: {id: string; label: string}) => {
+    setDocumentType(id);
+  };
+
+  const handleOnSearch = () => {
+    onSearch({
+      documentType,
+      search,
+    });
+  }
+  
   return (
     <FormContainer>
-      <form onKeyDown={handleKeyDown} onSubmit={handleSubmit(onSearch ?? onSubmit)} style={{ width: '100%'}}>
+      <div style={{ width: '100%'}}>
         <Grid>
           <GridItem xs={4}>
-            <SelectComponent 
-              control={control}
-              id="documentType"
-              label="Buscar por..."
+            <Select
+              id="filterType"
+              name="filterType"
+              label={t('search by')}
               options={[
                 { id: 'dni', label: 'DNI' },
                 { id: 'email', label: 'Email' },
               ]}
-              defaultValue={props.documentType ?? 'dni'}
-              error={errors.documentType?.message}
+              onChange={handleDocumentTypeChange}
+              value={props.documentType ?? 'dni'}
             />
           </GridItem>
           <GridItem xs={4}>
-            <TextInputComponent
-              control={control}
-              id="documentNumber"
-              defaultValue={props.documentNumber?.toString()}
-              label="Número"
-              error={errors.documentNumber?.message}
+            <TextInput
+              leftIcon={<SearchIcon />}
+              id="search"
+              name="search"
+              label={t('search')} 
+              onChange={handleChange}
+              value={search}
             />
           </GridItem>
           
@@ -99,7 +117,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
             <Button 
               label={t('search')} 
               variant="primary"
-              onClick={handleSubmit(onSearch ?? onSubmit)}
+              onClick={handleOnSearch}
             />
           </GridItem>
         </Grid>
@@ -107,14 +125,11 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         <Grid>
           <GridItem xs={4} alignSelf="end" justifySelf="start">
             <Link>
-              <a onClick={() => alert('hola')}>{t('clan filters')}</a>
+              <a onClick={handleReset}>{t('clan filters')}</a>
             </Link>
           </GridItem>
-          <GridItem xs={3} alignSelf="center" justifySelf="center">
-            {errors.all && <div>Errors: {errors.all.message}</div>}
-          </GridItem>
         </Grid>
-      </form>
+      </div>
     </FormContainer>
   );
 };

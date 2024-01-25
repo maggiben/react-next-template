@@ -43,8 +43,8 @@ const SpaceRight = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 
   margin-right: ${({ theme, size }) => theme.spacing[size]};
 `;
 
-const ClientData = ({ data }: { data: Array<Record<string, string>>}) => {
-  const tuples = array.splitIntoTuples(data, 3);
+const ClientData = ({ data, columns = 3 }: { data: Array<Record<string, string>>; columns: number}) => {
+  const tuples = array.splitIntoTuples(data, columns);
   return (
     <Table>
       <tbody>
