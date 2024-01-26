@@ -7,20 +7,15 @@ import array from '@utils/array';
 
 const getColumnWidth = (index: number, width: number) => {
   return `
-  th:nth-child(${index}),
-  td:nth-child(${index}) {
+  th:nth-child(${index + 1}),
+  td:nth-child(${index + 1}) {
       width: ${width}%;
     }
   `;
 };
 
-function calculateColumns(columns: number) {
-  let str = '';
-  for (let index = 0; index < columns; index += 1) {
-    str += getColumnWidth(index, 100 / columns);
-  }
-  return str;
-}
+const calculateColumns = (columns: number) => 
+  Array.from({ length: columns}, (_, index) => getColumnWidth(index, 100 / columns)).join(String.fromCharCode(10));
 
 const Table = styled.table<{columns: number}>`
   width: 100%;

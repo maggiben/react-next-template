@@ -10,6 +10,7 @@ import {
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
+import { SpaceRight, SpaceTop } from "../Spacing/Spacing";
 
 
 const Card = styled.div`
@@ -20,14 +21,6 @@ const Centered = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const SpaceRight = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
-  margin-right: ${({ theme, size }) => theme.spacing[size]};
-`;
-
-const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
-  margin-top: ${({ theme, size }) => theme.spacing[size]};
 `;
 
 const StatusIcon = (type: Boolean) => type ? <CheckIcon /> : <AlertIcon />;
@@ -78,52 +71,8 @@ const ValidationList = (props: ClientCardLayoutProps) => {
           </>
         ))
       }
-      {/* <Grid spacing="s" rowSpacing="s">
-        <GridItem xs={12} alignSelf="center" justifySelf="start" >
-          <Centered>
-            <Label leftIcon={<AlertIcon />} label={'pepe'} color={person.status?.color as 'red' | 'green'}/>
-            <SpaceRight size="xs" />
-            <TextBody size="m" color="neutral">{t('validated email description')}</TextBody>
-          </Centered>
-        </GridItem>
-      </Grid>
-      <SpaceTop size="xs" /> */}
     </Card>
   );
-
-  // return (
-  //   <Card>
-  //     <Grid spacing="s" rowSpacing="s">
-  //       <GridItem xs={12} alignSelf="center" justifySelf="start" >
-  //         <Centered>
-  //           <Label leftIcon={<AlertIcon />} label={} color={person.status?.color as 'red' | 'green'}/>
-  //           <SpaceRight size="xs" />
-  //           <TextBody size="m" color="neutral">{t('validated email description')}</TextBody>
-  //         </Centered>
-  //       </GridItem>
-  //     </Grid>
-  //     <SpaceTop size="xs" />
-  //     <Grid spacing="s" rowSpacing="s">
-  //       <GridItem xs={12} alignSelf="center" justifySelf="start">
-  //         <Centered>
-  //           <Label leftIcon={<CheckIcon />} label={t('validated renaper')} color={'green'}/>
-  //           <SpaceRight size="xs" />
-  //           <TextBody size="m" color="neutral">{t('validated renaper description')}</TextBody>
-  //         </Centered>
-  //       </GridItem>
-  //     </Grid>
-  //     <SpaceTop size="xs" />
-  //     <Grid spacing="s" rowSpacing="s">
-  //       <GridItem xs={12} alignSelf="center" justifySelf="start">
-  //         <Centered>
-  //           <Label leftIcon={<CheckIcon />} label={t('validated facephi')} color={'green'}/>
-  //           <SpaceRight size="xs" />
-  //           <TextBody size="m" color="neutral">{t('validated facephi description')}</TextBody>
-  //         </Centered>
-  //       </GridItem>
-  //     </Grid>
-  //   </Card>
-  // );
 };
 
   export default ValidationList;
