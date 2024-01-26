@@ -1,5 +1,14 @@
-import { useState, useRef } from 'react';
-import { Button, Grid, GridItem, Link, TextInput, Select, SearchIcon } from "@fravega-it/bumeran-ds-fvg";
+import { useState, useRef, ReactNode } from 'react';
+import {
+  Button,
+  Grid,
+  GridItem,
+  Link,
+  TextInput,
+  Select,
+  SearchIcon,
+  MailIcon,
+} from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
@@ -103,24 +112,45 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
           <GridItem xs={4}>
             <Select
               id="documentType"
-              label={t('search by')}
+              label={`${t('search by')}...`}
               options={[
-                { id: 'dni', label: 'DNI' },
-                { id: 'email', label: 'Email' },
+                { id: 'dni', label: t('dni') },
+                { id: 'email', label: t('email') },
               ]}
               onChange={handleDocumentTypeChange}
               value={documentType}
             />
           </GridItem>
-          <GridItem xs={4}>
-            <TextInput
-              leftIcon={<SearchIcon />}
-              id="search"
-              name="search"
-              label={t('search')} 
-              onChange={handleChange}
-              value={search}
-            />
+          <GridItem xs={4}> 
+            {
+              (function() {
+                switch(documentType) {
+                  case 'dni': 
+                    return (
+                      <TextInput
+                        leftIcon={<SearchIcon />}
+                        id="search"
+                        name="search"
+                        label={t('dni')} 
+                        onChange={handleChange}
+                        value={search}
+                      />
+                    );
+                  case 'email':
+                    return (
+                      <TextInput
+                        leftIcon={<MailIcon />}
+                        id="search"
+                        name="search"
+                        label={t('email')} 
+                        onChange={handleChange}
+                        value={search}
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                      />
+                    );
+                }
+              })() as ReactNode
+            }
           </GridItem>
           
           <GridItem xs={4} alignSelf="end" justifySelf="start">

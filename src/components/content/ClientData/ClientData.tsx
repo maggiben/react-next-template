@@ -3,7 +3,26 @@ import { useTranslation } from 'react-i18next';
 import { Heading, TextBody } from '@fravega-it/bumeran-ds-fvg'
 import array from '@utils/array';
 
-const Table = styled.table`
+
+
+const getColumnWidth = (index: number, width: number) => {
+  return `
+  th:nth-child(${index}),
+  td:nth-child(${index}) {
+      width: ${width}%;
+    }
+  `;
+};
+
+function calculateColumns(columns: number) {
+  let str = '';
+  for (let index = 0; index < columns; index += 1) {
+    str += getColumnWidth(index, 100 / columns);
+  }
+  return str;
+}
+
+const Table = styled.table<{columns: number}>`
   width: 100%;
   border-color: ${({ theme }) => theme.colors.neutral[200]};
   border-width: 1px;
@@ -16,20 +35,7 @@ const Table = styled.table`
   }
 
   /* Set the width of each column */
-  th:nth-child(1),
-  td:nth-child(1) {
-    width: 33.33%;
-  }
-
-  th:nth-child(2),
-  td:nth-child(2) {
-    width: 33.33%;
-  }
-
-  th:nth-child(3),
-  td:nth-child(3) {
-    width: 33.33%;
-  }
+  ${({ columns }) => calculateColumns(columns)}
   background-color: ${({ theme }) => theme.colors.neutral[100]};
 `;
 
@@ -46,7 +52,7 @@ const SpaceRight = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 
 const ClientData = ({ data, columns = 3 }: { data: Array<Record<string, string>>; columns: number}) => {
   const tuples = array.splitIntoTuples(data, columns);
   return (
-    <Table>
+    <Table columns={columns}>
       <tbody>
         {tuples.map((tuple, index) => (
           <tr key={index}>
@@ -54,11 +60,11 @@ const ClientData = ({ data, columns = 3 }: { data: Array<Record<string, string>>
               return (
                 <td key={columnIndex}>
                   {
-                    Object.entries(value).map(([key, val]) => (
-                      <Centered key={key}>
-                        <TextBody size="m" color="neutral">{key}</TextBody>
+                    Object.entries(value).map(([label, description]) => (
+                      <Centered key={label}>
+                        <TextBody size="m" color="neutral">{label}</TextBody>
                         <SpaceRight size="s" />
-                        <TextBody size="m">{val}</TextBody>
+                        <TextBody size="m">{description}</TextBody>
                       </Centered>
                     ))
                   }

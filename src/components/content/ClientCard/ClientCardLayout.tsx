@@ -14,6 +14,7 @@ import {
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
+import { useMediaQuery } from "@hooks/useMediaQuery";
 // import ClientTable from '@components/content/ClientTable/ClientTable';
 import ValidationList from '../ValidationList/ValidationList';
 import ClientData from '../ClientData/ClientData';
@@ -52,6 +53,7 @@ const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'x
 const ClientCardLayout = (props: ClientCardLayoutProps) => {
   const { t } = useTranslation();
   const { person } = props;
+  const columns = useMediaQuery('(min-width: 768px)') ? 3 : 1;
 
   const data: Record<string, string>[] = [
     {[t('birth date')]: new Date(person.age).toLocaleDateString()}, 
@@ -76,7 +78,7 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
         <GridItem xs={12}>
           <ValidationList person={person} />
           <SpaceTop size="s" />
-          <ClientData data={data} columns={3}/>
+          <ClientData data={data} columns={columns}/>
         </GridItem>
       </Grid>
     </Card>

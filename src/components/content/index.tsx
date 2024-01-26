@@ -14,19 +14,6 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Background = styled.div `
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 80px;
-    width: 100%;
-    height: calc(100vh - (80px + 2rem));
-    // background-image: url("./static/images/background-trama.png");
-    // background-repeat: repeat;
-    // background-position: center;
-    // opacity: 0.045;
-`;
-
 const Centered = styled.div`
   display: flex;
   width: 100%;
@@ -42,7 +29,7 @@ const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'x
 const Content = (): JSX.Element => {
   const router = useRouter();
   const { t } = useTranslation();
-  const [dropdownButtonOpen, setDropdownButtonOpen] = useState<boolean>(false);
+  const [, setDropdownButtonOpen] = useState<boolean>(false);
 
   const onSearch = (query?: FormValues) => {
     setDropdownButtonOpen(false);
@@ -58,11 +45,6 @@ const Content = (): JSX.Element => {
     <Centered>
       <Container>
         <Grid>
-          {/* <GridItem xs={4}>
-            <DropdownButton label={t('search by')} open={dropdownButtonOpen} onOpenChange={setDropdownButtonOpen}>
-              <SearchForm onSearch={onSearch} {...router.query} />
-            </DropdownButton>
-          </GridItem> */}
           <GridItem xs={12}>
             <Welcome />
             <SpaceTop size='xl' />
