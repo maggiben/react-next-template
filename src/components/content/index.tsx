@@ -11,6 +11,7 @@ import SearchForm from '@components/forms/SearchForm/SearchForm';
 const Container = styled.div`
   display: block;
   height: calc(100vh - (80px + 2rem));
+  overflow-y: scroll;
   width: 100%;
 `;
 
