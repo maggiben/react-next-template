@@ -10,7 +10,7 @@ import {
   MailIcon,
 } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
+import string from '@utils/string';
 import * as yup from 'yup';
 import styled from "styled-components";
 
@@ -36,21 +36,6 @@ export type FormValues = {
   email?: string;
 }
   
-const searchSchema = yup
-  .object()
-  .shape({
-    documentType: yup.string(),
-    search: yup.string(),
-    documentNumber: yup.string(),
-    email: yup.string().email(),
-    all: yup.string(),
-  })
-  .test((options, ...rest) => {
-    const { createError } = rest[0];
-    return Object.keys(options).length <= 1 ? createError({path: 'all', message: 'Seleccione al menos una opción', params: options, type: 'global'}) : true;
-  })
-  .required();
-
 type SearchFormProps = {
   onSearch: (data: FormValues) => void;
   documentType?: string;
@@ -63,15 +48,15 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
   const { t } = useTranslation();
   const [search, setSearch] = useState<string>('');
   const [documentType, setDocumentType] = useState<string>('dni');
-  const router = useRouter();
-  const { onSearch } = props;
+  const [searchLabel, setSearchLabel] = useState<string>(t('dni'));
+  const [errorMessage, setErrorMessage] = useState<string>('');
   
+  const { onSearch } = props;
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  const handleKeyDown = (key: string) => {
     // Check if the pressed key is Enter (key code 13)
-    if (event.key === 'Enter') {
-      onSearch({
-      });
+    if (key === 'Enter') {
+      handleOnSearch();
     }
   };
 
@@ -85,6 +70,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
 
   const handleDocumentTypeChange = ({id, label}: {id: string; label: string}) => {
     setDocumentType(id);
+    setSearchLabel(label);
   };
 
   const handleOnSearch = () => {
@@ -97,9 +83,15 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         break;
       }
       case 'email': {
-        onSearch({
-          email: search,
-        });
+        const isEmail = string.validateEmail(search);
+        if(!isEmail) {
+          setErrorMessage(t('invalid email'));
+        } else {
+          setErrorMessage('')
+          onSearch({
+            email: search,
+          });
+        }
         break;
       }
     }
@@ -121,36 +113,18 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
               value={documentType}
             />
           </GridItem>
-          <GridItem xs={4}> 
-            {
-              (function() {
-                switch(documentType) {
-                  case 'dni': 
-                    return (
-                      <TextInput
-                        leftIcon={<SearchIcon />}
-                        id="search"
-                        name="search"
-                        label={t('dni')} 
-                        onChange={handleChange}
-                        value={search}
-                      />
-                    );
-                  case 'email':
-                    return (
-                      <TextInput
-                        leftIcon={<MailIcon />}
-                        id="search"
-                        name="search"
-                        label={t('email')} 
-                        onChange={handleChange}
-                        value={search}
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-                      />
-                    );
-                }
-              })() as ReactNode
-            }
+          <GridItem xs={4}>
+            <TextInput
+              leftIcon={documentType === 'dni' ? <SearchIcon /> : <MailIcon />}
+              id="search"
+              name="search"
+              label={searchLabel} 
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              value={search}
+              error={Boolean(errorMessage.length)}
+              errorMessage={errorMessage}
+            />
           </GridItem>
           
           <GridItem xs={4} alignSelf="end" justifySelf="start">

@@ -1,12 +1,10 @@
-import styled from "styled-components";
-import { useTranslation } from 'react-i18next';
-import { Heading, TextBody } from '@fravega-it/bumeran-ds-fvg'
+import styled, { css } from "styled-components";
+import { TextBody } from '@fravega-it/bumeran-ds-fvg'
 import array from '@utils/array';
-
-
+import { SpaceRight } from '@components/content/Spacing/Spacing';
 
 const getColumnWidth = (index: number, width: number) => {
-  return `
+  return css`
   th:nth-child(${index + 1}),
   td:nth-child(${index + 1}) {
       width: ${width}%;
@@ -40,11 +38,12 @@ const Centered = styled.div`
   align-items: center;
 `;
 
-const SpaceRight = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
-  margin-right: ${({ theme, size }) => theme.spacing[size]};
-`;
+export interface IDataContainer {
+  columns?: number;
+  data: Array<Record<string, string>>;
+}
 
-const ClientData = ({ data, columns = 3 }: { data: Array<Record<string, string>>; columns: number}) => {
+const DataContainer = ({ data, columns = 3 }: IDataContainer) => {
   const tuples = array.splitIntoTuples(data, columns);
   return (
     <Table columns={columns}>
@@ -74,4 +73,4 @@ const ClientData = ({ data, columns = 3 }: { data: Array<Record<string, string>>
   );
 };
 
-export default ClientData;
+export default DataContainer;
