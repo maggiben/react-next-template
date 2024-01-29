@@ -13,7 +13,7 @@ import {
   hasSelectedPerson as hasSelectedPersonSelector,
   hasMultiplePerson as hasMultiplePersonSelector
 } from '@states/selectors';
-import array from '@utils/array';
+import * as array from '@utils/array';
 
 const ClientCard = () => {
   const { t } = useTranslation();
