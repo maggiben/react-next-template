@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { TextBody } from '@fravega-it/bumeran-ds-fvg'
-import array from '@utils/array';
+import { splitIntoTuples } from '@utils/array';
 import { SpaceRight } from '@components/Spacing/Spacing';
 
 const getColumnWidth = (index: number, width: number) => {
@@ -44,7 +44,7 @@ export interface IDataContainer {
 }
 
 const DataContainer = ({ data, columns = 3 }: IDataContainer) => {
-  const tuples = array.splitIntoTuples(data, columns);
+  const tuples = splitIntoTuples(data, columns);
   return (
     <Table columns={columns}>
       <tbody>
