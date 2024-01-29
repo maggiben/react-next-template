@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { TextBody } from '@fravega-it/bumeran-ds-fvg'
 import array from '@utils/array';
-import { SpaceRight } from '@components/content/Spacing/Spacing';
+import { SpaceRight } from '@components/Spacing/Spacing';
 
 const getColumnWidth = (index: number, width: number) => {
   return css`

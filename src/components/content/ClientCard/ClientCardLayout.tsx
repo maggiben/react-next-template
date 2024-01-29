@@ -11,7 +11,7 @@ import { Person } from 'types/type';
 import { useMediaQuery } from "@hooks/useMediaQuery";
 import DataContainer from '@components/DataContainer/DataContainer';
 import ValidationList from '../ValidationList/ValidationList';
-import { SpaceRight, SpaceTop } from '@components/content/Spacing/Spacing';
+import { SpaceRight, SpaceTop } from '@components/Spacing/Spacing';
 
 const Card = styled.div`
   position: relative;

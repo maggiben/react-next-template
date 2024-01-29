@@ -10,7 +10,7 @@ import {
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
-import { SpaceRight, SpaceTop } from "../Spacing/Spacing";
+import { SpaceRight, SpaceTop } from "../../Spacing/Spacing";
 
 
 const Card = styled.div`
