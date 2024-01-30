@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 
 const getMatches = (query: string): boolean => {
   // Prevents SSR issues
@@ -7,15 +7,16 @@ const getMatches = (query: string): boolean => {
   }
   return false;
 };
+export const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState<boolean>(getMatches(query));
 
-  useEffect(() => {
-    function handleChange() {
-      setMatches(getMatches(query));
-    }
-
+  function handleChange() {
+    setMatches(getMatches(query));
+  }
+  useIsomorphicLayoutEffect(() => {
     const matchMedia = window.matchMedia(query);
 
     // Triggered at the first client-side load and if query changes
