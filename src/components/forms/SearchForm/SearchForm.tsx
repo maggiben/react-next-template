@@ -102,16 +102,20 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
       <div style={{ width: '100%'}}>
         <Grid>
           <GridItem xs={4}>
-            <Select
-              id="documentType"
-              label={`${t('search by')}...`}
-              options={[
-                { id: 'dni', label: t('dni') },
-                { id: 'email', label: t('email') },
-              ]}
-              onChange={handleDocumentTypeChange}
-              value={documentType}
-            />
+            <div data-testid="select-document-type">
+              <Select
+                data-testid="documentType"
+                name='documentType'
+                id="documentType"
+                label={`${t('search by')}...`}
+                options={[
+                  { id: 'dni', label: t('dni') },
+                  { id: 'email', label: t('email') },
+                ]}
+                onChange={handleDocumentTypeChange}
+                value={documentType}
+              />
+            </div>
           </GridItem>
           <GridItem xs={4}>
             <TextInput
@@ -128,7 +132,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
           </GridItem>
           
           <GridItem xs={4} alignSelf="end" justifySelf="start">
-            <Button 
+            <Button
               label={t('search')} 
               variant="primary"
               onClick={handleOnSearch}
