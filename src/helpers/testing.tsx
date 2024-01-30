@@ -38,8 +38,4 @@ export const renderer: IRenderer = {
         <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
       </ThemeProvider>
   ),
-  renderWithRecoilRoot: (children: ReactElement): RenderResult =>
-    render(
-      <RecoilRoot>{children}</RecoilRoot>
-  ),
 };

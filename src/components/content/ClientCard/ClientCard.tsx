@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
-import { useFetch } from "@hooks/useFetch";
+import { useFetch } from 'usehooks-ts';
 import ClientCardLayout from './ClientCardLayout';
 import { personState, personsState } from '@states/atoms';
 import {

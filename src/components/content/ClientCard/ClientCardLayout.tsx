@@ -8,7 +8,7 @@ import {
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
-import { useMediaQuery } from "@hooks/useMediaQuery";
+import { useMediaQuery } from 'usehooks-ts';
 import DataContainer from '@components/DataContainer/DataContainer';
 import ValidationList from '../ValidationList/ValidationList';
 import { SpaceRight, SpaceTop } from '@components/Spacing/Spacing';
