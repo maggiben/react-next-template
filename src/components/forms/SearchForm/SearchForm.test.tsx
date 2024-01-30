@@ -13,19 +13,6 @@ describe('SearchForm', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('search with input', () => {
-    const onSearch = jest.fn();
-    const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
-    const searchInput = tree.getByRole('textbox', { name: i18next.t('dni') });
-    const searchButton = tree.getByRole('button', { name: i18next.t('search') });//, { name: 'Accept' })[0];
-
-    fireEvent.click(searchButton);
-    expect(onSearch).toHaveBeenCalledWith({
-      documentNumber: '',
-      documentType: 'dni',
-    });
-  });
-  
   it('search with input with value dni', () => {
     const onSearch = jest.fn();
     const dni = '3000001';
@@ -79,5 +66,15 @@ describe('SearchForm', () => {
     const resetLink = tree.getByRole('reset');
     fireEvent.click(resetLink);
     expect(searchInput.value).toBe('');    
+  });
+
+  it('error if search input is empty', () => {
+    const onSearch = jest.fn();
+    const dni = '3000001';
+    const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
+    const searchButton = tree.getByRole('button', { name: i18next.t('search') });//, { name: 'Accept' })[0];
+
+    fireEvent.click(searchButton);
+    expect(onSearch).not.toHaveBeenCalled();
   });
 });

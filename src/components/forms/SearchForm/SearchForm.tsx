@@ -74,6 +74,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
   };
 
   const handleOnSearch = () => {
+    if (!search) return;
     switch(documentType) {
       case 'dni': {
         onSearch({
