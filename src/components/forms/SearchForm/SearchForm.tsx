@@ -10,7 +10,7 @@ import {
   MailIcon,
 } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import string from '@utils/string';
+import * as string from '@utils/string';
 import * as yup from 'yup';
 import styled from "styled-components";
 
