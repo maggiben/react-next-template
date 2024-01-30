@@ -1,5 +1,367 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DuplicateModal renders with default values and handles empty selection 1`] = `
+<body
+  style="overflow: hidden;"
+>
+  <div>
+    <div
+      class="sc-gmgFlS cmxTsa"
+    >
+      <div
+        class="sc-kMkxaj fEipSc"
+        data-testid="header"
+      >
+        <svg
+          class="sc-kpDqfm gtIuVz"
+          color="black"
+          fill="none"
+          viewBox="0 0 28 28"
+          width="28px"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M11.681 8.295a2.334 2.334 0 0 1 4.638 0 5.445 5.445 0 0 1 3.126 4.927v2.457c0 .213.084.417.235.567l1.092 1.093a.778.778 0 0 1-.55 1.328h-3.11a3.111 3.111 0 0 1-6.223 0H7.778a.778.778 0 0 1-.55-1.328l1.093-1.093a.802.802 0 0 0 .235-.567v-2.457a5.445 5.445 0 0 1 3.125-4.927Zm.764 10.372a1.556 1.556 0 1 0 3.11 0h-3.11ZM14 7.777a.778.778 0 0 0-.778.779v.265c0 .33-.207.624-.518.733a3.89 3.89 0 0 0-2.593 3.668v2.457c0 .52-.172 1.023-.485 1.432h8.748a2.358 2.358 0 0 1-.485-1.432v-2.457a3.89 3.89 0 0 0-2.593-3.668.778.778 0 0 1-.518-.733v-.265A.778.778 0 0 0 14 7.777Z"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <div
+          class="sc-fiCwlc bfzQg"
+        >
+          <div
+            aria-level="4"
+            class="sc-kAyceB kxtWXq"
+            role="heading"
+          >
+            Duplicado
+          </div>
+          <span
+            class="sc-dcJsrY hnmyIZ"
+          >
+            Cliente duplicado
+          </span>
+        </div>
+        <button
+          class="sc-fHjqPf gFiHfi"
+        >
+          <svg
+            class="sc-kpDqfm ldXwSI"
+            color="neutral"
+            fill="none"
+            viewBox="0 0 28 28"
+            width="20px"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M8.783 9.283a.778.778 0 0 1 1.1 0L14 13.4l4.117-4.117a.778.778 0 1 1 1.1 1.1L15.1 14.5l4.117 4.117a.778.778 0 1 1-1.1 1.1L14 15.6l-4.117 4.117a.778.778 0 1 1-1.1-1.1L12.9 14.5l-4.117-4.117a.778.778 0 0 1 0-1.1Z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="sc-jIGnZt jiqWkj"
+      >
+        <div
+          class="sc-eZkCL bFcIFk"
+        >
+          <table
+            class="sc-jnOGJG fcvICe"
+          >
+            <thead
+              class="sc-iMWBiJ emBygi"
+            >
+              <tr>
+                <th
+                  class="sc-bypJrT iVfYDj"
+                >
+                  <div
+                    class="sc-ddjGPC dzgfUq"
+                  >
+                    <div
+                      aria-level="6"
+                      class="sc-kAyceB ffHZfz"
+                      color="inherit"
+                      role="heading"
+                    >
+                      seleccionar
+                    </div>
+                  </div>
+                </th>
+                <th
+                  class="sc-bypJrT kTPjQW"
+                >
+                  <div
+                    class="sc-ddjGPC dzgfUq"
+                  >
+                    <div
+                      aria-level="6"
+                      class="sc-kAyceB ffHZfz"
+                      color="inherit"
+                      role="heading"
+                    >
+                      Email
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="sc-gFVvzn iqQWZp"
+            >
+              <tr
+                class="sc-brPLxw igJPLm"
+              >
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    <label
+                      class="sc-aXZVg TdWnH"
+                    >
+                      <input
+                        aria-checked="false"
+                        class="sc-gEvEer gnHvVk"
+                        id="123"
+                        name="John"
+                        type="radio"
+                        value="123"
+                      />
+                      <div
+                        class="sc-fqkvVR dEKrYP"
+                        type="radio"
+                      />
+                      <div
+                        class="sc-eqUAAy hHIDJi"
+                        type="radio"
+                      >
+                        <span
+                          aria-label="John Doe"
+                          class="sc-iGgWBj djeqlO"
+                          color="inherit"
+                        >
+                          John Doe
+                        </span>
+                      </div>
+                    </label>
+                  </p>
+                </td>
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    john.doe@example.com
+                  </p>
+                </td>
+              </tr>
+              <tr
+                class="sc-brPLxw igJPLm"
+              >
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    <label
+                      class="sc-aXZVg TdWnH"
+                    >
+                      <input
+                        aria-checked="false"
+                        class="sc-gEvEer gnHvVk"
+                        id="123"
+                        name="John"
+                        type="radio"
+                        value="123"
+                      />
+                      <div
+                        class="sc-fqkvVR dEKrYP"
+                        type="radio"
+                      />
+                      <div
+                        class="sc-eqUAAy hHIDJi"
+                        type="radio"
+                      >
+                        <span
+                          aria-label="John Doe"
+                          class="sc-iGgWBj djeqlO"
+                          color="inherit"
+                        >
+                          John Doe
+                        </span>
+                      </div>
+                    </label>
+                  </p>
+                </td>
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    john.doe@example.com
+                  </p>
+                </td>
+              </tr>
+              <tr
+                class="sc-brPLxw igJPLm"
+              >
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    <label
+                      class="sc-aXZVg TdWnH"
+                    >
+                      <input
+                        aria-checked="false"
+                        class="sc-gEvEer gnHvVk"
+                        id="543"
+                        name="Tom"
+                        type="radio"
+                        value="543"
+                      />
+                      <div
+                        class="sc-fqkvVR dEKrYP"
+                        type="radio"
+                      />
+                      <div
+                        class="sc-eqUAAy hHIDJi"
+                        type="radio"
+                      >
+                        <span
+                          aria-label="Tom Doe"
+                          class="sc-iGgWBj djeqlO"
+                          color="inherit"
+                        >
+                          Tom Doe
+                        </span>
+                      </div>
+                    </label>
+                  </p>
+                </td>
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    john.doe@example.com
+                  </p>
+                </td>
+              </tr>
+              <tr
+                class="sc-brPLxw igJPLm"
+              >
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    <label
+                      class="sc-aXZVg TdWnH"
+                    >
+                      <input
+                        aria-checked="false"
+                        class="sc-gEvEer gnHvVk"
+                        id="123"
+                        name="John"
+                        type="radio"
+                        value="123"
+                      />
+                      <div
+                        class="sc-fqkvVR dEKrYP"
+                        type="radio"
+                      />
+                      <div
+                        class="sc-eqUAAy hHIDJi"
+                        type="radio"
+                      >
+                        <span
+                          aria-label="John Doe"
+                          class="sc-iGgWBj djeqlO"
+                          color="inherit"
+                        >
+                          John Doe
+                        </span>
+                      </div>
+                    </label>
+                  </p>
+                </td>
+                <td
+                  class="sc-klVQfs ebmFut"
+                >
+                  <p
+                    class="sc-gsFSXq crxiSA"
+                    color="inherit"
+                  >
+                    john.doe@example.com
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="sc-fBdRDi esHGLi"
+      >
+        <div
+          class="sc-bXCLTC iOgQpC"
+        >
+          <button
+            class="sc-fHjqPf fZZbpa"
+          >
+            <label
+              aria-label="Aceptar"
+            >
+              <div
+                aria-level="6"
+                class="sc-kAyceB ffHZfz"
+                color="inherit"
+                role="heading"
+              >
+                Aceptar
+              </div>
+            </label>
+          </button>
+          <button
+            class="sc-fHjqPf jVpOmm"
+          >
+            <label
+              aria-label="Cancelar"
+            >
+              <div
+                aria-level="6"
+                class="sc-kAyceB ffHZfz"
+                color="inherit"
+                role="heading"
+              >
+                Cancelar
+              </div>
+            </label>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`DuplicateModal renders with default values and handles selection 1`] = `
 <body
   style="overflow: hidden;"
