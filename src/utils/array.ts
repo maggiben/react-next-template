@@ -9,7 +9,7 @@ export const removeProperty = <T, K extends keyof T>(array: T[], property: K): T
 
 export const splitIntoTuples = <T>(array: T[], size: number): T[][] => {
   return array.reduce((result, current, index) => {
-    const tupleIndex = index % size;
+    const tupleIndex = Math.floor(index / size);
     if (!result[tupleIndex]) {
       result[tupleIndex] = [];
     }

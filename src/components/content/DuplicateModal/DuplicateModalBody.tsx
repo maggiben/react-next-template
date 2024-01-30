@@ -32,7 +32,7 @@ const DuplicateModalBody = (props: DuplicateModalBodyProps) => {
 			)}
 			renderCells={({ id, name, selected, email, lastname }) => (
 				<>
-					<Cell><Radio id={id} label={name + ' ' + lastname} value={id} checked={selected}  onChange={handleSelection}/></Cell>
+					<Cell><Radio id={id} name={name} label={name + ' ' + lastname} value={id} checked={selected} onChange={handleSelection}/></Cell>
 					<Cell>{email.address}</Cell>
 				</>
 			)}

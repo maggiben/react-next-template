@@ -14,80 +14,40 @@ exports[`DataContainer renders the DataContainer component 1`] = `
               <div
                 class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
               >
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   label
-                </p>
+                </span>
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
                 />
-                <p
-                  class="sc-gsFSXq fJmkby"
+                <span
+                  class="sc-iGgWBj GArsk"
                 >
                   value
-                </p>
+                </span>
               </div>
             </td>
             <td>
               <div
                 class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
               >
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   label
-                </p>
+                </span>
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
                 />
-                <p
-                  class="sc-gsFSXq fJmkby"
+                <span
+                  class="sc-iGgWBj GArsk"
                 >
                   value
-                </p>
-              </div>
-            </td>
-            <td>
-              <div
-                class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
-              >
-                <p
-                  class="sc-gsFSXq btaipV"
-                  color="neutral"
-                >
-                  label
-                </p>
-                <div
-                  class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
-                />
-                <p
-                  class="sc-gsFSXq fJmkby"
-                >
-                  value
-                </p>
-              </div>
-            </td>
-            <td>
-              <div
-                class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
-              >
-                <p
-                  class="sc-gsFSXq btaipV"
-                  color="neutral"
-                >
-                  label
-                </p>
-                <div
-                  class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
-                />
-                <p
-                  class="sc-gsFSXq fJmkby"
-                >
-                  value
-                </p>
+                </span>
               </div>
             </td>
           </tr>
@@ -96,80 +56,124 @@ exports[`DataContainer renders the DataContainer component 1`] = `
               <div
                 class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
               >
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   label
-                </p>
+                </span>
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
                 />
-                <p
-                  class="sc-gsFSXq fJmkby"
+                <span
+                  class="sc-iGgWBj GArsk"
                 >
                   value
-                </p>
+                </span>
               </div>
             </td>
             <td>
               <div
                 class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
               >
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   label
-                </p>
+                </span>
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
                 />
-                <p
-                  class="sc-gsFSXq fJmkby"
+                <span
+                  class="sc-iGgWBj GArsk"
                 >
                   value
-                </p>
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div
+                class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
+              >
+                <span
+                  class="sc-iGgWBj emVxnH"
+                  color="neutral"
+                >
+                  label
+                </span>
+                <div
+                  class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
+                />
+                <span
+                  class="sc-iGgWBj GArsk"
+                >
+                  value
+                </span>
               </div>
             </td>
             <td>
               <div
                 class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
               >
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   label
-                </p>
+                </span>
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
                 />
-                <p
-                  class="sc-gsFSXq fJmkby"
+                <span
+                  class="sc-iGgWBj GArsk"
                 >
                   value
-                </p>
+                </span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div
+                class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
+              >
+                <span
+                  class="sc-iGgWBj emVxnH"
+                  color="neutral"
+                >
+                  label
+                </span>
+                <div
+                  class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
+                />
+                <span
+                  class="sc-iGgWBj GArsk"
+                >
+                  value
+                </span>
               </div>
             </td>
             <td>
               <div
                 class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
               >
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   label
-                </p>
+                </span>
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
                 />
-                <p
-                  class="sc-gsFSXq fJmkby"
+                <span
+                  class="sc-iGgWBj GArsk"
                 >
                   value
-                </p>
+                </span>
               </div>
             </td>
           </tr>
@@ -187,80 +191,40 @@ exports[`DataContainer renders the DataContainer component 1`] = `
             <div
               class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
             >
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 label
-              </p>
+              </span>
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
               />
-              <p
-                class="sc-gsFSXq fJmkby"
+              <span
+                class="sc-iGgWBj GArsk"
               >
                 value
-              </p>
+              </span>
             </div>
           </td>
           <td>
             <div
               class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
             >
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 label
-              </p>
+              </span>
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
               />
-              <p
-                class="sc-gsFSXq fJmkby"
+              <span
+                class="sc-iGgWBj GArsk"
               >
                 value
-              </p>
-            </div>
-          </td>
-          <td>
-            <div
-              class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
-            >
-              <p
-                class="sc-gsFSXq btaipV"
-                color="neutral"
-              >
-                label
-              </p>
-              <div
-                class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
-              />
-              <p
-                class="sc-gsFSXq fJmkby"
-              >
-                value
-              </p>
-            </div>
-          </td>
-          <td>
-            <div
-              class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
-            >
-              <p
-                class="sc-gsFSXq btaipV"
-                color="neutral"
-              >
-                label
-              </p>
-              <div
-                class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
-              />
-              <p
-                class="sc-gsFSXq fJmkby"
-              >
-                value
-              </p>
+              </span>
             </div>
           </td>
         </tr>
@@ -269,80 +233,124 @@ exports[`DataContainer renders the DataContainer component 1`] = `
             <div
               class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
             >
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 label
-              </p>
+              </span>
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
               />
-              <p
-                class="sc-gsFSXq fJmkby"
+              <span
+                class="sc-iGgWBj GArsk"
               >
                 value
-              </p>
+              </span>
             </div>
           </td>
           <td>
             <div
               class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
             >
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 label
-              </p>
+              </span>
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
               />
-              <p
-                class="sc-gsFSXq fJmkby"
+              <span
+                class="sc-iGgWBj GArsk"
               >
                 value
-              </p>
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div
+              class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
+            >
+              <span
+                class="sc-iGgWBj emVxnH"
+                color="neutral"
+              >
+                label
+              </span>
+              <div
+                class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
+              />
+              <span
+                class="sc-iGgWBj GArsk"
+              >
+                value
+              </span>
             </div>
           </td>
           <td>
             <div
               class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
             >
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 label
-              </p>
+              </span>
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
               />
-              <p
-                class="sc-gsFSXq fJmkby"
+              <span
+                class="sc-iGgWBj GArsk"
               >
                 value
-              </p>
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div
+              class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
+            >
+              <span
+                class="sc-iGgWBj emVxnH"
+                color="neutral"
+              >
+                label
+              </span>
+              <div
+                class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
+              />
+              <span
+                class="sc-iGgWBj GArsk"
+              >
+                value
+              </span>
             </div>
           </td>
           <td>
             <div
               class="DataContainer__Centered-sc-122pn0e-1 byuuFh"
             >
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 label
-              </p>
+              </span>
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 latkgH"
               />
-              <p
-                class="sc-gsFSXq fJmkby"
+              <span
+                class="sc-iGgWBj GArsk"
               >
                 value
-              </p>
+              </span>
             </div>
           </td>
         </tr>

@@ -61,7 +61,7 @@ const ValidationList = (props: ClientCardLayoutProps) => {
                 <Centered>
                   <Label leftIcon={properties.icon} label={properties.label} color={properties.color}/>
                   <SpaceRight size="xs" />
-                  <TextBody size="m" color="neutral">{properties.description}</TextBody>
+                  <TextBody size="m" color="neutral" as="span">{properties.description}</TextBody>
                 </Centered>
               </GridItem>
             </Grid>

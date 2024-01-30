@@ -46,12 +46,12 @@ exports[`DataContainer renders the DataContainer component 1`] = `
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
                 />
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   El cliente ya validó su correo electrónico
-                </p>
+                </span>
               </div>
             </div>
           </div>
@@ -97,12 +97,12 @@ exports[`DataContainer renders the DataContainer component 1`] = `
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
                 />
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   El cliente no validó su identidad en el Registro Nacional de las Personas
-                </p>
+                </span>
               </div>
             </div>
           </div>
@@ -148,12 +148,12 @@ exports[`DataContainer renders the DataContainer component 1`] = `
                 <div
                   class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
                 />
-                <p
-                  class="sc-gsFSXq btaipV"
+                <span
+                  class="sc-iGgWBj emVxnH"
                   color="neutral"
                 >
                   El cliente ya validó su identidad biométrica
-                </p>
+                </span>
               </div>
             </div>
           </div>
@@ -206,12 +206,12 @@ exports[`DataContainer renders the DataContainer component 1`] = `
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
               />
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 El cliente ya validó su correo electrónico
-              </p>
+              </span>
             </div>
           </div>
         </div>
@@ -257,12 +257,12 @@ exports[`DataContainer renders the DataContainer component 1`] = `
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
               />
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 El cliente no validó su identidad en el Registro Nacional de las Personas
-              </p>
+              </span>
             </div>
           </div>
         </div>
@@ -308,12 +308,12 @@ exports[`DataContainer renders the DataContainer component 1`] = `
               <div
                 class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
               />
-              <p
-                class="sc-gsFSXq btaipV"
+              <span
+                class="sc-iGgWBj emVxnH"
                 color="neutral"
               >
                 El cliente ya validó su identidad biométrica
-              </p>
+              </span>
             </div>
           </div>
         </div>
