@@ -143,7 +143,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         <Grid>
           <GridItem xs={4} alignSelf="end" justifySelf="start">
             <Link>
-              <a onClick={handleReset}>{t('clan filters')}</a>
+              <a role="reset" onClick={handleReset}>{t('clan filters')}</a>
             </Link>
           </GridItem>
         </Grid>

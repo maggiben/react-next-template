@@ -18,66 +18,70 @@ exports[`SearchForm renders the SearchForm component 1`] = `
               class="sc-eeDRCY eAaUXa"
             >
               <div
-                style="display: contents;"
+                data-testid="select-document-type"
               >
                 <div
-                  class="sc-bbSZdi bYQRsd"
+                  style="display: contents;"
                 >
                   <div
-                    class="sc-eBMEME hbpwPF"
+                    class="sc-bbSZdi bYQRsd"
                   >
-                    <label
-                      class="sc-dtInlm bmExAe"
-                      for="documentType_input"
-                    >
-                      <div
-                        aria-level="5"
-                        class="sc-kAyceB fTWNaB"
-                        color="inherit"
-                        role="heading"
-                      >
-                        Buscar por...
-                      </div>
-                    </label>
                     <div
-                      class="sc-cWSHoV sc-dCFHLb kchOeC dZdvSt"
+                      class="sc-eBMEME hbpwPF"
                     >
-                      <div
-                        style="width: 100%;"
+                      <label
+                        class="sc-dtInlm bmExAe"
+                        for="documentType_input"
                       >
-                        <span
-                          class="sc-iGgWBj cifpBe"
+                        <div
+                          aria-level="5"
+                          class="sc-kAyceB fTWNaB"
+                          color="inherit"
+                          role="heading"
                         >
-                          <input
-                            autocomplete="off"
-                            class="sc-fhzFiK cLeJjZ"
-                            id="documentType_input"
-                            readonly=""
-                            type="text"
-                            value="DNI"
-                          />
-                        </span>
-                      </div>
+                          Buscar por...
+                        </div>
+                      </label>
                       <div
-                        class="sc-jxOSlx clLfZS"
+                        class="sc-cWSHoV sc-dCFHLb kchOeC dZdvSt"
                       >
-                        <button
-                          class="sc-lcIPJg fQTKST"
+                        <div
+                          style="width: 100%;"
                         >
-                          <svg
-                            class="sc-kpDqfm gtIuVz"
-                            color="black"
-                            fill="none"
-                            viewBox="0 0 28 28"
-                            width="24px"
+                          <span
+                            class="sc-iGgWBj cifpBe"
                           >
-                            <path
-                              clip-rule="evenodd"
-                              d="M8.006 11.228a.778.778 0 0 1 1.1 0L14 16.122l4.895-4.894a.778.778 0 0 1 1.1 1.1l-5.445 5.444a.778.778 0 0 1-1.1 0l-5.444-5.444a.778.778 0 0 1 0-1.1Z"
-                              fill-rule="evenodd"
+                            <input
+                              autocomplete="off"
+                              class="sc-fhzFiK cLeJjZ"
+                              id="documentType_input"
+                              readonly=""
+                              type="text"
+                              value="DNI"
                             />
-                          </svg>
-                        </button>
+                          </span>
+                        </div>
+                        <div
+                          class="sc-jxOSlx clLfZS"
+                        >
+                          <button
+                            class="sc-lcIPJg fQTKST"
+                          >
+                            <svg
+                              class="sc-kpDqfm gtIuVz"
+                              color="black"
+                              fill="none"
+                              viewBox="0 0 28 28"
+                              width="24px"
+                            >
+                              <path
+                                clip-rule="evenodd"
+                                d="M8.006 11.228a.778.778 0 0 1 1.1 0L14 16.122l4.895-4.894a.778.778 0 0 1 1.1 1.1l-5.445 5.444a.778.778 0 0 1-1.1 0l-5.444-5.444a.778.778 0 0 1 0-1.1Z"
+                                fill-rule="evenodd"
+                              />
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -183,6 +187,7 @@ exports[`SearchForm renders the SearchForm component 1`] = `
                   color="inherit"
                 >
                   <a
+                    role="reset"
                     tabindex="-1"
                   >
                     Limpiar filtros
@@ -209,66 +214,70 @@ exports[`SearchForm renders the SearchForm component 1`] = `
             class="sc-eeDRCY eAaUXa"
           >
             <div
-              style="display: contents;"
+              data-testid="select-document-type"
             >
               <div
-                class="sc-bbSZdi bYQRsd"
+                style="display: contents;"
               >
                 <div
-                  class="sc-eBMEME hbpwPF"
+                  class="sc-bbSZdi bYQRsd"
                 >
-                  <label
-                    class="sc-dtInlm bmExAe"
-                    for="documentType_input"
-                  >
-                    <div
-                      aria-level="5"
-                      class="sc-kAyceB fTWNaB"
-                      color="inherit"
-                      role="heading"
-                    >
-                      Buscar por...
-                    </div>
-                  </label>
                   <div
-                    class="sc-cWSHoV sc-dCFHLb kchOeC dZdvSt"
+                    class="sc-eBMEME hbpwPF"
                   >
-                    <div
-                      style="width: 100%;"
+                    <label
+                      class="sc-dtInlm bmExAe"
+                      for="documentType_input"
                     >
-                      <span
-                        class="sc-iGgWBj cifpBe"
+                      <div
+                        aria-level="5"
+                        class="sc-kAyceB fTWNaB"
+                        color="inherit"
+                        role="heading"
                       >
-                        <input
-                          autocomplete="off"
-                          class="sc-fhzFiK cLeJjZ"
-                          id="documentType_input"
-                          readonly=""
-                          type="text"
-                          value="DNI"
-                        />
-                      </span>
-                    </div>
+                        Buscar por...
+                      </div>
+                    </label>
                     <div
-                      class="sc-jxOSlx clLfZS"
+                      class="sc-cWSHoV sc-dCFHLb kchOeC dZdvSt"
                     >
-                      <button
-                        class="sc-lcIPJg fQTKST"
+                      <div
+                        style="width: 100%;"
                       >
-                        <svg
-                          class="sc-kpDqfm gtIuVz"
-                          color="black"
-                          fill="none"
-                          viewBox="0 0 28 28"
-                          width="24px"
+                        <span
+                          class="sc-iGgWBj cifpBe"
                         >
-                          <path
-                            clip-rule="evenodd"
-                            d="M8.006 11.228a.778.778 0 0 1 1.1 0L14 16.122l4.895-4.894a.778.778 0 0 1 1.1 1.1l-5.445 5.444a.778.778 0 0 1-1.1 0l-5.444-5.444a.778.778 0 0 1 0-1.1Z"
-                            fill-rule="evenodd"
+                          <input
+                            autocomplete="off"
+                            class="sc-fhzFiK cLeJjZ"
+                            id="documentType_input"
+                            readonly=""
+                            type="text"
+                            value="DNI"
                           />
-                        </svg>
-                      </button>
+                        </span>
+                      </div>
+                      <div
+                        class="sc-jxOSlx clLfZS"
+                      >
+                        <button
+                          class="sc-lcIPJg fQTKST"
+                        >
+                          <svg
+                            class="sc-kpDqfm gtIuVz"
+                            color="black"
+                            fill="none"
+                            viewBox="0 0 28 28"
+                            width="24px"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M8.006 11.228a.778.778 0 0 1 1.1 0L14 16.122l4.895-4.894a.778.778 0 0 1 1.1 1.1l-5.445 5.444a.778.778 0 0 1-1.1 0l-5.444-5.444a.778.778 0 0 1 0-1.1Z"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -374,6 +383,7 @@ exports[`SearchForm renders the SearchForm component 1`] = `
                 color="inherit"
               >
                 <a
+                  role="reset"
                   tabindex="-1"
                 >
                   Limpiar filtros

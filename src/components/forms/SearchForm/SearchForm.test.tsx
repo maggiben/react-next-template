@@ -26,7 +26,7 @@ describe('SearchForm', () => {
     });
   });
   
-  it('search with input with value', () => {
+  it('search with input with value dni', () => {
     const onSearch = jest.fn();
     const dni = '3000001';
     const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
@@ -41,14 +41,10 @@ describe('SearchForm', () => {
     });
   });
 
-  it('search with input with value', () => {
+  it('search with input with value email', () => {
     const onSearch = jest.fn();
-    const documentNumenr = '3000001';
     const email = 'tom@fravega.com.ar';
-    const documentType = 'email';
     const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
-    
-    const select = tree.getByText(`${i18next.t('search by')}...`);
     const searchInput = tree.getByRole('textbox', { name: i18next.t('dni') });
     const searchButton = tree.getByRole('button', { name: i18next.t('search') });//, { name: 'Accept' })[0];
     const container = tree.getByTestId('select-document-type');
@@ -69,5 +65,19 @@ describe('SearchForm', () => {
         });
       }
     }
+  });
+
+  it('clean search input', () => {
+    const onSearch = jest.fn();
+    const dni = '3000001';
+    const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
+    const searchInput = tree.getByRole('textbox', { name: i18next.t('dni') }) as HTMLInputElement;
+    const searchButton = tree.getByRole('button', { name: i18next.t('search') });//, { name: 'Accept' })[0];
+
+    fireEvent.change(searchInput, { target: { value: dni } });
+    expect(searchInput.value).toBe(dni);
+    const resetLink = tree.getByRole('reset');
+    fireEvent.click(resetLink);
+    expect(searchInput.value).toBe('');    
   });
 });
