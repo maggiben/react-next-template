@@ -5,6 +5,7 @@ import {
   Heading, 
   Label,
   Button,
+  MailIcon,
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
@@ -70,9 +71,12 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
             <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={labels[person.status]} color={colors[person.status] ? 'green' : 'red'}/>
           </Centered>
         </GridItem>
-        <GridItem xs={6} alignSelf="center" justifySelf="end">
-          <Button label={t('resend email')} variant="primary" size="s" onClick={() => alert('hola')}/>
-        </GridItem>
+        {
+          !person.validations.email &&
+            <GridItem xs={6} alignSelf="center" justifySelf="end">
+              <Button label={t('resend email')} rightIcon={<MailIcon />} variant="primary" size="s" onClick={() => alert('hola')}/>
+            </GridItem>
+        }
         <GridItem xs={12}>
           <ValidationList person={person} />
           <SpaceTop size="s" />
