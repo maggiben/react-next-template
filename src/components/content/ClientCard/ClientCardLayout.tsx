@@ -49,12 +49,19 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
     {[t('id expiration date')]: new Date(person.identification.expiration).toLocaleDateString()}, 
   ];
 
+  /* TODO: quick fix make batter */
+  const colors = {
+    onboardingfull: true,
+    onboardingincompleto: false,
+    dnicaduco: false,
+  };
+
   return (
     <Card>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
-            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={person.status?.label} color={person.status?.color as 'red' | 'green'}/>
+            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={person.status} color={colors[person.status] ? 'green' : 'red'}/>
           </Centered>
         </GridItem>
         <GridItem xs={6} alignSelf="center" justifySelf="end">
