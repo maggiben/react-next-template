@@ -42,6 +42,8 @@
     "validated facephi": "Validado en Facephi",
     "not validated facephi": "No Validado en Facephi",
     "validated facephi description": "El cliente ya validó su identidad biométrica",
-    "not validated facephi description": "El cliente no validó su identidad biométrica"
-
+    "not validated facephi description": "El cliente no validó su identidad biométrica",
+    "onboarding full": "Onboarding completo",
+    "onboarding incomplete": "Onboarding incompleto",
+    "dni expired": "DNI caducado"
 }

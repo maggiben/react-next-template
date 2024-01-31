@@ -26,7 +26,7 @@
             "prefix": 11,
             "codeArea": 356
         },
-        "status": "onBoardingFull",
+        "status": "onboardingfull",
         "address": {
             "zipCode": "1100",
             "street": "AV. Corrientes",
@@ -65,10 +65,7 @@
             "prefix": 11,
             "codeArea": 299
         },
-        "status": {
-            "label": "okay",
-            "color": "green"
-        },
+        "status": "dnicaduco",
         "renaper": {
             "confirmed": true,
             "expiration": "2023-12-29T12:33:32.740Z"
@@ -111,10 +108,7 @@
             "prefix": 11,
             "codeArea": 264
         },
-        "status": {
-            "label": "not ok",
-            "color": "red"
-        },
+        "status": "onboardingfull",
         "renaper": {
             "confirmed": true,
             "expiration": "2023-12-29T12:33:32.740Z"
@@ -157,10 +151,7 @@
             "prefix": 22,
             "codeArea": 987
         },
-        "status": {
-            "label": "okay",
-            "color": "green"
-        },
+        "status": "onboardingincompleto",
         "renaper": {
             "confirmed": true,
             "expiration": "2023-12-29T12:33:32.740Z"

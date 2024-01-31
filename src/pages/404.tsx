@@ -3,7 +3,7 @@ import { theme, Heading, TextBody } from '@fravega-it/bumeran-ds-fvg';
 import styled, { ThemeProvider } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import { CL_CLIENT_404_PAGE_VIEW, trackEvent } from '@utils/analytics';
+import { CU_CLIENT_FRONT_404_PAGE_VIEW, trackEvent } from '@utils/analytics';
 
 const Container = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ const NotFound = () => {
   const oldSearchParams = searchParams.get('oldSearchParams');
   const message = searchParams.get('message');
 
-  trackEvent({ event: CL_CLIENT_404_PAGE_VIEW, payload: { message }});
+  trackEvent({ event: CU_CLIENT_FRONT_404_PAGE_VIEW, payload: { message }});
   return (
     <ThemeProvider theme={theme}>
       <Container data-testid="not-found-container">

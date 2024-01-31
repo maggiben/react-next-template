@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import * as string from '@utils/string';
 import * as yup from 'yup';
-import { CL_CLIENT_SEARCH, trackEvent } from '@utils/analytics';
+import { CU_CLIENT_FRONT_SEARCH, trackEvent } from '@utils/analytics';
 import styled from "styled-components";
 
 const FormContainer = styled.div`
@@ -82,7 +82,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
           documentType,
           documentNumber: search,
         };
-        trackEvent({ event: CL_CLIENT_SEARCH, payload});
+        trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
         onSearch(payload);
         break;
       }
@@ -95,7 +95,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
           const payload = {
             email: search,
           };
-          trackEvent({ event: CL_CLIENT_SEARCH, payload});
+          trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
           onSearch({
             email: search,
           });

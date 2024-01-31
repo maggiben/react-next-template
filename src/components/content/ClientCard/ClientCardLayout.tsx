@@ -56,12 +56,18 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
     dnicaduco: false,
   };
 
+  const labels = {
+    onboardingfull: t('onboarding full'),
+    onboardingincompleto: t('onboarding incomplete'),
+    dnicaduco: t('dni expired'),
+  };
+
   return (
     <Card>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
-            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={person.status} color={colors[person.status] ? 'green' : 'red'}/>
+            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={labels[person.status]} color={colors[person.status] ? 'green' : 'red'}/>
           </Centered>
         </GridItem>
         <GridItem xs={6} alignSelf="center" justifySelf="end">
