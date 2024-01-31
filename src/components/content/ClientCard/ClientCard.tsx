@@ -47,9 +47,10 @@ const ClientCard = () => {
   useEffect(() => {
     if (error) {
       router.push({
-        pathname: `/${error.response?.status}`,
+        pathname: `/${error.cause ?? 404}`,
         query: {
-          message: error.message
+          message: error.message,
+          oldSearchParams: searchParams.toString(),
         },
       });
     }
