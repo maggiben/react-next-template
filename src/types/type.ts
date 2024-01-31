@@ -14,13 +14,9 @@ export type Person = {
   email: {
     address: string;
     confirmed?: boolean;
-    expiration: string;
   }
   selected?: boolean;
-  status: {
-    label: string;
-    color: string;
-  };
+  status: string;
   phone: {
     number: number;
     prefix: number;

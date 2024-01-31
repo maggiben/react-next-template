@@ -16,7 +16,6 @@ interface IRenderer {
   baseRenderer: (children: ReactElement) => baseRenderer.ReactTestRenderer;
   renderWithTheme: (children: ReactElement, theme: IDefaultTheme) => RenderResult;
   renderWithI18n: (children: ReactElement) => RenderResult;
-  renderWithRecoilRoot: (children: ReactElement) => RenderResult;
 }
 
 export const renderer: IRenderer = {

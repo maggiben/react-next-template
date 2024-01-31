@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import * as string from '@utils/string';
 import * as yup from 'yup';
+import { CL_CLIENT_SEARCH, trackEvent } from '@utils/analytics';
 import styled from "styled-components";
 
 const FormContainer = styled.div`
@@ -77,10 +78,12 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
     if (!search) return;
     switch(documentType) {
       case 'dni': {
-        onSearch({
+        const payload = {
           documentType,
           documentNumber: search,
-        });
+        };
+        trackEvent({ event: CL_CLIENT_SEARCH, payload});
+        onSearch(payload);
         break;
       }
       case 'email': {
@@ -88,7 +91,11 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         if(!isEmail) {
           setErrorMessage(t('invalid email'));
         } else {
-          setErrorMessage('')
+          setErrorMessage('');
+          const payload = {
+            email: search,
+          };
+          trackEvent({ event: CL_CLIENT_SEARCH, payload});
           onSearch({
             email: search,
           });
