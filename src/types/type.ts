@@ -1,4 +1,5 @@
 
+export type Status = 'onboardingfull' | 'onboardingincompleto' | 'dnicaduco';
 
 export type Person = {
   id: string;
@@ -14,13 +15,9 @@ export type Person = {
   email: {
     address: string;
     confirmed?: boolean;
-    expiration: string;
   }
   selected?: boolean;
-  status: {
-    label: string;
-    color: string;
-  };
+  status: Status;
   phone: {
     number: number;
     prefix: number;

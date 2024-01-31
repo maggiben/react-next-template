@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Heading, Grid, GridItem } from '@fravega-it/bumeran-ds-fvg';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
-import logo from '@images/logo-fravega.png';
 import styled from 'styled-components';
 
 const Header = styled.div`
@@ -31,7 +30,7 @@ export default function NavBar(): JSX.Element {
       <Grid>
         <GridItem xs={8} justifySelf="stretch" alignSelf="center">
           <Logo>
-            <Image priority src={logo} alt="Búmeran logo" style={{marginRight: '12px'}} width={130}/>
+            <Image priority src="/static/images/logo-fravega.png" alt={t('client finder')} style={{marginRight: '12px'}} width={130} height={24}/>
             <Heading color="neutral" size="s">{t('client finder')}</Heading>
           </Logo>
         </GridItem>

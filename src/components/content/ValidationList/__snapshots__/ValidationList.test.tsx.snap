@@ -1,0 +1,378 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataContainer renders the DataContainer component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ValidationList__Card-sc-zx6xp2-0 edAsZc"
+      >
+        <div>
+          <div
+            class="sc-jsJBEP eNXzoM"
+            spacing="s"
+          >
+            <div
+              class="sc-eeDRCY gNxwjx"
+            >
+              <div
+                class="ValidationList__Centered-sc-zx6xp2-1 fOVA-Do"
+              >
+                <div
+                  class="sc-bmzYkS evAJPt"
+                  color="green"
+                >
+                  <svg
+                    class="sc-kpDqfm fxbHNO"
+                    color="green"
+                    fill="none"
+                    viewBox="0 0 28 28"
+                    width="20px"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M19.996 9.56a.778.778 0 0 1 0 1.1l-7.78 7.78a.778.778 0 0 1-1.1 0l-3.112-3.112a.778.778 0 0 1 1.1-1.1l2.562 2.562 7.23-7.23a.778.778 0 0 1 1.1 0Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    class="sc-iGgWBj djeqlO"
+                    color="inherit"
+                  >
+                    Email Validado
+                  </span>
+                </div>
+                <div
+                  class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
+                />
+                <span
+                  class="sc-iGgWBj emVxnH"
+                  color="neutral"
+                >
+                  El cliente ya validó su correo electrónico
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="Spacing__SpaceTop-sc-11df7di-1 gIigKZ"
+          />
+        </div>
+        <div>
+          <div
+            class="sc-jsJBEP eNXzoM"
+            spacing="s"
+          >
+            <div
+              class="sc-eeDRCY gNxwjx"
+            >
+              <div
+                class="ValidationList__Centered-sc-zx6xp2-1 fOVA-Do"
+              >
+                <div
+                  class="sc-bmzYkS hwfFMR"
+                  color="red"
+                >
+                  <svg
+                    class="sc-kpDqfm dFcenU"
+                    color="red"
+                    fill="none"
+                    viewBox="0 0 28 28"
+                    width="20px"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M11.98 8.168c.898-1.555 3.142-1.555 4.04 0l5.387 9.331c.898 1.555-.224 3.5-2.02 3.5H8.613c-1.796 0-2.918-1.945-2.02-3.5l5.387-9.33Zm2.693.778a.778.778 0 0 0-1.346 0l-5.388 9.33a.778.778 0 0 0 .674 1.167h10.774a.778.778 0 0 0 .674-1.166l-5.388-9.331ZM14 11.667c.43 0 .778.348.778.778V14a.778.778 0 0 1-1.556 0v-1.555c0-.43.349-.778.778-.778Zm-.778 5.443c0-.43.349-.777.778-.777h.008a.778.778 0 0 1 0 1.555H14a.778.778 0 0 1-.778-.778Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    class="sc-iGgWBj djeqlO"
+                    color="inherit"
+                  >
+                    No Validado en Renaper
+                  </span>
+                </div>
+                <div
+                  class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
+                />
+                <span
+                  class="sc-iGgWBj emVxnH"
+                  color="neutral"
+                >
+                  El cliente no validó su identidad en el Registro Nacional de las Personas
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="Spacing__SpaceTop-sc-11df7di-1 gIigKZ"
+          />
+        </div>
+        <div>
+          <div
+            class="sc-jsJBEP eNXzoM"
+            spacing="s"
+          >
+            <div
+              class="sc-eeDRCY gNxwjx"
+            >
+              <div
+                class="ValidationList__Centered-sc-zx6xp2-1 fOVA-Do"
+              >
+                <div
+                  class="sc-bmzYkS evAJPt"
+                  color="green"
+                >
+                  <svg
+                    class="sc-kpDqfm fxbHNO"
+                    color="green"
+                    fill="none"
+                    viewBox="0 0 28 28"
+                    width="20px"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M19.996 9.56a.778.778 0 0 1 0 1.1l-7.78 7.78a.778.778 0 0 1-1.1 0l-3.112-3.112a.778.778 0 0 1 1.1-1.1l2.562 2.562 7.23-7.23a.778.778 0 0 1 1.1 0Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <span
+                    class="sc-iGgWBj djeqlO"
+                    color="inherit"
+                  >
+                    Validado en Facephi
+                  </span>
+                </div>
+                <div
+                  class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
+                />
+                <span
+                  class="sc-iGgWBj emVxnH"
+                  color="neutral"
+                >
+                  El cliente ya validó su identidad biométrica
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="Spacing__SpaceTop-sc-11df7di-1 gIigKZ"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ValidationList__Card-sc-zx6xp2-0 edAsZc"
+    >
+      <div>
+        <div
+          class="sc-jsJBEP eNXzoM"
+          spacing="s"
+        >
+          <div
+            class="sc-eeDRCY gNxwjx"
+          >
+            <div
+              class="ValidationList__Centered-sc-zx6xp2-1 fOVA-Do"
+            >
+              <div
+                class="sc-bmzYkS evAJPt"
+                color="green"
+              >
+                <svg
+                  class="sc-kpDqfm fxbHNO"
+                  color="green"
+                  fill="none"
+                  viewBox="0 0 28 28"
+                  width="20px"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M19.996 9.56a.778.778 0 0 1 0 1.1l-7.78 7.78a.778.778 0 0 1-1.1 0l-3.112-3.112a.778.778 0 0 1 1.1-1.1l2.562 2.562 7.23-7.23a.778.778 0 0 1 1.1 0Z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                <span
+                  class="sc-iGgWBj djeqlO"
+                  color="inherit"
+                >
+                  Email Validado
+                </span>
+              </div>
+              <div
+                class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
+              />
+              <span
+                class="sc-iGgWBj emVxnH"
+                color="neutral"
+              >
+                El cliente ya validó su correo electrónico
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="Spacing__SpaceTop-sc-11df7di-1 gIigKZ"
+        />
+      </div>
+      <div>
+        <div
+          class="sc-jsJBEP eNXzoM"
+          spacing="s"
+        >
+          <div
+            class="sc-eeDRCY gNxwjx"
+          >
+            <div
+              class="ValidationList__Centered-sc-zx6xp2-1 fOVA-Do"
+            >
+              <div
+                class="sc-bmzYkS hwfFMR"
+                color="red"
+              >
+                <svg
+                  class="sc-kpDqfm dFcenU"
+                  color="red"
+                  fill="none"
+                  viewBox="0 0 28 28"
+                  width="20px"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M11.98 8.168c.898-1.555 3.142-1.555 4.04 0l5.387 9.331c.898 1.555-.224 3.5-2.02 3.5H8.613c-1.796 0-2.918-1.945-2.02-3.5l5.387-9.33Zm2.693.778a.778.778 0 0 0-1.346 0l-5.388 9.33a.778.778 0 0 0 .674 1.167h10.774a.778.778 0 0 0 .674-1.166l-5.388-9.331ZM14 11.667c.43 0 .778.348.778.778V14a.778.778 0 0 1-1.556 0v-1.555c0-.43.349-.778.778-.778Zm-.778 5.443c0-.43.349-.777.778-.777h.008a.778.778 0 0 1 0 1.555H14a.778.778 0 0 1-.778-.778Z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                <span
+                  class="sc-iGgWBj djeqlO"
+                  color="inherit"
+                >
+                  No Validado en Renaper
+                </span>
+              </div>
+              <div
+                class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
+              />
+              <span
+                class="sc-iGgWBj emVxnH"
+                color="neutral"
+              >
+                El cliente no validó su identidad en el Registro Nacional de las Personas
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="Spacing__SpaceTop-sc-11df7di-1 gIigKZ"
+        />
+      </div>
+      <div>
+        <div
+          class="sc-jsJBEP eNXzoM"
+          spacing="s"
+        >
+          <div
+            class="sc-eeDRCY gNxwjx"
+          >
+            <div
+              class="ValidationList__Centered-sc-zx6xp2-1 fOVA-Do"
+            >
+              <div
+                class="sc-bmzYkS evAJPt"
+                color="green"
+              >
+                <svg
+                  class="sc-kpDqfm fxbHNO"
+                  color="green"
+                  fill="none"
+                  viewBox="0 0 28 28"
+                  width="20px"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M19.996 9.56a.778.778 0 0 1 0 1.1l-7.78 7.78a.778.778 0 0 1-1.1 0l-3.112-3.112a.778.778 0 0 1 1.1-1.1l2.562 2.562 7.23-7.23a.778.778 0 0 1 1.1 0Z"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                <span
+                  class="sc-iGgWBj djeqlO"
+                  color="inherit"
+                >
+                  Validado en Facephi
+                </span>
+              </div>
+              <div
+                class="Spacing__SpaceRight-sc-11df7di-0 bsMTuc"
+              />
+              <span
+                class="sc-iGgWBj emVxnH"
+                color="neutral"
+              >
+                El cliente ya validó su identidad biométrica
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="Spacing__SpaceTop-sc-11df7di-1 gIigKZ"
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

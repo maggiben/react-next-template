@@ -10,8 +10,9 @@ import {
   MailIcon,
 } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import string from '@utils/string';
+import * as string from '@utils/string';
 import * as yup from 'yup';
+import { CU_CLIENT_FRONT_SEARCH, trackEvent } from '@utils/analytics';
 import styled from "styled-components";
 
 const FormContainer = styled.div`
@@ -74,12 +75,15 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
   };
 
   const handleOnSearch = () => {
+    if (!search) return;
     switch(documentType) {
       case 'dni': {
-        onSearch({
+        const payload = {
           documentType,
           documentNumber: search,
-        });
+        };
+        trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
+        onSearch(payload);
         break;
       }
       case 'email': {
@@ -87,7 +91,11 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         if(!isEmail) {
           setErrorMessage(t('invalid email'));
         } else {
-          setErrorMessage('')
+          setErrorMessage('');
+          const payload = {
+            email: search,
+          };
+          trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
           onSearch({
             email: search,
           });
@@ -102,16 +110,20 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
       <div style={{ width: '100%'}}>
         <Grid>
           <GridItem xs={4}>
-            <Select
-              id="documentType"
-              label={`${t('search by')}...`}
-              options={[
-                { id: 'dni', label: t('dni') },
-                { id: 'email', label: t('email') },
-              ]}
-              onChange={handleDocumentTypeChange}
-              value={documentType}
-            />
+            <div data-testid="select-document-type">
+              <Select
+                data-testid="documentType"
+                name='documentType'
+                id="documentType"
+                label={`${t('search by')}...`}
+                options={[
+                  { id: 'dni', label: t('dni') },
+                  { id: 'email', label: t('email') },
+                ]}
+                onChange={handleDocumentTypeChange}
+                value={documentType}
+              />
+            </div>
           </GridItem>
           <GridItem xs={4}>
             <TextInput
@@ -128,7 +140,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
           </GridItem>
           
           <GridItem xs={4} alignSelf="end" justifySelf="start">
-            <Button 
+            <Button
               label={t('search')} 
               variant="primary"
               onClick={handleOnSearch}
@@ -139,7 +151,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         <Grid>
           <GridItem xs={4} alignSelf="end" justifySelf="start">
             <Link>
-              <a onClick={handleReset}>{t('clan filters')}</a>
+              <a role="reset" onClick={handleReset}>{t('clan filters')}</a>
             </Link>
           </GridItem>
         </Grid>

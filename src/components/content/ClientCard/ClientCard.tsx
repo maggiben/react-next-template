@@ -6,14 +6,14 @@ import { useRouter } from 'next/router';
 
 import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
-import { useFetch } from "@hooks/useFetch";
+import { useFetch } from 'usehooks-ts';
 import ClientCardLayout from './ClientCardLayout';
 import { personState, personsState } from '@states/atoms';
 import {
   hasSelectedPerson as hasSelectedPersonSelector,
   hasMultiplePerson as hasMultiplePersonSelector
 } from '@states/selectors';
-import array from '@utils/array';
+import * as array from '@utils/array';
 
 const ClientCard = () => {
   const { t } = useTranslation();
@@ -47,9 +47,10 @@ const ClientCard = () => {
   useEffect(() => {
     if (error) {
       router.push({
-        pathname: `/${error.response?.status}`,
+        pathname: `/${error.cause ?? 404}`,
         query: {
-          message: error.message
+          message: error.message,
+          oldSearchParams: searchParams.toString(),
         },
       });
     }

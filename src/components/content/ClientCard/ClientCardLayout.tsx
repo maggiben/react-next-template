@@ -8,7 +8,7 @@ import {
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
-import { useMediaQuery } from "@hooks/useMediaQuery";
+import { useMediaQuery } from 'usehooks-ts';
 import DataContainer from '@components/DataContainer/DataContainer';
 import ValidationList from '../ValidationList/ValidationList';
 import { SpaceRight, SpaceTop } from '@components/Spacing/Spacing';
@@ -49,12 +49,25 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
     {[t('id expiration date')]: new Date(person.identification.expiration).toLocaleDateString()}, 
   ];
 
+  /* TODO: quick fix make batter */
+  const colors = {
+    onboardingfull: true,
+    onboardingincompleto: false,
+    dnicaduco: false,
+  };
+
+  const labels = {
+    onboardingfull: t('onboarding full'),
+    onboardingincompleto: t('onboarding incomplete'),
+    dnicaduco: t('dni expired'),
+  };
+
   return (
     <Card>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
-            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={person.status?.label} color={person.status?.color as 'red' | 'green'}/>
+            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={labels[person.status]} color={colors[person.status] ? 'green' : 'red'}/>
           </Centered>
         </GridItem>
         <GridItem xs={6} alignSelf="center" justifySelf="end">

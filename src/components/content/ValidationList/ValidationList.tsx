@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { 
   Grid, 
   GridItem, 
-  Heading, 
   Label,
   TextBody,
   AlertIcon,
@@ -11,7 +10,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
 import { SpaceRight, SpaceTop } from "../../Spacing/Spacing";
-
 
 const Card = styled.div`
   width: 100%;
@@ -57,18 +55,18 @@ const ValidationList = (props: ClientCardLayoutProps) => {
     <Card>
       {
         Object.entries(validationLayout).map(([validation, properties], index) => (
-          <>
+          <div key={index}>
             <Grid spacing="s" rowSpacing="s">
               <GridItem xs={12} alignSelf="center" justifySelf="start" >
                 <Centered>
                   <Label leftIcon={properties.icon} label={properties.label} color={properties.color}/>
                   <SpaceRight size="xs" />
-                  <TextBody size="m" color="neutral">{properties.description}</TextBody>
+                  <TextBody size="m" color="neutral" as="span">{properties.description}</TextBody>
                 </Centered>
               </GridItem>
             </Grid>
             <SpaceTop size="xs" />
-          </>
+          </div>
         ))
       }
     </Card>

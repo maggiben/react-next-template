@@ -1,11 +1,18 @@
-export const CL_CLIENT = 'client'
-export const CL_CLIENT_PAGE_VIEW = 'fvg.client.pv'
+import pjson from '../../package.json';
+export const CU_CLIENT_FRONT = pjson.name;
+export const CU_CLIENT_FRONT_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.page_view`;
+export const CU_CLIENT_FRONT_SEARCH = `fvg.${CU_CLIENT_FRONT}.search`;
+export const CU_CLIENT_FRONT_500_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.500.pv`;
+export const CU_CLIENT_FRONT_404_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.404.pv`;
 
 type ClientEventTypes = 
-  typeof CL_CLIENT
-  | typeof CL_CLIENT_PAGE_VIEW
+  typeof CU_CLIENT_FRONT
+  | typeof CU_CLIENT_FRONT_PAGE_VIEW
+  | typeof CU_CLIENT_FRONT_SEARCH
+  | typeof CU_CLIENT_FRONT_404_PAGE_VIEW 
+  | typeof CU_CLIENT_FRONT_500_PAGE_VIEW
 
-export type PageViewType = typeof CL_CLIENT_PAGE_VIEW
+export type PageViewType = typeof CU_CLIENT_FRONT_PAGE_VIEW | typeof CU_CLIENT_FRONT_SEARCH | typeof CU_CLIENT_FRONT_404_PAGE_VIEW | typeof CU_CLIENT_FRONT_500_PAGE_VIEW
 
 
 declare global {
@@ -21,8 +28,9 @@ interface TrackEventProps {
 
 export const trackEvent = ({ event, payload }: TrackEventProps) => {
   try {
-    if (window && window.dataLayer && typeof window.dataLayer.push === 'function')  {
-      window.dataLayer.push({ event, payload })
+    const global = window as any;
+    if (global && global.gtag && typeof global.gtag === 'function')  {
+      global.gtag('event', event, payload);
     }
   } catch (error) {
     // eslint-disable-next-line no-console

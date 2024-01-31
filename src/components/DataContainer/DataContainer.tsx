@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { TextBody } from '@fravega-it/bumeran-ds-fvg'
-import array from '@utils/array';
+import { splitIntoTuples } from '@utils/array';
 import { SpaceRight } from '@components/Spacing/Spacing';
 
 const getColumnWidth = (index: number, width: number) => {
@@ -39,12 +39,12 @@ const Centered = styled.div`
 `;
 
 export interface IDataContainer {
-  columns?: number;
+  columns: number;
   data: Array<Record<string, string>>;
 }
 
-const DataContainer = ({ data, columns = 3 }: IDataContainer) => {
-  const tuples = array.splitIntoTuples(data, columns);
+const DataContainer = ({ data, columns}: IDataContainer) => {
+  const tuples = splitIntoTuples(data, columns);
   return (
     <Table columns={columns}>
       <tbody>
@@ -56,9 +56,9 @@ const DataContainer = ({ data, columns = 3 }: IDataContainer) => {
                   {
                     Object.entries(value).map(([label, description]) => (
                       <Centered key={label}>
-                        <TextBody size="m" color="neutral">{label}</TextBody>
+                        <TextBody size="m" color="neutral" as="span">{label}</TextBody>
                         <SpaceRight size="s" />
-                        <TextBody size="m">{description}</TextBody>
+                        <TextBody size="m" as="span">{description}</TextBody>
                       </Centered>
                     ))
                   }
