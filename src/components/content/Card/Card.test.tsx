@@ -256,7 +256,7 @@ jest.mock('../EmptyCard/EmptyCard', () => EmptyCardMock);
 
 // Mock the SecondComponent
 const ClientCarddMock = () => <div data-testid="client-card"></div>;
-jest.mock('../ClientCard/ClientCard', () => () => ClientCarddMock);
+jest.mock('../ClientCard/ClientCard', () => ClientCarddMock);
 
 // // mock useRouter
 jest.mock('next/router', () => ({
