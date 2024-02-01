@@ -6,7 +6,7 @@ import { personsState } from '@states/atoms';
 import DuplicateModalBody from './DuplicateModalBody';
 
 
-type DuplicateModalProps = {
+export type DuplicateModalProps = {
   isOpen?: boolean;
   closeModal: (person?: Person) => void;
   onSelectPersonModal: (person?: Person) => void;

@@ -29,7 +29,7 @@ const ClientCard = () => {
   const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
 
   const closeModal = useCallback((): void =>  {
-    setPersons(undefined);
+    // setPersons(undefined);
     setIsOpenModal(false);
     // erase search history
     router.push({
@@ -82,11 +82,11 @@ const ClientCard = () => {
   }, [ hasMultiplePerson, hasSelectedPerson ]);
 
   return (
-    <>
-      { persons && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
+    <div data-testid="client-card">
+      { persons && isOpenModal && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
       { person && <ClientCardLayout person={person} /> }
       { !person && !persons && <Waiting message={t('searching')} /> }
-    </>
+    </div>
   )
 };
 

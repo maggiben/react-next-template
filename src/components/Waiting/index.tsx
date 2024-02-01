@@ -13,7 +13,7 @@ interface WaitingProps {
 
 const Waiting = (props: WaitingProps) => {
   return (
-    <Center>
+    <Center data-testid="waiting-container">
       <Heading>{props.message}</Heading>
       <Spinner size="l" />
     </Center>

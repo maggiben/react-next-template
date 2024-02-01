@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientCard renders the ClientCard Empty component 1`] = `"<div><div data-testid="empty-card"></div></div>"`;
+
+exports[`ClientCard renders the ClientCard component 1`] = `
+<body>
+  <div />
+</body>
+`;
+
+exports[`ClientCard renders the ClientCard component 2`] = `
+<body>
+  <div>
+    <div
+      data-testid="client-card"
+    />
+  </div>
+</body>
+`;
+
+exports[`ClientCard renders the ClientCard component 3`] = `
+<body>
+  <div>
+    <div
+      data-testid="client-card"
+    />
+  </div>
+</body>
+`;
+
+exports[`ClientCard renders the ClientCard component empty card 1`] = `
+<body>
+  <div>
+    <div
+      data-testid="empty-card"
+    />
+  </div>
+</body>
+`;
+
+exports[`ClientCard renders the ClientCard component empty card 2`] = `"<div><div data-testid="empty-card"></div></div>"`;

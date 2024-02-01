@@ -84,7 +84,7 @@ exports[`DuplicateModal renders with default values and handles empty selection 
                       color="inherit"
                       role="heading"
                     >
-                      seleccionar
+                      Seleccionar
                     </div>
                   </div>
                 </th>
@@ -446,7 +446,7 @@ exports[`DuplicateModal renders with default values and handles selection 1`] = 
                       color="inherit"
                       role="heading"
                     >
-                      seleccionar
+                      Seleccionar
                     </div>
                   </div>
                 </th>

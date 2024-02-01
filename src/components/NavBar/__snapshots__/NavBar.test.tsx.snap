@@ -17,17 +17,21 @@ exports[`NavBar renders the NavBar component 1`] = `
             <div
               class="NavBar__Logo-sc-8wifgb-1 jlULcu"
             >
-              <img
-                alt="Buscador de Clientes"
-                data-nimg="1"
-                decoding="async"
-                fetchpriority="high"
-                height="24"
-                src="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75"
-                srcset="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=256&q=75 1x, /_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75 2x"
-                style="color: transparent; margin-right: 12px;"
-                width="130"
-              />
+              <a
+                href="/"
+              >
+                <img
+                  alt="Buscador de Clientes"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="24"
+                  src="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75"
+                  srcset="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=256&q=75 1x, /_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75 2x"
+                  style="color: transparent; margin-right: 12px;"
+                  width="130"
+                />
+              </a>
               <div
                 aria-level="5"
                 class="sc-kAyceB iIRIPg"
@@ -62,17 +66,21 @@ exports[`NavBar renders the NavBar component 1`] = `
           <div
             class="NavBar__Logo-sc-8wifgb-1 jlULcu"
           >
-            <img
-              alt="Buscador de Clientes"
-              data-nimg="1"
-              decoding="async"
-              fetchpriority="high"
-              height="24"
-              src="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75"
-              srcset="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=256&q=75 1x, /_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75 2x"
-              style="color: transparent; margin-right: 12px;"
-              width="130"
-            />
+            <a
+              href="/"
+            >
+              <img
+                alt="Buscador de Clientes"
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="24"
+                src="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75"
+                srcset="/_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=256&q=75 1x, /_next/image?url=%2Fstatic%2Fimages%2Flogo-fravega.png&w=384&q=75 2x"
+                style="color: transparent; margin-right: 12px;"
+                width="130"
+              />
+            </a>
             <div
               aria-level="5"
               class="sc-kAyceB iIRIPg"

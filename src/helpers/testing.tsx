@@ -6,6 +6,7 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { theme, IDefaultTheme } from '@fravega-it/bumeran-ds-fvg';
 import React, { ReactElement } from 'react';
+import '@testing-library/jest-dom'
 
 /**
  * Helper used to render components for testing.

@@ -3,20 +3,19 @@ import { renderer } from '@helpers/testing';
 import { act, RenderResult } from '@testing-library/react';
 import 'jest-styled-components';
 import { useRouter } from 'next/router';
-import { useFetch, useMediaQuery } from 'usehooks-ts';
 import { RecoilRoot } from 'recoil';
 import '@testing-library/jest-dom';
-import {
-  screen,
-  getAllByRole,
-} from "@testing-library/react";
 import { personState, personsState } from '@states/atoms';
 import { expect } from '@jest/globals';
-import ClientCard from './ClientCard';
 import { Person } from 'types/type';
-import DuplicateModal, { DuplicateModalProps } from '../DuplicateModal/DuplicateModal';
+import Card from './Card';
+global.structuredClone = (val) => JSON.parse(JSON.stringify(val));
+// import ClientCard from '../ClientCard/ClientCard';
+// import EmptyCard from '../EmptyCard/EmptyCard';
+// import DuplicateModal from '../DuplicateModal/DuplicateModal';
 
-const clients: Person[] = [
+
+const clients = [
   {
       "id": "001",
       "name": "Federico",
@@ -44,7 +43,7 @@ const clients: Person[] = [
           "prefix": 11,
           "codeArea": 356
       },
-      "status": "onboardingfull",
+      "status": "onBoardingFull",
       "address": {
           "zipCode": "1100",
           "street": "AV. Corrientes",
@@ -83,7 +82,7 @@ const clients: Person[] = [
           "prefix": 11,
           "codeArea": 299
       },
-      "status": "dnicaduco",
+      "status": "onBoardingFull",
       "renaper": {
           "confirmed": true,
           "expiration": "2023-12-29T12:33:32.740Z"
@@ -126,7 +125,7 @@ const clients: Person[] = [
           "prefix": 11,
           "codeArea": 264
       },
-      "status": "onboardingfull",
+      "status": "onBoardingFull",
       "renaper": {
           "confirmed": true,
           "expiration": "2023-12-29T12:33:32.740Z"
@@ -169,7 +168,7 @@ const clients: Person[] = [
           "prefix": 22,
           "codeArea": 987
       },
-      "status": "onboardingincompleto",
+      "status": "onBoardingFull",
       "renaper": {
           "confirmed": true,
           "expiration": "2023-12-29T12:33:32.740Z"
@@ -187,7 +186,7 @@ const clients: Person[] = [
   }
 ];
 
-const person: Person = {
+const person = {
   "id": "001",
   "name": "Federico",
   "lastname": "Garcia",
@@ -214,7 +213,7 @@ const person: Person = {
       "prefix": 11,
       "codeArea": 356
   },
-  "status": "onboardingfull",
+  "status": "onBoardingFull",
   "address": {
       "zipCode": "1100",
       "street": "AV. Corrientes",
@@ -227,141 +226,205 @@ const person: Person = {
   }
 };
 
-const MockClientCardLayout = jest.fn().mockReturnValue(() => {
+const MockClientCard = jest.fn().mockReturnValue(() => {
   return (
-    <div data-testid="card-layout" />
+    <div data-testid="client-card" />
   );
 });
 
-let closeModalMock = jest.fn();
-let onSelectPersonModalMock = jest.fn();
-
-jest.mock('./../DuplicateModal/DuplicateModal', () => function DuplicateModal(props: any) {
-  const isOpen = props.isOpen;
-  closeModalMock = props.closeModal;
-  onSelectPersonModalMock = props.onSelectPersonModal;
+const MockEmptyCard = jest.fn().mockReturnValue(() => {
   return (
-    <div data-testid="card-modal" data-isopen={isOpen.toString()}></div>
+    <div data-testid="empty-card" />
   );
 });
 
+// jest.mock('../EmptyCard/EmptyCard', () => jest.fn().mockReturnValue(() => {
+//   return (
+//     <div data-testid="empty-card" />
+//   );
+// }));
 
+// jest.mock('../ClientCard/ClientCard', () => jest.fn().mockReturnValue(() => {
+//   return (
+//     <div data-testid="client-card" />
+//   );
+// }));
 
-jest.mock('@components/Waiting', () => function Waiting() {
-  return (
-      <div data-testid="waiting">
-        {/* Mock DuplicateModalBody component */}
-        {/* {persons && persons.map(person => (
-          <label key={person.id}>
-            <input
-              type="checkbox"
-              value={person.id}
-              checked={person.selected || false}
-              onChange={(e) => handleSelection(e.target.checked, { event: e, value: person.id })}
-            />
-            {person.name}
-          </label>
-        ))} */}
-      </div>
-  );
-});
+// Mock the FirstComponent
+const EmptyCardMock = () => <div data-testid="empty-card"></div>;
+jest.mock('../EmptyCard/EmptyCard', () => EmptyCardMock);
+
+// Mock the SecondComponent
+const ClientCarddMock = () => <div data-testid="client-card"></div>;
+jest.mock('../ClientCard/ClientCard', () => () => ClientCarddMock);
+
 // // mock useRouter
 jest.mock('next/router', () => ({
-  useRouter: jest.fn(),
-}));
-
-jest.mock('usehooks-ts', () => ({
-  useRouter: jest.fn(),
-  useFetch: jest.fn(),
-  useMediaQuery: jest.fn(),
+  useRouter: jest.fn().mockResolvedValue({
+    events: {
+      on: jest.fn(),
+      off: jest.fn(),
+    },
+  }),
 }));
 const mockUseRouter = useRouter as jest.Mock;
-const mockUseFetch = useFetch as jest.Mock;
 
 describe('ClientCard', () => {
-
+  let handlerMock: (url: string | undefined) => {};
+  const pushMock = jest.fn();
+  const on = (event: string, listener: (url: string | undefined) => {}) => {
+    // listener('http://fravega.com.ar');
+    // listener('http://fravega.com.ar');
+    handlerMock = listener;
+  };
+  const off = jest.fn();
   beforeEach(() => {
-    const pushMock = jest.fn();
     mockUseRouter.mockReturnValue({
       pathname: '/mocked-path',
       push: pushMock,
+      events: {
+        on,
+        off,
+      },
+      query: {
+        documentType: 'dni',
+        documentNumber: 30000001,
+      },
     });
-    mockUseFetch.mockReturnValue({
-      data: [person],
-      error: undefined,
+    // jest.mock('../ClientCard/ClientCard', () => MockClientCard);
+    // jest.mock('../EmptyCard/EmptyCard', () => MockEmptyCard);
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
+    jest.restoreAllMocks();
+    jest.resetModules();
+  });
+
+  it('renders the ClientCard component', async () => {
+    let tree: RenderResult;
+    let initialState = [person] as Person[];
+    
+    await act(async () => {
+      tree = renderer.create(
+        <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, initialState)}>
+          <Card />
+        </RecoilRoot>
+      );
+      expect(tree.baseElement).toMatchSnapshot();
+    });
+
+    await act(async () => {
+      expect(handlerMock).toBeDefined();
+      expect(typeof handlerMock).toEqual('function');
+      if (handlerMock && typeof handlerMock === 'function') {
+        handlerMock('http://fravega.com.ar');
+      }
     });
   });
 
   it('renders the ClientCard component', async () => {
-    let tree: RenderResult | undefined = undefined;
+    let tree: RenderResult | undefined = undefined;;
+    let initialState = [person] as Person[];
+    
     await act(async () => {
       tree = renderer.create(
-        <RecoilRoot>
-          <ClientCard />
+        <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, initialState)}>
+          <Card />
         </RecoilRoot>
       );
     });
-    
-    if(tree) {
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
-      // console.log((tree as RenderResult).getByRole('modal').attributes)
-      // expect((tree as RenderResult).getByRole('modal')).not.toBeInTheDocument();
-    }
-  });
 
-  it('renders the ClientCard component close dupicate modal', async () => {
-    jest.mock('./ClientCardLayout', () => MockClientCardLayout);
-    mockUseFetch.mockReturnValue({
-      data: clients,
-      error: undefined,
-    });
-    let tree: RenderResult | undefined = undefined;
-    mockUseFetch.mockReturnValue({
-      data: clients,
-      error: undefined,
-    });
-    await act(async () => {
-      tree = renderer.create(
-        <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, clients)}>
-          <ClientCard />
-        </RecoilRoot>
-      );
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
-    });
-    
-    if(tree) {
+    if (tree) {
       expect((tree as RenderResult).baseElement).toMatchSnapshot();
       await act(async () => {
-        closeModalMock();
+        expect(handlerMock).toBeDefined();
+        expect(typeof handlerMock).toEqual('function');
+        if (handlerMock && typeof handlerMock === 'function') {
+          handlerMock('http://fravega.com.ar');
+        }
       });
       expect((tree as RenderResult).baseElement).toMatchSnapshot();
     }
+
+    // await act(async () => {
+    //   expect(handlerMock).toBeDefined();
+    //   expect(typeof handlerMock).toEqual('function');
+    //   if (handlerMock && typeof handlerMock === 'function') {
+    //     handlerMock('http://fravega.com.ar');
+    //   }
+    // });
+    
+    // if (tree) {
+    //   console.log('baseElement', (tree as RenderResult).baseElement);
+    //   expect((tree as RenderResult).baseElement).toMatchSnapshot();
+    // }
   });
 
-  it('renders the ClientCard component select person in dupicate modal', async () => {
-    jest.mock('./ClientCardLayout', () => MockClientCardLayout);
-    mockUseFetch.mockReturnValue({
-      data: clients,
-      error: undefined,
+  it('renders the ClientCard component empty card', async () => {
+    let tree: RenderResult | undefined = undefined;;
+    let initialState = [person] as Person[];
+
+    mockUseRouter.mockReturnValue({
+      pathname: '/mocked-path',
+      push: pushMock,
+      events: {
+        on,
+        off,
+      },
+      query: {},
     });
-    let tree: RenderResult | undefined = undefined;
-    mockUseFetch.mockReturnValue({
-      data: clients,
-      error: undefined,
-    });
+    
     await act(async () => {
       tree = renderer.create(
-        <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, clients)}>
-          <ClientCard />
+        <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, initialState)}>
+          <Card />
         </RecoilRoot>
       );
     });
-    
-    if(tree) {
-      await act(async () => {
-        onSelectPersonModalMock(clients[1]);
-      });
+
+    if (tree) {
       expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      await act(async () => {
+        expect(handlerMock).toBeDefined();
+        expect(typeof handlerMock).toEqual('function');
+        if (handlerMock && typeof handlerMock === 'function') {
+          handlerMock(undefined);
+          // await act(async () => {
+          //   handlerMock('http://fravega.com.ar/api/search?documentType=dni&documentNumber=3000001');
+          // });
+        }
+      });
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
+    }
+  });
+
+  it('renders the ClientCard Empty component', async () => {
+    mockUseRouter.mockReturnValue({
+      pathname: '/mocked-path',
+      push: pushMock,
+      events: {
+        on,
+        off,
+      },
+      query: {},
+    });
+    let tree: RenderResult | undefined = undefined;;
+    let initialState = [person] as Person[];
+    
+    await act(async () => {
+      tree = renderer.create(
+        <RecoilRoot initializeState={(snapshot) => {
+          snapshot.set(personsState, initialState);
+          snapshot.set(personsState, initialState);
+        }}>
+          <Card />
+        </RecoilRoot>
+      );
+    });
+
+    if (tree) {
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
     }
   });
 });

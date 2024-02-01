@@ -1,6 +1,5 @@
 
 export type Status = 'onboardingfull' | 'onboardingincompleto' | 'dnicaduco';
-
 export type Person = {
   id: string;
   name: string;

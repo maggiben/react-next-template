@@ -1,13 +1,8 @@
 import React from 'react';
 import { renderer } from '@helpers/testing';
 import '@testing-library/jest-dom';
-import {
-  screen,
-  getAllByRole,
-} from "@testing-library/react";
 import ValidationList from './ValidationList';
 import { expect } from '@jest/globals';
-import { Person } from 'types/type';
 
 // Mock the utility function used in the component
 // jest.mock('@utils/array', () => ({
