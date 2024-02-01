@@ -27,7 +27,7 @@ const ClientCard = () => {
   const searchParams = useMemo(() => {
     return new URLSearchParams(router.query as Record<string, string>);
   }, [router.query]);
-  const { data, error } = useFetch<Person[]>(`api/searchx?${searchParams.toString()}`);
+  const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
 
   const closeModal = useCallback((): void =>  {
     // setPersons(undefined);
