@@ -41,12 +41,12 @@ const EmptyCard = () => {
   return (
     <Card>
       <Center data-testid="empty-container">
-        {/* <Circle data-testid="circle">
+        <Circle data-testid="circle">
           <SearchPictogram size="xl" />
         </Circle>
         <SpaceTop size="m" />
-        <Heading size="l">{t('no results for')}</Heading>
-        <SpaceTop size="xs" />
+        <Heading size="l">{t('no results')}</Heading>
+        {/* <SpaceTop size="xs" />
         <Heading color="violet">Empty</Heading>
         <TextBody as="span">
           {t('no results help')}
