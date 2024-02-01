@@ -242,13 +242,13 @@ describe('ClientCard', () => {
     const tree = renderer.create(
       <ClientCardLayout person={person} />
     );
-    expect((tree as RenderResult).baseElement).toMatchSnapshot();
+    expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
   });
 
   it('renders the ClientCard component', async () => {
     const tree = renderer.create(
       <ClientCardLayout person={{ ...person, validations: { email: false }}} />
     );
-    expect((tree as RenderResult).baseElement).toMatchSnapshot();
+    expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
   });
 });

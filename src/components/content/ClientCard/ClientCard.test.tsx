@@ -303,7 +303,7 @@ describe('ClientCard', () => {
     });
     
     if(tree) {
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
       // console.log((tree as RenderResult).getByRole('modal').attributes)
       // expect((tree as RenderResult).getByRole('modal')).not.toBeInTheDocument();
     }
@@ -326,15 +326,15 @@ describe('ClientCard', () => {
           <ClientCard />
         </RecoilRoot>
       );
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
     });
     
     if(tree) {
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
       await act(async () => {
         closeModalMock();
       });
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
     }
   });
 
@@ -361,7 +361,7 @@ describe('ClientCard', () => {
       await act(async () => {
         onSelectPersonModalMock(clients[1]);
       });
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
     }
   });
 });

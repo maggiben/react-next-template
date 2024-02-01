@@ -64,7 +64,7 @@ describe('DuplicateModal', () => {
         <DuplicateModal isOpen={true} onSelectPersonModal={onSelectPersonModal} closeModal={closeModal} />
       </RecoilRoot>
     );
-    expect(tree.baseElement).toMatchSnapshot();
+    expect(tree.baseElement.innerHTML).toMatchSnapshot();
 
     const acceptButton = tree.getByRole('button', { name: i18next.t('accept') });//, { name: 'Accept' })[0];
     const selection = tree.getByRole('radio', { name: 'Tom Doe'});
@@ -130,7 +130,7 @@ describe('DuplicateModal', () => {
         <DuplicateModal isOpen={true} onSelectPersonModal={onSelectPersonModal} closeModal={closeModal} />
       </RecoilRoot>
     );
-    expect(tree.baseElement).toMatchSnapshot();
+    expect(tree.baseElement.innerHTML).toMatchSnapshot();
 
     const acceptButton = tree.getByRole('button', { name: i18next.t('accept') });//, { name: 'Accept' })[0];
     fireEvent.click(acceptButton);

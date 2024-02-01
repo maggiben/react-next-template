@@ -311,7 +311,7 @@ describe('ClientCard', () => {
           <Card />
         </RecoilRoot>
       );
-      expect(tree.baseElement).toMatchSnapshot();
+      expect(tree.baseElement.innerHTML).toMatchSnapshot();
     });
 
     await act(async () => {
@@ -340,7 +340,7 @@ describe('ClientCard', () => {
     });
 
     if (tree) {
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
       expect(onChange).toHaveBeenCalledWith([person]);
       await act(async () => {
         expect(handlerMock).toBeDefined();
@@ -354,7 +354,7 @@ describe('ClientCard', () => {
           expect(onChangeReset).toHaveBeenCalledTimes(1);
         }
       });
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
     }
   });
 
@@ -383,7 +383,7 @@ describe('ClientCard', () => {
     });
 
     if (tree) {
-      expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
       await act(async () => {
         expect(handlerMock).toBeDefined();
         expect(typeof handlerMock).toEqual('function');
