@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderer } from '@helpers/testing';
+import { renderer, RecoilValueObserver, RecoilResetObserver, RecoilStateObserver } from '@helpers/testing';
 import { act, RenderResult } from '@testing-library/react';
 import 'jest-styled-components';
 import { useRouter } from 'next/router';
@@ -326,10 +326,14 @@ describe('ClientCard', () => {
   it('renders the ClientCard component', async () => {
     let tree: RenderResult | undefined = undefined;;
     let initialState = [person] as Person[];
-    
+    const onChange = jest.fn();
+    const onChangeReset = jest.fn();
+
     await act(async () => {
       tree = renderer.create(
         <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, initialState)}>
+          <RecoilValueObserver node={personsState} onChange={onChange} />
+          <RecoilResetObserver node={personsState} onChange={onChangeReset} />
           <Card />
         </RecoilRoot>
       );
@@ -337,33 +341,27 @@ describe('ClientCard', () => {
 
     if (tree) {
       expect((tree as RenderResult).baseElement).toMatchSnapshot();
+      expect(onChange).toHaveBeenCalledWith([person]);
       await act(async () => {
         expect(handlerMock).toBeDefined();
         expect(typeof handlerMock).toEqual('function');
         if (handlerMock && typeof handlerMock === 'function') {
-          handlerMock('http://fravega.com.ar');
+          await act(async () => {
+            handlerMock('http://fravega.com.ar');
+            
+          });
+          expect(onChange).toHaveBeenCalledWith([person]);
+          expect(onChangeReset).toHaveBeenCalledTimes(1);
         }
       });
       expect((tree as RenderResult).baseElement).toMatchSnapshot();
     }
-
-    // await act(async () => {
-    //   expect(handlerMock).toBeDefined();
-    //   expect(typeof handlerMock).toEqual('function');
-    //   if (handlerMock && typeof handlerMock === 'function') {
-    //     handlerMock('http://fravega.com.ar');
-    //   }
-    // });
-    
-    // if (tree) {
-    //   console.log('baseElement', (tree as RenderResult).baseElement);
-    //   expect((tree as RenderResult).baseElement).toMatchSnapshot();
-    // }
   });
 
-  it('renders the ClientCard component empty card', async () => {
+  it('renders the ClientCard component empty card will set no selected', async () => {
     let tree: RenderResult | undefined = undefined;;
-    let initialState = [person] as Person[];
+    let initialState = [{ ...person, selected: true }] as Person[];
+    const onChange = jest.fn();
 
     mockUseRouter.mockReturnValue({
       pathname: '/mocked-path',
@@ -378,6 +376,7 @@ describe('ClientCard', () => {
     await act(async () => {
       tree = renderer.create(
         <RecoilRoot initializeState={(snapshot) => snapshot.set(personsState, initialState)}>
+          <RecoilStateObserver node={personsState} onChange={onChange} />
           <Card />
         </RecoilRoot>
       );
@@ -389,12 +388,15 @@ describe('ClientCard', () => {
         expect(handlerMock).toBeDefined();
         expect(typeof handlerMock).toEqual('function');
         if (handlerMock && typeof handlerMock === 'function') {
-          handlerMock(undefined);
-          // await act(async () => {
-          //   handlerMock('http://fravega.com.ar/api/search?documentType=dni&documentNumber=3000001');
-          // });
+          await act(() => {
+            handlerMock(undefined);
+          });
+          // selects nothing
         }
       });
+      expect(onChange).toHaveBeenCalledTimes(2);
+      expect(onChange).toHaveBeenNthCalledWith(1, [{ ...person, selected: true }])
+      expect(onChange).toHaveBeenNthCalledWith(2, [{ ...person, selected: false }])
       expect((tree as RenderResult).baseElement.innerHTML).toMatchSnapshot();
     }
   });

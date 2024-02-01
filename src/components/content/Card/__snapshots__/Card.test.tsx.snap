@@ -28,7 +28,7 @@ exports[`ClientCard renders the ClientCard component 3`] = `
 </body>
 `;
 
-exports[`ClientCard renders the ClientCard component empty card 1`] = `
+exports[`ClientCard renders the ClientCard component empty card will set no selected 1`] = `
 <body>
   <div>
     <div
@@ -38,4 +38,4 @@ exports[`ClientCard renders the ClientCard component empty card 1`] = `
 </body>
 `;
 
-exports[`ClientCard renders the ClientCard component empty card 2`] = `"<div><div data-testid="empty-card"></div></div>"`;
+exports[`ClientCard renders the ClientCard component empty card will set no selected 2`] = `"<div><div data-testid="empty-card"></div></div>"`;
