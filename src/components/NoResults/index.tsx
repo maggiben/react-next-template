@@ -6,6 +6,7 @@ import {
 import styled from "styled-components";
 import { useTranslation } from 'react-i18next';
 import { SpaceTop } from "@components/Spacing/Spacing";
+import { CU_CLIENT_FRONT_NO_RESULTS, trackEvent } from "@utils/analytics";
 
 const Center = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ interface NoResultsProps {
 
 const NoResults = (props: NoResultsProps) => {
   const { t } = useTranslation();
+  trackEvent({ event: CU_CLIENT_FRONT_NO_RESULTS, payload: props.message })
   return (
     <Card>
       <Center data-testid="noresults-container">
@@ -49,7 +51,7 @@ const NoResults = (props: NoResultsProps) => {
           <SearchPictogram size="xl" />
         </Circle>
         <SpaceTop size="m" />
-        <Heading>{t('no results for')}</Heading>
+        <Heading size="l">{t('no results for')}</Heading>
         <SpaceTop size="xs" />
         <Heading color="violet">{props.message}</Heading>
         <TextBody as="span">

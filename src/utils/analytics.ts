@@ -4,6 +4,7 @@ export const CU_CLIENT_FRONT_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.page_view`;
 export const CU_CLIENT_FRONT_SEARCH = `fvg.${CU_CLIENT_FRONT}.search`;
 export const CU_CLIENT_FRONT_500_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.500.pv`;
 export const CU_CLIENT_FRONT_404_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.404.pv`;
+export const CU_CLIENT_FRONT_NO_RESULTS = `fvg.${CU_CLIENT_FRONT}.no.results`;
 
 type ClientEventTypes = 
   typeof CU_CLIENT_FRONT
@@ -11,8 +12,9 @@ type ClientEventTypes =
   | typeof CU_CLIENT_FRONT_SEARCH
   | typeof CU_CLIENT_FRONT_404_PAGE_VIEW 
   | typeof CU_CLIENT_FRONT_500_PAGE_VIEW
+  | typeof CU_CLIENT_FRONT_NO_RESULTS
 
-export type PageViewType = typeof CU_CLIENT_FRONT_PAGE_VIEW | typeof CU_CLIENT_FRONT_SEARCH | typeof CU_CLIENT_FRONT_404_PAGE_VIEW | typeof CU_CLIENT_FRONT_500_PAGE_VIEW
+export type PageViewType = typeof CU_CLIENT_FRONT_PAGE_VIEW | typeof CU_CLIENT_FRONT_SEARCH | typeof CU_CLIENT_FRONT_404_PAGE_VIEW | typeof CU_CLIENT_FRONT_500_PAGE_VIEW | typeof CU_CLIENT_FRONT_NO_RESULTS
 
 
 declare global {

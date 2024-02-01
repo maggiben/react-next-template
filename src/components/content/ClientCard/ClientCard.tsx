@@ -27,7 +27,7 @@ const ClientCard = () => {
   const searchParams = useMemo(() => {
     return new URLSearchParams(router.query as Record<string, string>);
   }, [router.query]);
-  const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
+  const { data, error } = useFetch<Person[]>(`api/searchx?${searchParams.toString()}`);
 
   const closeModal = useCallback((): void =>  {
     // setPersons(undefined);
@@ -82,12 +82,13 @@ const ClientCard = () => {
     } 
   }, [ hasMultiplePerson, hasSelectedPerson ]);
 
+  const noResultsMessage = useMemo(() => searchParams.get('documentNumber') || searchParams.get('email') || error?.message, [error]);
   return (
     <div data-testid="client-card">
       { persons && isOpenModal && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
       { person && <ClientCardLayout person={person} /> }
       { !person && !persons && !error && <Waiting message={t('searching')} /> }
-      { error && <NoResults message={error.message} /> }
+      { error && <NoResults message={noResultsMessage} /> }
     </div>
   )
 };
