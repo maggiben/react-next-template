@@ -8,6 +8,7 @@ import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
 import { useFetch } from 'usehooks-ts';
 import ClientCardLayout from './ClientCardLayout';
+import NoResults from '@components/NoResults';
 import { personState, personsState } from '@states/atoms';
 import {
   hasSelectedPerson as hasSelectedPersonSelector,
@@ -44,17 +45,17 @@ const ClientCard = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (error) {
-      router.push({
-        pathname: `/${error.cause ?? 404}`,
-        query: {
-          message: error.message,
-          oldSearchParams: searchParams.toString(),
-        },
-      });
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     router.push({
+  //       pathname: `/${error.cause ?? 404}`,
+  //       query: {
+  //         message: error.message,
+  //         oldSearchParams: searchParams.toString(),
+  //       },
+  //     });
+  //   }
+  // }, [error]);
     
   useEffect(() => {
     /*
@@ -85,7 +86,8 @@ const ClientCard = () => {
     <div data-testid="client-card">
       { persons && isOpenModal && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
       { person && <ClientCardLayout person={person} /> }
-      { !person && !persons && <Waiting message={t('searching')} /> }
+      { !person && !persons && !error && <Waiting message={t('searching')} /> }
+      { error && <NoResults message={error.message} /> }
     </div>
   )
 };
