@@ -23,13 +23,15 @@
         "paths": {
             "@components/*": ["components/*"],
             "@hooks/*": ["hooks/*"],
+            "@types/*": ["types/*"],
             "@images/*": ["../public/static/images/*"],
             "@helpers/*": ["helpers/*"],
             "@translation/*": [ "../public/locale/*" ],
             "@utils/*": ["utils/*"],
             "@states/*": ["states/*"],
             "@pjson": ["../package.json"]
-        }
+        },
+        "types": ["node", "jest", "@testing-library/jest-dom"]
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
     "exclude": ["node_modules", "./cypress.config.ts"]

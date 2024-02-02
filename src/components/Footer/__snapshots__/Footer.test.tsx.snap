@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders the Footer component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="Footer__Container-sc-pbo7it-0 gFVabo"
+      >
+        <div
+          class="Footer__Hr-sc-pbo7it-2 biUGVH"
+        />
+        <div
+          class="sc-jsJBEP gDratY"
+        >
+          <div
+            class="sc-eeDRCY ixefoN"
+          >
+            <div
+              class="Footer__Right-sc-pbo7it-1 ILgTQ"
+            >
+              <svg
+                class="sc-kpDqfm huIZPh"
+                color="violet"
+                fill="none"
+                viewBox="0 0 28 28"
+                width="20px"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M15.744 7.023c.417.104.67.527.566.943L13.2 20.411a.778.778 0 0 1-1.51-.378L14.802 7.59a.778.778 0 0 1 .943-.566Zm-5.86 3.316a.778.778 0 0 1 0 1.1l-2.562 2.56 2.561 2.562a.778.778 0 1 1-1.1 1.1l-3.11-3.111a.778.778 0 0 1 0-1.1l3.11-3.111a.778.778 0 0 1 1.1 0Zm8.233 0a.778.778 0 0 1 1.1 0l3.11 3.111a.778.778 0 0 1 0 1.1l-3.11 3.111a.778.778 0 1 1-1.1-1.1L20.677 14l-2.56-2.561a.778.778 0 0 1 0-1.1Z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="sc-iGgWBj hTwzmc"
+              >
+                <span
+                  class="sc-dhKdcB lcWvTs"
+                >
+                  Versión: 
+                </span>
+                1.0.2-new-ui
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="Footer__Container-sc-pbo7it-0 gFVabo"
+    >
+      <div
+        class="Footer__Hr-sc-pbo7it-2 biUGVH"
+      />
+      <div
+        class="sc-jsJBEP gDratY"
+      >
+        <div
+          class="sc-eeDRCY ixefoN"
+        >
+          <div
+            class="Footer__Right-sc-pbo7it-1 ILgTQ"
+          >
+            <svg
+              class="sc-kpDqfm huIZPh"
+              color="violet"
+              fill="none"
+              viewBox="0 0 28 28"
+              width="20px"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M15.744 7.023c.417.104.67.527.566.943L13.2 20.411a.778.778 0 0 1-1.51-.378L14.802 7.59a.778.778 0 0 1 .943-.566Zm-5.86 3.316a.778.778 0 0 1 0 1.1l-2.562 2.56 2.561 2.562a.778.778 0 1 1-1.1 1.1l-3.11-3.111a.778.778 0 0 1 0-1.1l3.11-3.111a.778.778 0 0 1 1.1 0Zm8.233 0a.778.778 0 0 1 1.1 0l3.11 3.111a.778.778 0 0 1 0 1.1l-3.11 3.111a.778.778 0 1 1-1.1-1.1L20.677 14l-2.56-2.561a.778.778 0 0 1 0-1.1Z"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <span
+              class="sc-iGgWBj hTwzmc"
+            >
+              <span
+                class="sc-dhKdcB lcWvTs"
+              >
+                Versión: 
+              </span>
+              1.0.2-new-ui
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

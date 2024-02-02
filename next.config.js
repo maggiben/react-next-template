@@ -11,6 +11,7 @@ const nextConfig = {
   
   serverRuntimeConfig: {
     apiSearch: process.env.SEARCH_ENDPOINT,
+    gtmId: process.env.GTM_ID,
   },
   publicRuntimeConfig: {
     apiSearch: process.env.SEARCH_ENDPOINT,
@@ -20,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/welcome",
+        destination: "/search",
         permanent: true,
       },
     ];

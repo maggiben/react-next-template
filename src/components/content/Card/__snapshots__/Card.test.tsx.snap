@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientCard renders the ClientCard Empty component 1`] = `"<div><div data-testid="empty-card"></div></div>"`;
+
+exports[`ClientCard renders the ClientCard component 1`] = `"<div></div>"`;
+
+exports[`ClientCard renders the ClientCard component 2`] = `"<div><div data-testid="client-card"></div></div>"`;
+
+exports[`ClientCard renders the ClientCard component 3`] = `"<div><div data-testid="client-card"></div></div>"`;
+
+exports[`ClientCard renders the ClientCard component empty card will set no selected 1`] = `"<div><div data-testid="empty-card"></div></div>"`;
+
+exports[`ClientCard renders the ClientCard component empty card will set no selected 2`] = `"<div><div data-testid="empty-card"></div></div>"`;

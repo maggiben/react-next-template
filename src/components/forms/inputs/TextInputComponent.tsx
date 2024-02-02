@@ -5,6 +5,7 @@ type TextInputComponentProps = {
   defaultValue?: string;
   name?: string;
   error?: string;
+  width?: number;
   id: string;
   label: string;
   control?: Control<FieldValues> | undefined;
@@ -12,7 +13,7 @@ type TextInputComponentProps = {
 }
   
 const TextInputComponent = (props: TextInputComponentProps): JSX.Element => {
-  const { defaultValue, name, error, id, label, control, disabled = false } = props;
+  const { defaultValue, name, error, id, label, control, width, disabled = false } = props;
   return (
     <Controller
       name={name ?? id}
@@ -28,6 +29,7 @@ const TextInputComponent = (props: TextInputComponentProps): JSX.Element => {
             onChange={onChange} // send value to hook form
             onBlur={onBlur} // notify when input is touched/blur
             disabled={disabled}
+            width={width}
           />
       )}
       />

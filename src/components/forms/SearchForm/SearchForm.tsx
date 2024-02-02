@@ -1,122 +1,146 @@
-import { useEffect, useState } from 'react';
-import { ButtonGroup, Grid, GridItem } from "@fravega-it/bumeran-ds-fvg";
+import { useState, useRef, ReactNode } from 'react';
+import {
+  Button,
+  Grid,
+  GridItem,
+  Link,
+  TextInput,
+  Select,
+  SearchIcon,
+  MailIcon,
+} from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import getConfig from "next/config";
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
+import { CU_CLIENT_FRONT_SEARCH, trackEvent } from '@utils/analytics';
+import styled from "styled-components";
 
-import TextInputComponent from '../inputs/TextInputComponent';
-import SelectComponent from '../inputs/SelectComponent';
+const FormContainer = styled.div`
+  border-radius: ${({ theme }) => theme.borderRadius.m};
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.neutral[100]};
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+`;
+
+const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
+  margin-top: ${({ theme, size }) => theme.spacing[size]};
+`;
 
 export type FormValues = {
-  cuid?: string;
   documentType?: string;
-  documentNumber?: number;
+  documentNumber?: string;
   email?: string;
 }
   
-const searchSchema = yup
-  .object()
-  .shape({
-    cuid: yup.string(),
-    documentType: yup.string(),
-    documentNumber: yup.number(),
-    email: yup.string().email(),
-    all: yup.string(),
-  })
-  .test((options, ...rest) => {
-    const { createError } = rest[0];
-    return Object.keys(options).length <= 1 ? createError({path: 'all', message: 'Seleccione al menos una opción', params: options, type: 'global'}) : true;
-  })
-  .required();
-
 type SearchFormProps = {
   onSearch: (data: FormValues) => void;
-  documentType?: string;
-  documentNumber?: number;
-  cuid?: number;
-  email?: string;
 }
-  
+
 const SearchForm = (props: SearchFormProps): JSX.Element => {
   const { t } = useTranslation();
-  const { onSearch } = props;
-  const { handleSubmit, control, reset, formState: { errors } } = useForm({
-    resolver: yupResolver(searchSchema),
-  });
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState<string | null>(searchParams.get('documentNumber') || searchParams.get('email'));
+  const [documentType, setDocumentType] = useState<string | null>((searchParams.get('documentType') || searchParams.get('email') && 'email') ?? 'dni');
+  const [searchLabel, setSearchLabel] = useState<string>(t('dni'));
   
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+  const { onSearch } = props;
+
+  const handleKeyDown = (key: string) => {
     // Check if the pressed key is Enter (key code 13)
-    if (event.key === 'Enter') {
-      return handleSubmit(onSearch ?? onSubmit);
+    if (key === 'Enter') {
+      handleOnSearch();
     }
   };
-  
-  // eslint-disable-next-line no-console
-  const onSubmit = (data: FormValues) => console.log(data);
 
+  const handleReset = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    setSearch('');
+  }
+
+  const handleChange = (value: string) => {
+    setSearch(value);
+  }
+
+  const handleDocumentTypeChange = ({id, label}: {id: string; label: string}) => {
+    setDocumentType(id);
+    setSearchLabel(label);
+  };
+
+  const handleOnSearch = () => {
+    if (!search) return;
+    switch(documentType) {
+      case 'dni': {
+        const payload = {
+          documentType,
+          documentNumber: search,
+        };
+        trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
+        onSearch(payload);
+        break;
+      }
+      case 'email': {
+        const payload = {
+          email: search,
+        };
+        trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
+        onSearch(payload);
+        break;
+      }
+    }
+  }
+  
   return (
-    <form onKeyDown={handleKeyDown} onSubmit={handleSubmit(onSearch ?? onSubmit)}>
-      <Grid>
-        <GridItem xs={4}>
-          <TextInputComponent
-            id="cuid"
-            label="CUID"
-            defaultValue={props.cuid?.toString()}
-            error={errors.cuid?.message}
-            control={control}
-          />
-        </GridItem>
-        <GridItem xs={4}>
-          <SelectComponent 
-            control={control}
-            id="documentType"
-            label="Tipo de documento"
-            options={[
-              { id: 'dni', label: 'DNI' },
-              { id: 'lc', label: 'Libreta Cívica' },
-              { id: 'le', label: 'Libreta de Enrolamiento' },
-              { id: 'cuit', label: 'CUIT' },
-              { id: 'cuil', label: 'CUIL' },
-            ]}
-            defaultValue={props.documentType ?? 'dni'}
-            error={errors.documentType?.message}
-          />
-        </GridItem>
-        <GridItem xs={4}>
-          <TextInputComponent
-            control={control}
-            id="documentNumber"
-            defaultValue={props.documentNumber?.toString()}
-            label="Número"
-            error={errors.documentNumber?.message}
-          />
-        </GridItem>
-        <GridItem xs={4}>
-        <TextInputComponent
-            control={control}
-            id="email"
-            defaultValue={props.email}
-            label="Email"
-            error={errors.email?.message}
-          />
-        </GridItem>
-        <GridItem xs={3} alignSelf="center" justifySelf="center">
-          {errors.all && <div>Errors: {errors.all.message}</div>}
+    <FormContainer>
+      <div style={{ width: '100%'}}>
+        <Grid>
+          <GridItem xs={4}>
+            <div data-testid="select-document-type">
+              <Select
+                data-testid="documentType"
+                name='documentType'
+                id="documentType"
+                label={`${t('search by')}...`}
+                options={[
+                  { id: 'dni', label: t('dni') },
+                  { id: 'email', label: t('email') },
+                ]}
+                onChange={handleDocumentTypeChange}
+                value={documentType as string | undefined}
+              />
+            </div>
+          </GridItem>
+          <GridItem xs={4}>
+            <TextInput
+              leftIcon={documentType === 'dni' ? <SearchIcon /> : <MailIcon />}
+              id="search"
+              name="search"
+              label={searchLabel} 
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              value={search as string | undefined}
+            />
+          </GridItem>
           
-        </GridItem>
-        <GridItem xs={5} alignSelf="end" justifySelf="end">
-          <ButtonGroup
-            primaryLabel={t('search')}
-            secondaryLabel={t('reset')}
-            onClickPrimary={handleSubmit(onSearch ?? onSubmit)}
-            onClickSecondary={reset}
-          />
-        </GridItem>
-      </Grid>
-    </form>
+          <GridItem xs={4} alignSelf="end" justifySelf="start">
+            <Button
+              label={t('search')} 
+              variant="primary"
+              onClick={handleOnSearch}
+            />
+          </GridItem>
+        </Grid>
+        <SpaceTop size="s" />
+        <Grid>
+          <GridItem xs={4} alignSelf="end" justifySelf="start">
+            <Link>
+              <a role="reset" onClick={handleReset}>{t('clan filters')}</a>
+            </Link>
+          </GridItem>
+        </Grid>
+      </div>
+    </FormContainer>
   );
 };
 

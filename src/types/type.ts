@@ -1,40 +1,35 @@
 
-
+export type Status = 'onboardingfull' | 'onboardingincompleto' | 'dnicaduco';
 export type Person = {
   id: string;
   name: string;
   lastname: string;
-  age: number,
+  age: string;
+  validations: Record<string, boolean>;
   identification: {
     type: string,
     number: number;
     expiration: string;
   },
-  profession: string;
-  faceapi: boolean;
   email: {
     address: string;
-    confirmed: boolean;
-    expiration: string;
+    confirmed?: boolean;
   }
-  city: string;
-  cp: string;  
-  selected: boolean;
-  status: {
-    label: string;
-    color: string;
-  };
-  renaper: {
-    confirmed: boolean;
-    expiration: string;
+  selected?: boolean;
+  status: Status;
+  phone: {
+    number: number;
+    prefix: number;
+    codeArea: number;
   };
   address: {
+    zipCode: string;
     street: string;
     number: string;
     floor: string;
+    apartment: string;
     city: string;
-    province: string;
-    postalCode: string;
+    state: string | null;
     country: string;
   };
 }

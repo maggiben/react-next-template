@@ -27,23 +27,13 @@ const DuplicateModalBody = (props: DuplicateModalBodyProps) => {
 			renderColumns={() => (
 				<>
 					<Column minWidth={20} label={t('select')} />
-					<Column minWidth={50} label="dni" />
-					<Column minWidth={100} label={t('facephi')} />
 					<Column minWidth={70} label={t('email')} />
-					<Column minWidth={100} label={t('renaper')} />
 				</>
 			)}
-			renderCells={({ id, name, selected, faceapi, email, renaper, identification }) => (
+			renderCells={({ id, name, selected, email, lastname }) => (
 				<>
-					<Cell><Radio id={id} label={name} value={id} checked={selected}  onChange={handleSelection}/></Cell>
-					<Cell>{identification.number}</Cell>
-					<Cell>
-						<Label leftIcon={faceapi ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={utils.string.booleanToText(faceapi)} color={faceapi ? "green" : "red"}/>                  
-					</Cell>
+					<Cell><Radio id={id} name={name} label={name + ' ' + lastname} value={id} checked={selected} onChange={handleSelection}/></Cell>
 					<Cell>{email.address}</Cell>
-					<Cell>
-						<Label leftIcon={renaper.confirmed ? <CheckCircleIcon size="s" /> : <CloseCircleIcon size="s"/> } label={utils.string.booleanToText(renaper.confirmed)} color={renaper.confirmed ? "green" : "red"}/>
-					</Cell>
 				</>
 			)}
     />
