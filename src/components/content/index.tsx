@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
 import Card from './Card/Card';
 import { FormValues } from '@components/forms/SearchForm/SearchForm';
@@ -42,6 +42,8 @@ const Content = (): JSX.Element => {
     }
   }
 
+  const hasQuery = useMemo(() => router.query && Object.keys(router.query as Record<string, unknown>).length > 0, [ router.query ]);
+
   return (
     <Centered>
       <Container>
@@ -51,7 +53,7 @@ const Content = (): JSX.Element => {
             <SpaceTop size='xl' />
             <SearchForm onSearch={onSearch} {...router.query} />
             <SpaceTop size='xl' />
-            <Card/>
+            { hasQuery && <Card/> }
           </GridItem>
         </Grid>
       </Container>
