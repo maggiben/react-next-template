@@ -50,7 +50,6 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
   const [search, setSearch] = useState<string>('');
   const [documentType, setDocumentType] = useState<string>('dni');
   const [searchLabel, setSearchLabel] = useState<string>(t('dni'));
-  const [errorMessage, setErrorMessage] = useState<string>('');
   
   const { onSearch } = props;
 
@@ -87,19 +86,11 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
         break;
       }
       case 'email': {
-        const isEmail = string.validateEmail(search);
-        if(!isEmail) {
-          setErrorMessage(t('invalid email'));
-        } else {
-          setErrorMessage('');
-          const payload = {
-            email: search,
-          };
-          trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
-          onSearch({
-            email: search,
-          });
-        }
+        const payload = {
+          email: search,
+        };
+        trackEvent({ event: CU_CLIENT_FRONT_SEARCH, payload});
+        onSearch(payload);
         break;
       }
     }
@@ -134,8 +125,6 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               value={search}
-              error={Boolean(errorMessage.length)}
-              errorMessage={errorMessage}
             />
           </GridItem>
           

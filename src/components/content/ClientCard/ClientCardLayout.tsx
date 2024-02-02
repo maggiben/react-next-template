@@ -6,6 +6,8 @@ import {
   Label,
   Button,
   MailIcon,
+  CheckIcon,
+  AlertIcon,
 } from '@fravega-it/bumeran-ds-fvg'
 import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
@@ -63,18 +65,24 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
     dnicaduco: t('dni expired'),
   };
 
+  const icons = {
+    onboardingfull: <CheckIcon />,
+    onboardingincompleto: <AlertIcon />,
+    dnicaduco: <AlertIcon />,
+  };
+
   return (
     <Card>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
-            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label label={labels[person.status]} color={colors[person.status] ? 'green' : 'red'}/>
+            <Heading size="s">{person.name} {person.lastname}</Heading><SpaceRight size="s" /><Label leftIcon={icons[person.status]} label={labels[person.status]} color={colors[person.status] ? 'green' : 'red'}/>
           </Centered>
         </GridItem>
         {
           !person.validations.email &&
             <GridItem xs={6} alignSelf="center" justifySelf="end">
-              <Button label={t('resend email')} rightIcon={<MailIcon />} variant="primary" size="s" onClick={() => alert('hola')}/>
+              <Button label={t('resend email')} rightIcon={<MailIcon />} variant="primary" size="s"/>
             </GridItem>
         }
         <GridItem xs={12}>

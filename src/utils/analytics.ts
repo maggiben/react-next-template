@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import pjson from '../../package.json';
 export const CU_CLIENT_FRONT = pjson.name;
 export const CU_CLIENT_FRONT_PAGE_VIEW = `fvg.${CU_CLIENT_FRONT}.page_view`;
