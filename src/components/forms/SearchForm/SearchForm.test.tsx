@@ -28,6 +28,20 @@ describe('SearchForm', () => {
     });
   });
 
+  it('search with input with value dni and keypress', () => {
+    const onSearch = jest.fn();
+    const dni = '3000001';
+    const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
+    const searchInput = tree.getByRole('textbox', { name: i18next.t('dni') });
+
+    fireEvent.change(searchInput, { target: { value: dni } });
+    fireEvent.keyDown(searchInput, { key: 'Enter', code: 'Enter', charCode: 13 });
+    expect(onSearch).toHaveBeenCalledWith({
+      documentNumber: dni,
+      documentType: 'dni',
+    });
+  });
+
   it('search with input with value email', () => {
     const onSearch = jest.fn();
     const email = 'tom@fravega.com.ar';
