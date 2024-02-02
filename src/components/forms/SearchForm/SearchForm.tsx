@@ -10,8 +10,7 @@ import {
   MailIcon,
 } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
-import * as string from '@utils/string';
-import * as yup from 'yup';
+import { useSearchParams } from 'next/navigation';
 import { CU_CLIENT_FRONT_SEARCH, trackEvent } from '@utils/analytics';
 import styled from "styled-components";
 
@@ -31,7 +30,6 @@ const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'x
 `;
 
 export type FormValues = {
-  cuid?: string;
   documentType?: string;
   documentNumber?: string;
   email?: string;
@@ -39,16 +37,13 @@ export type FormValues = {
   
 type SearchFormProps = {
   onSearch: (data: FormValues) => void;
-  documentType?: string;
-  search?: string;
-  cuid?: number;
-  email?: string;
 }
 
 const SearchForm = (props: SearchFormProps): JSX.Element => {
   const { t } = useTranslation();
-  const [search, setSearch] = useState<string>('');
-  const [documentType, setDocumentType] = useState<string>('dni');
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState<string | null>(searchParams.get('documentNumber') || searchParams.get('email'));
+  const [documentType, setDocumentType] = useState<string | null>((searchParams.get('documentType') || searchParams.get('email') && 'email') ?? 'dni');
   const [searchLabel, setSearchLabel] = useState<string>(t('dni'));
   
   const { onSearch } = props;
@@ -112,7 +107,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
                   { id: 'email', label: t('email') },
                 ]}
                 onChange={handleDocumentTypeChange}
-                value={documentType}
+                value={documentType as string | undefined}
               />
             </div>
           </GridItem>
@@ -124,7 +119,7 @@ const SearchForm = (props: SearchFormProps): JSX.Element => {
               label={searchLabel} 
               onChange={handleChange}
               onKeyDown={handleKeyDown}
-              value={search}
+              value={search as string | undefined}
             />
           </GridItem>
           

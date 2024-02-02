@@ -5,12 +5,57 @@ import '@testing-library/jest-dom';
 import SearchForm from './SearchForm';
 import { expect } from '@jest/globals';
 import i18next from 'i18next';
+import { useSearchParams } from 'next/navigation';
+
+// jest.mock('next/navigation');
+
+jest.mock('next/navigation', () => ({
+  useSearchParams: jest.fn(),
+}));
+
+const mockUseSearchParams = useSearchParams as jest.Mock;
 
 describe('SearchForm', () => {
+  beforeAll(() => {
+    const mockedSearchParams = new URLSearchParams();
+    mockUseSearchParams.mockReturnValue(mockedSearchParams);
+  });
+  afterAll(() => {
+    jest.clearAllMocks();
+    jest.restoreAllMocks();
+    jest.resetModules();
+    jest.resetAllMocks();
+  });
+
+  it('renders the SearchForm component with default values', () => {
+    const mockedSearchParams = new URLSearchParams({
+      documentNumber: '3000001',
+      documentType: 'dni',
+    });
+    const onSearch = jest.fn();
+    mockUseSearchParams.mockReturnValue(mockedSearchParams);
+    const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
+    expect(tree.baseElement.innerHTML).toMatchSnapshot();
+    const cleanSearchMock = new URLSearchParams();
+    mockUseSearchParams.mockReturnValue(cleanSearchMock);
+  });
+
+  it('renders the SearchForm component with default values', () => {
+    const mockedSearchParams = new URLSearchParams({
+      email: 'tom@fravega.com.ar',
+    });
+    const onSearch = jest.fn();
+    mockUseSearchParams.mockReturnValue(mockedSearchParams);
+    const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
+    expect(tree.baseElement.innerHTML).toMatchSnapshot();
+    const cleanSearchMock = new URLSearchParams();
+    mockUseSearchParams.mockReturnValue(cleanSearchMock);
+  });
+
   it('renders the SearchForm component', () => {
     const onSearch = jest.fn();
     const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
-    expect(tree).toMatchSnapshot();
+    expect(tree.baseElement.innerHTML).toMatchSnapshot();
   });
 
   it('search with input with value dni', () => {
@@ -84,7 +129,6 @@ describe('SearchForm', () => {
 
   it('error if search input is empty', () => {
     const onSearch = jest.fn();
-    const dni = '3000001';
     const tree = renderer.renderWithI18n(<SearchForm onSearch={onSearch} />);
     const searchButton = tree.getByRole('button', { name: i18next.t('search') });//, { name: 'Accept' })[0];
 
