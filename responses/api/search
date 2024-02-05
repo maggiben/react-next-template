@@ -3,108 +3,125 @@
         "id": "001",
         "name": "Federico",
         "lastname": "Garcia",
-        "age": "2022-07-15",
+        "age": "1983-01-24",
+        "validations": {
+            "facephi": true,
+            "renaper": true,
+            "email": true,
+            "phone": true,
+            "identificationExpired": true
+        },
         "identification": {
             "type": "dni",
             "number": 30000000,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
-        "profession": "Ingeniero",
-        "faceapi": true,
         "email": {
             "address": "federico@gmail.com",
             "confirmed": false
         },
-        "city": "Madrid",
         "selected": false,
-        "status": {
-            "label": "not ok",
-            "color": "red"
+        "phone": {
+            "number": 55512345,
+            "prefix": 11,
+            "codeArea": 356
         },
-        "renaper": {
-            "confirmed": true,
-            "expiration": "2023-12-29T12:33:32.740Z"
-        },
+        "status": "onboardingfull",
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "zipCode": "1100",
+            "street": "AV. Corrientes",
+            "number": "1700",
+            "floor": "0",
+            "apartment": "C",
+            "city": "Neuquen",
+            "state": "Neuquen",
+            "country": "Arg"
         }
     },
     {
         "id": "002",
         "name": "Facundo",
         "lastname": "Perez",
-        "age": "1992-05-22",
+        "age": "2001-03-02",
+        "validations": {
+            "facephi": false,
+            "renaper": true,
+            "email": true,
+            "phone": false,
+            "identificationExpired": false
+        },
         "identification": {
             "type": "dni",
             "number": 30000001,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
-        "faceapi": false,
         "email": {
             "address": "facundo@gmail.com",
             "confirmed": false
         },
-        "profession": "Abogado",
-        "city": "Barcelona",
         "selected": false,
-        "status": {
-            "label": "okay",
-            "color": "green"
+        "phone": {
+            "number": 55512345,
+            "prefix": 11,
+            "codeArea": 299
         },
+        "status": "dnicaduco",
         "renaper": {
             "confirmed": true,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
+            "zipCode": "1414",
+            "street": "Castillo",
+            "number": "1414",
+            "floor": "1",
+            "apartment": "A",
             "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "state": "CABA",
+            "country": "Arg"
         }
     },
     {
         "id": "003",
         "name": "Facundo",
         "lastname": "Perez",
-        "age": "1983-01-24",
+        "age": "1961-02-24",
+        "validations": {
+            "facephi": true,
+            "renaper": false,
+            "email": false,
+            "phone": false,
+            "identificationExpired": true
+        },
         "identification": {
             "type": "dni",
             "number": 30000001,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
-        "faceapi": false,
         "email": {
             "address": "facundo@gmail.com",
             "confirmed": false
         },
-        "profession": "Concierge",
-        "city": "Madrid",
         "selected": false,
-        "status": {
-            "label": "not ok",
-            "color": "red"
+        "phone": {
+            "number": 1234567,
+            "prefix": 11,
+            "codeArea": 264
         },
+        "status": "onboardingfull",
         "renaper": {
             "confirmed": true,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "zipCode": "8400",
+            "street": "Mitre",
+            "number": "12",
+            "floor": "1",
+            "apartment": "A",
+            "city": "S.C. de Bariloche",
+            "state": "Rio Negro",
+            "country": "Arg"
         }
     },
     {
@@ -112,35 +129,42 @@
         "name": "Jeremías",
         "lastname": "Springfield",
         "age": "2003-06-05",
+        "validations": {
+            "facephi": true,
+            "renaper": false,
+            "email": false,
+            "phone": true,
+            "identificationExpired": false
+        },
         "identification": {
             "type": "dni",
             "number": 30000002,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
-        "faceapi": true,
         "email": {
             "address": "jeremías@gmail.com",
             "confirmed": true
         },
-        "profession": "Médico",
-        "city": "Valencia",
         "selected": false,
-        "status": {
-            "label": "okay",
-            "color": "green"
+        "phone": {
+            "number": 5559876,
+            "prefix": 22,
+            "codeArea": 987
         },
+        "status": "onboardingincompleto",
         "renaper": {
             "confirmed": true,
             "expiration": "2023-12-29T12:33:32.740Z"
         },
         "address": {
-            "street": "Av J.B. Justo",
-            "number": "1500",
-            "floor": "7a",
-            "city": "CABA",
-            "province": "CABA",
-            "postalCode": "1314",
-            "country": "Argentina"
+            "zipCode": "4400",
+            "street": "Palacios",
+            "number": "12",
+            "floor": "7",
+            "apartment": "A",
+            "city": "Salta",
+            "state": "Salta",
+            "country": "Arg"
         }
     }
 ]

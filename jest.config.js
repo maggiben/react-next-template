@@ -4,4 +4,6 @@ const {
 
 const config = generateConfig(__dirname);
 
-module.exports = { ...config };
+module.exports = { 
+  ...config,
+ };

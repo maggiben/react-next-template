@@ -1,9 +1,9 @@
-import Welcome from './Welcome';
+import Search from './Search';
 
 export default function index(): JSX.Element {
   return (
     <>
-      <Welcome />
+      <Search />
     </>
   );
 }

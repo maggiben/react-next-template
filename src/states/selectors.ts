@@ -24,15 +24,15 @@ export const hasMultiplePerson = selector<RecoilState['hasMultiplePerson']>({
   },
 });
 
-export const selectedPerson = selector<RecoilState['selectedPerson']>({
-  key: 'selectedPerson',
-  get: ({ get }) => {
-    const persons = get(atoms.personsState);
-    const person = persons && persons.find(({ selected }) => selected);
-    return person ? [ person ] : undefined;
-  },
-  set: ({ get, set }, newValue) => {
-    const persons = get(atoms.personsState);
-    return set(atoms.personsState, newValue);
-  }
-});
+// export const selectedPerson = selector<RecoilState['selectedPerson']>({
+//   key: 'selectedPerson',
+//   get: ({ get }) => {
+//     const persons = get(atoms.personsState);
+//     const person = persons && persons.find(({ selected }) => selected);
+//     return person ? [ person ] : undefined;
+//   },
+//   set: ({ get, set }, newValue) => {
+//     const persons = get(atoms.personsState);
+//     return set(atoms.personsState, newValue);
+//   }
+// });

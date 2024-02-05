@@ -9,7 +9,8 @@ import StyledComponentsRegistry from '@helpers/registry';
 import getConfig from "next/config";
 
 const Container = styled.div`
-    background-color: ${({ theme }) => theme.colors.neutral[100]};
+    // background-color: ${({ theme }) => theme.colors.neutral[100]};
+    // background-color: white;
 `;
 
 const ClientFrontApp = ({ Component, pageProps }: AppProps) => {

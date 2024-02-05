@@ -6,20 +6,17 @@ import { useRouter } from 'next/router';
 
 import { Person } from 'types/type';
 import { useTranslation } from 'react-i18next';
-import { useFetch } from "@hooks/useFetch";
+import { useFetch } from 'usehooks-ts';
 import ClientCardLayout from './ClientCardLayout';
+import NoResults from '@components/NoResults';
 import { personState, personsState } from '@states/atoms';
 import {
   hasSelectedPerson as hasSelectedPersonSelector,
   hasMultiplePerson as hasMultiplePersonSelector
 } from '@states/selectors';
-import array from '@utils/array';
+import * as array from '@utils/array';
 
-type ClientCardProps = {
-  isOpen?: boolean;
-}
-  
-const ClientCard = (props: ClientCardProps) => {
+const ClientCard = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const [person, setPerson] = useRecoilState(personState);
@@ -33,7 +30,7 @@ const ClientCard = (props: ClientCardProps) => {
   const { data, error } = useFetch<Person[]>(`api/search?${searchParams.toString()}`);
 
   const closeModal = useCallback((): void =>  {
-    setPersons(undefined);
+    // setPersons(undefined);
     setIsOpenModal(false);
     // erase search history
     router.push({
@@ -48,16 +45,17 @@ const ClientCard = (props: ClientCardProps) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (error) {
-      router.push({
-        pathname: `/${error.response?.status}`,
-        query: {
-          message: error.message
-        },
-      });
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     router.push({
+  //       pathname: `/${error.cause ?? 404}`,
+  //       query: {
+  //         message: error.message,
+  //         oldSearchParams: searchParams.toString(),
+  //       },
+  //     });
+  //   }
+  // }, [error]);
     
   useEffect(() => {
     /*
@@ -84,12 +82,14 @@ const ClientCard = (props: ClientCardProps) => {
     } 
   }, [ hasMultiplePerson, hasSelectedPerson ]);
 
+  const noResultsMessage = useMemo(() => searchParams.get('documentNumber') || searchParams.get('email') || error?.message, [error]);
   return (
-    <>
-      { persons && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
+    <div data-testid="client-card">
+      { persons && isOpenModal && <DuplicateModal isOpen={isOpenModal} closeModal={closeModal} onSelectPersonModal={onSelectPersonModal}/> }
       { person && <ClientCardLayout person={person} /> }
-      { !person && !persons && <Waiting message={t('searching')} /> }
-    </>
+      { !person && !persons && !error && <Waiting message={t('searching')} /> }
+      { error && <NoResults message={noResultsMessage} /> }
+    </div>
   )
 };
 

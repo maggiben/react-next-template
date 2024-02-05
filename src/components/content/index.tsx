@@ -1,28 +1,17 @@
-import { useState } from 'react';
-import { Grid, GridItem, DropdownButton } from "@fravega-it/bumeran-ds-fvg";
+import { useMemo } from 'react';
+import { Grid, GridItem } from "@fravega-it/bumeran-ds-fvg";
 import Card from './Card/Card';
-import SearchForm, { FormValues } from '@components/forms/SearchForm/SearchForm';
-import { useTranslation } from 'react-i18next';
+import { FormValues } from '@components/forms/SearchForm/SearchForm';
 import styled from "styled-components";
 import { useRouter } from 'next/router';
+import Welcome from '@components/content/Welcome/Welcome';
+import SearchForm from '@components/forms/SearchForm/SearchForm';
 
 const Container = styled.div`
   display: block;
   height: calc(100vh - (80px + 2rem));
+  overflow-y: scroll;
   width: 100%;
-`;
-
-const Background = styled.div `
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 80px;
-    width: 100%;
-    height: calc(100vh - (80px + 2rem));
-    background-image: url("./static/images/background-trama.png");
-    background-repeat: repeat;
-    background-position: center;
-    opacity: 0.045;
 `;
 
 const Centered = styled.div`
@@ -33,33 +22,34 @@ const Centered = styled.div`
   align-items: center;
 `;
 
+const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
+  margin-top: ${({ theme, size }) => theme.spacing[size]};
+`;
+
 const Content = (): JSX.Element => {
   const router = useRouter();
-  const { t } = useTranslation();
-  const [dropdownButtonOpen, setDropdownButtonOpen] = useState<boolean>(false);
 
   const onSearch = (query?: FormValues) => {
-    setDropdownButtonOpen(false);
     if (query) {
       router.push({
         pathname: document.location.pathname,
         query,
       });
     }
-  }
+  };
+
+  const hasQuery = useMemo(() => router.query && Object.keys(router.query as Record<string, unknown>).length > 0, [ router.query ]);
 
   return (
     <Centered>
-      <Background />
       <Container>
         <Grid>
-          <GridItem xs={4}>
-            <DropdownButton label={t('search by')} open={dropdownButtonOpen} onOpenChange={setDropdownButtonOpen}>
-              <SearchForm onSearch={onSearch} {...router.query} />
-            </DropdownButton>  
-          </GridItem>
           <GridItem xs={12}>
-            <Card/>
+            <Welcome />
+            <SpaceTop size='xl' />
+            <SearchForm onSearch={onSearch} {...router.query} />
+            <SpaceTop size='xl' />
+            { hasQuery && <Card/> }
           </GridItem>
         </Grid>
       </Container>
