@@ -14,7 +14,7 @@ const Center = styled.div`
   flex-direction: column;
 `;
 
-const Card = styled.div`
+const Container = styled.div`
   position: relative;
   display: block;
   width: 100%;
@@ -39,20 +39,15 @@ const Circle = styled.div`
 const EmptyCard = () => {
   const { t } = useTranslation();
   return (
-    <Card>
+    <Container>
       <Center data-testid="empty-container">
         <Circle data-testid="circle">
           <SearchPictogram size="xl" />
         </Circle>
         <SpaceTop size="m" />
         <Heading size="l">{t('no results')}</Heading>
-        {/* <SpaceTop size="xs" />
-        <Heading color="violet">Empty</Heading>
-        <TextBody as="span">
-          {t('no results help')}
-        </TextBody> */}
       </Center>
-    </Card>
+    </Container>
   );
 };
 

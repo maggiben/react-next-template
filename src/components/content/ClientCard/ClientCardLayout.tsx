@@ -16,7 +16,7 @@ import DataContainer from '@components/DataContainer/DataContainer';
 import ValidationList from '../ValidationList/ValidationList';
 import { SpaceRight, SpaceTop } from '@components/Spacing/Spacing';
 
-const Card = styled.div`
+const Container = styled.div`
   position: relative;
   display: block;
   width: 100%;
@@ -72,7 +72,7 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
   };
 
   return (
-    <Card>
+    <Container>
       <Grid>
         <GridItem xs={6} justifySelf="start" alignSelf="center">
           <Centered>
@@ -88,10 +88,10 @@ const ClientCardLayout = (props: ClientCardLayoutProps) => {
         <GridItem xs={12}>
           <ValidationList person={person} />
           <SpaceTop size="s" />
-          <DataContainer data={clientData} columns={columns} />
+          <DataContainer data={clientData} columns={columns} withBorder={true} />
         </GridItem>
       </Grid>
-    </Card>
+    </Container>
   )
 };
 

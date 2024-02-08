@@ -15,7 +15,7 @@ const Center = styled.div`
   flex-direction: column;
 `;
 
-const Card = styled.div`
+const Container = styled.div`
   position: relative;
   display: block;
   width: 100%;
@@ -45,7 +45,7 @@ const NoResults = (props: NoResultsProps) => {
   const { t } = useTranslation();
   trackEvent({ event: CU_CLIENT_FRONT_NO_RESULTS, payload: props.message })
   return (
-    <Card>
+    <Container>
       <Center data-testid="noresults-container">
         <Circle data-testid="circle">
           <SearchPictogram size="xl" />
@@ -58,7 +58,7 @@ const NoResults = (props: NoResultsProps) => {
           {t('no results help')}
         </TextBody>
       </Center>
-    </Card>
+    </Container>
   )
 }
 

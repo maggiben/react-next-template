@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { Person } from 'types/type';
 import { SpaceRight, SpaceTop } from "../../Spacing/Spacing";
 
-const Card = styled.div`
+const Container = styled.div`
   width: 100%;
 `;
 
@@ -52,7 +52,7 @@ const ValidationList = (props: ClientCardLayoutProps) => {
   };
 
   return (
-    <Card>
+    <Container>
       {
         Object.entries(validationLayout).map(([validation, properties], index) => (
           <div key={index}>
@@ -69,7 +69,7 @@ const ValidationList = (props: ClientCardLayoutProps) => {
           </div>
         ))
       }
-    </Card>
+    </Container>
   );
 };
 

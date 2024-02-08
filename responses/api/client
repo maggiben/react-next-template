@@ -1,0 +1,150 @@
+{
+    "_id" : "218e0095-e089-42a0-8ba1-34345b924375",
+    "createdOn" : "2024-01-31T19:00:46.950+0000",
+    "updatedOn" : null,
+    "documents" : [
+        {
+            "type" : "DNI",
+            "number" : "38973232",
+            "verified" : null,
+            "stateVerified" : "VERIFIED",
+            "channel" : "CONTRIBUTOR"
+        }
+    ],
+    "firstName" : "Karen Elizabeth",
+    "lastName" : "Tito",
+    "gender" : "NOT_INFORMED",
+    "birth" : null,
+    "nationality" : null,
+    "placeBirth" : null,
+    "maritalStatus" : "NOT_INFORMED",
+    "receiveNewsletter" : false,
+    "addresses" : [
+        {
+            "originChannel" : {
+                "typeChannel" : "Ecommerce",
+                "sourceSystem" : "Vtex",
+                "originChannelType" : "Create"
+            },
+            "lastUseDate" : "2024-01-31T19:00:09.777+0000",
+            "zipCode" : "1001",
+            "street" : "Della Paolera ",
+            "number" : "265",
+            "floor" : "28",
+            "apartment" : null,
+            "city" : "Ciudad Autónoma Buenos Aires",
+            "state" : "CIUDAD AUTÓNOMA DE BUENOS AIRES",
+            "country" : "ARG",
+            "_id" : "abdd4c45-e13b-4e6a-9205-6ea0c9bfb843",
+            "betweenStreets" : null,
+            "references" : null,
+            "geoCoordinates" : {
+                "latitude" : "-58.38155746459961",
+                "longitude" : "-34.60368347167969"
+            },
+            "stateVerified" : "VERIFIED",
+            "channel" : null,
+            "applyTo" : [
+                "DELIVERY",
+                "INVOICE"
+            ],
+            "type" : "0"
+        }
+    ],
+    "phones" : [
+        {
+            "originChannel" : {
+                "typeChannel" : "Ecommerce",
+                "sourceSystem" : "Vtex",
+                "originChannelType" : "Create"
+            },
+            "lastUseDate" : "2024-01-31T19:00:09.700+0000",
+            "_id" : "77bd4455-e135-4cc7-b2f4-3501542c7d9a",
+            "type" : "NOT_INFORMED",
+            "areaCode" : "54",
+            "number" : "1166169652",
+            "internal" : null,
+            "verified" : false,
+            "stateVerified" : "NOT_VERIFIED",
+            "channel" : null
+        }
+    ],
+    "emails" : [
+        {
+            "originChannel" : {
+                "typeChannel" : "Ecommerce",
+                "sourceSystem" : "Vtex",
+                "originChannelType" : "Create"
+            },
+            "lastUseDate" : "2024-01-31T19:00:09.700+0000",
+            "_id" : "78c7c0e2-b341-487e-bec7-8e19e85b6b2f",
+            "email" : "titokarenelizabeth@gmail.com",
+            "receiveNewsletter" : null,
+            "isMain" : null,
+            "verified" : false,
+            "stateVerified" : "NOT_VERIFIED",
+            "channel" : null
+        }
+    ],
+    "taxConfiguration" : null,
+    "creditCustomer" : null,
+    "invoices" : [
+        {
+            "firstName" : "Karen Elizabeth",
+            "lastName" : "Tito",
+            "documentType" : "DNI",
+            "documentNumber" : "38973232",
+            "ivaCondition" : "EndConsumer",
+            "addresses" : [
+                {
+                    "_t" : "Address",
+                    "originChannel" : {
+                        "typeChannel" : "Ecommerce",
+                        "sourceSystem" : "Vtex",
+                        "originChannelType" : "Create"
+                    },
+                    "lastUseDate" : "2024-01-31T19:00:09.700+0000",
+                    "zipCode" : "1001",
+                    "street" : "Della Paolera ",
+                    "number" : "265",
+                    "floor" : "28",
+                    "apartment" : null,
+                    "city" : "Ciudad Autónoma Buenos Aires",
+                    "state" : "CIUDAD AUTÓNOMA DE BUENOS AIRES",
+                    "country" : "ARG",
+                    "_id" : "fdd61b72-5016-47f6-824c-4a917a8ccb67",
+                    "betweenStreets" : null,
+                    "references" : null,
+                    "geoCoordinates" : null,
+                    "stateVerified" : "VERIFIED",
+                    "channel" : null,
+                    "applyTo" : [
+                        "INVOICE"
+                    ],
+                    "type" : "0"
+                }
+            ]
+        }
+    ],
+    "creationOriginOn" : "2024-01-31T19:00:46.950+0000",
+    "creationChannel" : "",
+    "active" : true,
+    "disablingReason" : null,
+    "traceId" : "0beaca31-1cba-4542-bdeb-0375bbc80959",
+    "incidents" : [
+        {
+            "code" : "2",
+            "description" : "Customer’s address country ARG not found"
+        },
+        {
+            "code" : "2",
+            "description" : "Customer’s address state CIUDAD AUTÓNOMA DE BUENOS AIRES not found"
+        }
+    ],
+    "workData" : [
+
+    ],
+    "referenceContact" : [
+
+    ]
+}
