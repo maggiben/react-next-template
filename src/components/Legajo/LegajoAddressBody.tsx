@@ -46,8 +46,8 @@ interface ILegajoAddressBodyProp {
 }
 
 const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
-  const latitude = parseFloat(address.geoCoordinates.longitude);
-  const longitude = parseFloat(address.geoCoordinates.latitude);
+  const latitude = address.geoCoordinates && parseFloat(address.geoCoordinates.longitude);
+  const longitude = address.geoCoordinates && parseFloat(address.geoCoordinates.latitude);
   // const latitude = -34.599722222222;
   // const longitude = -58.381944444444;
   const Map = useMemo(
@@ -64,7 +64,7 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
     <Centered>
       <CenteredColumn data-testid="legajo-address-body">
         <DataContainer data={addressData} columns={2} withBorder={false} background={theme.colors.white}/>
-        <Map latitude={latitude} longitude={longitude} marker={true}/>
+        { latitude && longitude && <Map latitude={latitude} longitude={longitude} marker={true}/> }
       </CenteredColumn>
     </Centered>
   );
