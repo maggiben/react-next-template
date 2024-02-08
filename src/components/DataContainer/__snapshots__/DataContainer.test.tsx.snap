@@ -6,7 +6,7 @@ exports[`DataContainer renders the DataContainer component 1`] = `
   "baseElement": <body>
     <div>
       <table
-        class="DataContainer__Table-sc-122pn0e-0 dPZjvX"
+        class="DataContainer__Table-sc-122pn0e-0 jqHwSP"
       >
         <tbody>
           <tr>
@@ -183,7 +183,7 @@ exports[`DataContainer renders the DataContainer component 1`] = `
   </body>,
   "container": <div>
     <table
-      class="DataContainer__Table-sc-122pn0e-0 dPZjvX"
+      class="DataContainer__Table-sc-122pn0e-0 jqHwSP"
     >
       <tbody>
         <tr>

@@ -6,7 +6,7 @@ exports[`EmptyCard renders the EmptyCard component 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="EmptyCard__Card-sc-1xwmzog-1 hPlNZx"
+        class="EmptyCard__Container-sc-1xwmzog-1 ilsrC"
       >
         <div
           class="EmptyCard__Center-sc-1xwmzog-0 gdueiD"
@@ -61,7 +61,7 @@ exports[`EmptyCard renders the EmptyCard component 1`] = `
   </body>,
   "container": <div>
     <div
-      class="EmptyCard__Card-sc-1xwmzog-1 hPlNZx"
+      class="EmptyCard__Container-sc-1xwmzog-1 ilsrC"
     >
       <div
         class="EmptyCard__Center-sc-1xwmzog-0 gdueiD"

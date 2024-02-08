@@ -6,7 +6,7 @@ exports[`DataContainer renders the DataContainer component 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="ValidationList__Card-sc-zx6xp2-0 edAsZc"
+        class="ValidationList__Container-sc-zx6xp2-0 jWPspH"
       >
         <div>
           <div
@@ -166,7 +166,7 @@ exports[`DataContainer renders the DataContainer component 1`] = `
   </body>,
   "container": <div>
     <div
-      class="ValidationList__Card-sc-zx6xp2-0 edAsZc"
+      class="ValidationList__Container-sc-zx6xp2-0 jWPspH"
     >
       <div>
         <div

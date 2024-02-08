@@ -6,7 +6,7 @@ exports[`NoResults renders the NoResults component 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="NoResults__Card-sc-5wyd9g-1 cvjJfL"
+        class="NoResults__Container-sc-5wyd9g-1 cRoWEY"
       >
         <div
           class="NoResults__Center-sc-5wyd9g-0 bgWNTt"
@@ -77,7 +77,7 @@ exports[`NoResults renders the NoResults component 1`] = `
   </body>,
   "container": <div>
     <div
-      class="NoResults__Card-sc-5wyd9g-1 cvjJfL"
+      class="NoResults__Container-sc-5wyd9g-1 cRoWEY"
     >
       <div
         class="NoResults__Center-sc-5wyd9g-0 bgWNTt"
