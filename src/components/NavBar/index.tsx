@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from 'next/link';
-import { Heading, Grid, GridItem } from '@fravega-it/bumeran-ds-fvg';
+import {
+  Heading,
+  Grid,
+  GridItem,
+  theme,
+} from '@fravega-it/bumeran-ds-fvg';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import styled from 'styled-components';
@@ -31,7 +36,7 @@ export default function NavBar(): JSX.Element {
       <Grid>
         <GridItem xs={8} justifySelf="stretch" alignSelf="center">
           <Logo>
-            <Link href='/'><Image priority src="/static/images/logo-fravega.png" alt={t('client finder')} style={{marginRight: '12px'}} width={130} height={24}/></Link>
+            <Link href='/'><Image priority src="/static/images/logo-fravega.png" alt={t('client finder')} style={{marginRight: theme.spacing.s}} width={130} height={24}/></Link>
             <Heading color="neutral" size="s">{t('client finder')}</Heading>
           </Logo>
         </GridItem>

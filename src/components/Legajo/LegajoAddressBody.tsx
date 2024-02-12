@@ -1,11 +1,5 @@
 import { useMemo } from 'react';
-import Card from '@components/content/Card/Card';
-import { FormValues } from '@components/forms/SearchForm/SearchForm';
 import styled from "styled-components";
-import { useRouter } from 'next/router';
-import Welcome from '@components/content/Welcome/Welcome';
-import SearchForm from '@components/forms/SearchForm/SearchForm';
-import Accordion from '@components/Accordion/Accordion';
 import { theme, IDefaultTheme } from '@fravega-it/bumeran-ds-fvg';
 import DataContainer from '@components/DataContainer/DataContainer';
 import { Address } from 'types/type';
@@ -17,14 +11,6 @@ const Centered = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const CenteredRow = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 `;
@@ -63,7 +49,14 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
   return (
     <Centered>
       <CenteredColumn data-testid="legajo-address-body">
-        <DataContainer data={addressData} columns={2} withBorder={false} background={theme.colors.white}/>
+        <DataContainer data={addressData} columns={2} withBorder={false} background={theme.colors.white} style={{
+          borderTopLeftRadius: theme.borderRadius.s,
+          borderTopRightRadius: theme.borderRadius.s,
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderBottom: '0px',
+          borderColor:  theme.colors.neutral[300],
+        }}/>
         { latitude && longitude && <Map latitude={latitude} longitude={longitude} marker={true}/> }
       </CenteredColumn>
     </Centered>

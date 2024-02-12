@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { CSSProperties, css } from "styled-components";
 import { TextBody } from '@fravega-it/bumeran-ds-fvg'
 import { splitIntoTuples } from '@utils/array';
 import { SpaceRight } from '@components/Spacing/Spacing';
@@ -47,12 +47,13 @@ export interface IDataContainerProps {
   withBorder?: boolean;
   data: Array<Record<string, string>>;
   background?: string;
+  style?: CSSProperties;
 }
 
-const DataContainer = ({ data, columns, withBorder, background}: IDataContainerProps) => {
+const DataContainer = ({ data, columns, withBorder, background, style}: IDataContainerProps) => {
   const tuples = splitIntoTuples(data, columns);
   return (
-    <Table columns={columns} withBorder={withBorder} background={background}>
+    <Table columns={columns} withBorder={withBorder} background={background} style={style}>
       <tbody>
         {tuples.map((tuple, index) => (
           <tr key={index}>

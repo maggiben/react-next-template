@@ -1,26 +1,27 @@
-import {
-  LocationIcon,
-  AlertIcon,
-} from "@fravega-it/bumeran-ds-fvg";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import styled from "styled-components";
 import L from 'leaflet';
-// import * as ReactDOMServer from 'react-dom/server';
-// import { renderToStaticMarkup } from "react-dom/server";
-// import locationIcon from '@images/locationIcon.svg';
-// import Image from "next/image";
-// import { TileLayer } from 'react-leaflet/TileLayer'
 // import { useMap } from 'react-leaflet/hooks'
-
-
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
+
+const Container = styled.div`
+  /* border: 0.125rem solid black; */
+  width: calc(100% - 2px);
+  border: 0px;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  border-top: 0px;
+  border-bottom-left-radius: ${({ theme }) => theme.borderRadius.s};
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadius.s};
+  border-color: ${({ theme }) => theme.colors.neutral[300]};
+`;
 
 interface IMapProps {
   marker?: boolean;
   latitude: number;
   longitude: number;
 }
-
-const position = [51.505, -0.09];
 
 const Map = ({latitude, longitude, marker}: IMapProps) => {
 
@@ -59,33 +60,6 @@ const Map = ({latitude, longitude, marker}: IMapProps) => {
         id="svg1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:svg="http://www.w3.org/2000/svg">
-      <defs
-          id="defs1">
-        <inkscape:path-effect
-            effect="fill_between_many"
-            method="originald"
-            linkedpaths="#path1,0,1|"
-            id="path-effect2" />
-      </defs>
-      <sodipodi:namedview
-          id="namedview1"
-          pagecolor="#ffffff"
-          bordercolor="#000000"
-          borderopacity="0.25"
-          inkscape:showpageshadow="2"
-          inkscape:pageopacity="0.0"
-          inkscape:pagecheckerboard="0"
-          inkscape:deskcolor="#d1d1d1"
-          showgrid="false"
-          inkscape:zoom="42.240057"
-          inkscape:cx="13.364092"
-          inkscape:cy="13.517974"
-          inkscape:window-width="1472"
-          inkscape:window-height="809"
-          inkscape:window-x="0"
-          inkscape:window-y="37"
-          inkscape:window-maximized="1"
-          inkscape:current-layer="svg1" />
       <path
           inkscape:original-d="M 0,0"
           inkscape:path-effect="#path-effect2"
@@ -104,25 +78,22 @@ const Map = ({latitude, longitude, marker}: IMapProps) => {
     iconAnchor: [12, 40],
   });
 
-
-  // const LeafIcon = new L.DivIcon({
-  //   html: '<h1>Hello</h1>',
-  // });
-
   return (
-    <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false} style={{width: '100%', height: '240px'}}>
-    <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    { marker &&
-      <Marker icon={svgIcon2} position={[latitude, longitude]}>
-        <Popup>
-          A marker at ({latitude}, {longitude})
-        </Popup>
-      </Marker>
-    }
-    </MapContainer>
+    <Container>
+      <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false} style={{width: '100%', height: '240px'}}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      { marker &&
+        <Marker icon={svgIcon2} position={[latitude, longitude]}>
+          <Popup>
+            A marker at ({latitude}, {longitude})
+          </Popup>
+        </Marker>
+      }
+      </MapContainer>
+    </Container>
   );
 };
 

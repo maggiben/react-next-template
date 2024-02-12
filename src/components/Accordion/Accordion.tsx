@@ -7,24 +7,6 @@ import {
   Heading,
 } from "@fravega-it/bumeran-ds-fvg";
 import styled from "styled-components";
-type DirectionType = "top" | "right" | "bottom" | "left";
-
-interface ChevronProps {
-  direction: DirectionType;
-}
-
-const Chevron = styled.div<ChevronProps>`
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  height: 0.25rem;
-  width: 0.25rem;
-  transition: all 0.25s ease-in-out;
-
-  transform: ${(p) => p.direction === "top" && "rotate(-45deg)"};
-  transform: ${(p) => p.direction === "right" && "rotate(45deg)"};
-  transform: ${(p) => p.direction === "bottom" && "rotate(135deg)"};
-  transform: ${(p) => p.direction === "left" && "rotate(-135deg)"};
-`;
 
 const Container = styled.div`
   /* border: 0.125rem solid black; */
@@ -45,13 +27,11 @@ const TitleContainer = styled.div`
 const ContentWrapper = styled.div<{ maxHeight: number }>`
   max-height: ${(p) => `${p.maxHeight}px`};
   transition: max-height 0.25s ease-in-out;
-  /* margin-bottom: ${({ theme }) => theme.spacing.m}; */
   overflow: hidden;
 `;
 
 const Content = styled.div`
   padding: 0 0 1rem;
-  color: rgba(0, 0, 0, 0.75);
   line-height: 1.5;
 `;
 
@@ -68,8 +48,6 @@ const TitleTextWithIcon = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-
 
 interface IAccordionProps {
   title: string;
@@ -135,12 +113,13 @@ interface IAccordiomProps {
   id?: string;
   leftIcon?: JSX.Element;
 }
-const Accordion = (props: IAccordiomProps) => {
+
+const Accordion = ({id, data, leftIcon}: IAccordiomProps) => {
   return (
-    <AccordionLayout id={props.id}>
+    <AccordionLayout id={id}>
       {
-        props.data.map((datum, index) => (
-          <AccordionContainer key={index} title={datum.label} leftIcon={props.leftIcon}>{datum.body}</AccordionContainer>
+        data.map((datum, index) => (
+          <AccordionContainer key={index} title={datum.label} leftIcon={leftIcon}>{datum.body}</AccordionContainer>
         ))
       }
     </AccordionLayout>
