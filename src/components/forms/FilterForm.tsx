@@ -111,10 +111,10 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         </GridItem>
         <GridItem xs={5} alignSelf="end" justifySelf="end">
           <ButtonGroup
-            primaryLabel={t('search')}
-            secondaryLabel={t('reset')}
-            onClickPrimary={handleSubmit(onSearch ?? onSubmit)}
-            onClickSecondary={reset}
+            firstButtonLabel={t('search')}
+            secondButtonLabel={t('reset')}
+            onClickFirstButton={handleSubmit(onSearch ?? onSubmit)}
+            onClickSecondButton={reset}
           />
         </GridItem>
       </Grid>
