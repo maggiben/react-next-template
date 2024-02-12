@@ -1,0 +1,109 @@
+import React, { useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
+
+const AccordionItemWrapper = styled.div`
+  /* display: block;
+  height: calc(100vh - (80px + 2rem));
+  overflow-y: scroll;
+  width: 100%; */
+  input[type=checkbox] {
+    /* position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0; */
+  }
+  ul li > .body-content {
+    display: none;
+  }
+  ul li input[type=checkbox]:checked ~ div {
+  display: none;
+  /* margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translate(0, 50%); */
+}
+`;
+
+//  accordionitem component
+
+interface IAccordionItem { 
+  label: string;
+  body: JSX.Element;
+  isOpen: boolean;
+  onClick?: () => {}
+}
+
+const AccordionItem = ({ label, body, isOpen, onClick }: IAccordionItem) => {
+  const contentHeight = useRef<HTMLInputElement>(null);
+
+  return (
+    <AccordionItemWrapper className="wrapper">
+      <label htmlFor={label}>{label}</label>
+      <input type="checkbox" onClick={onClick} name={label} checked={true}/>
+      {/* <div
+        className="divContent"
+        ref={contentHeight}
+        className="answer-container"
+        style={
+          isOpen
+            ? { height: contentHeight?.current.scrollHeight }
+            : { height: "0px" }
+        }
+      >
+        <div className="answer-content">{body}</div>
+      </div>
+      */}
+      <div className="body-content">{body}</div>
+    </AccordionItemWrapper>
+  );
+};
+
+
+const Container = styled.div`
+  position: relative;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: ${({ theme }) => theme.spacing.m};
+  background-color: ${({ theme }) => theme.colors.white};
+  border-color: ${({ theme }) => theme.colors.neutral[300]};
+  border-radius: ${({ theme }) => theme.borderRadius.m};
+`;
+
+interface IAccordionProps {
+  data: Array<{
+    label: string;
+    body: JSX.Element;
+  }>;
+}
+
+const Accordion = (props: IAccordionProps) => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  console.log('props.data', props.data)
+
+  const handleItemClick = (index: number) => {
+    // setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
+  return (
+    <div className="container">
+      {props.data.map((item, index) => {
+        console.log('index', index);
+        return (
+          <AccordionItem
+            key={index}
+            label={item.label}
+            body={item.body}
+            isOpen={activeIndex === index}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+export default Accordion;

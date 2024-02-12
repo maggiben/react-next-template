@@ -4,9 +4,9 @@ import { splitIntoTuples } from '@utils/array';
 import { SpaceRight } from '@components/Spacing/Spacing';
 
 const getColumnWidth = (index: number, width: number) => {
-  return css`
-  th:nth-child(${index + 1}),
-  td:nth-child(${index + 1}) {
+  return `
+    th:nth-child(${index + 1}),
+    td:nth-child(${index + 1}) {
       width: ${width}%;
     }
   `;
@@ -26,6 +26,7 @@ const Table = styled.table<{columns: number, withBorder?: boolean, background?: 
   th, td {
     padding: 8px;
     text-align: left;
+    width: 50%;
   }
 
   /* Set the width of each column */

@@ -49,10 +49,10 @@ const DuplicateModal = (props: DuplicateModalProps) => {
         <ButtonGroup
           size="s"
           align="left"
-          primaryLabel={t('accept')}
-          onClickPrimary={onAccept}
-          secondaryLabel={t('cancel')}
-          onClickSecondary={closeModal}
+          firstButtonLabel={t('accept')}
+          onClickFirstButton={onAccept}
+          secondButtonLabel={t('cancel')}
+          onClickSecondButton={closeModal}
         />
       </ModalFooter>
     </Modal>

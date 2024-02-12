@@ -7,7 +7,7 @@ import { renderer } from '@helpers/testing';
 import { RecoilRoot } from 'recoil';
 import DuplicateModal from './DuplicateModal';
 import { personsState } from '@states/atoms';
-import { Person } from 'types/type';
+import { Person, Status } from 'types/type';
 import i18next from 'i18next';
 global.structuredClone = (val) => JSON.parse(JSON.stringify(val));
 
@@ -36,10 +36,7 @@ describe('DuplicateModal', () => {
         expiration: '2022-12-31',
       },
       selected: false,
-      status: {
-        label: 'Active',
-        color: 'green',
-      },
+      status: 'onboardingfull' as Status,
       phone: {
         number: 987654321,
         prefix: 1,
@@ -101,10 +98,7 @@ describe('DuplicateModal', () => {
         expiration: '2022-12-31',
       },
       selected: false,
-      status: {
-        label: 'Active',
-        color: 'green',
-      },
+      status: 'onboardingfull' as Status,
       phone: {
         number: 987654321,
         prefix: 1,

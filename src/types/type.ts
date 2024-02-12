@@ -1,6 +1,6 @@
 
 export type Status = 'onboardingfull' | 'onboardingincompleto' | 'dnicaduco';
-export type Person = {
+export interface Person {
   id: string;
   name: string;
   lastname: string;
