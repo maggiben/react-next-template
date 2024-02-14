@@ -1,6 +1,6 @@
 {
   "name": "client-frontend",
-  "version": "1.0.2-new-ui",
+  "version": "1.0.3-legajo",
   "description": "Cliente Frontend",
   "private": true,
   "scripts": {
