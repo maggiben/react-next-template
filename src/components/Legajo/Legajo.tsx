@@ -12,6 +12,7 @@ import {
 } from "@fravega-it/bumeran-ds-fvg";
 import Card from '@components/content/Card/Card';
 import { FormValues } from '@components/forms/SearchForm/SearchForm';
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 import { useRouter } from 'next/router';
 import Welcome from '@components/content/Welcome/Welcome';
@@ -665,6 +666,8 @@ const CustomerCard = styled.div`
 `;
 
 const Legajo = (): JSX.Element => {
+  const { t } = useTranslation();
+  
   const legajo = datum[0];
 
   const addreses = legajo.addresses.map((address) => ({
@@ -712,11 +715,11 @@ const Legajo = (): JSX.Element => {
           <SpaceBottom size='m' />
           <CustomerCard>
             <GridItem xs={12}>
-              <Accordion data={documents} id='documents' leftIcon={<DocumentIcon size="l" />}/>
-              <Accordion data={addreses} id='addreses' leftIcon={<LocationIcon size="l" />}/>
-              <Accordion data={phones} id='phones' leftIcon={<PhoneIcon size="l" />}/>
-              <Accordion data={emails} id='emails' leftIcon={<MailIcon size="l" />}/>
-              <Accordion data={invoices} id='invoices' leftIcon={<TicketIcon size="l" />}/>
+              <Accordion data={documents} id="documents" label="Documentos" leftIcon={<DocumentIcon size="l" />}/>
+              <Accordion data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />}/>
+              <Accordion data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />}/>
+              <Accordion data={emails} id='emails' label="Emails" leftIcon={<MailIcon size="l" />}/>
+              <Accordion data={invoices} id='invoices' label="Invoices" leftIcon={<TicketIcon size="l" />}/>
             </GridItem>
           </CustomerCard>
         </Container>

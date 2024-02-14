@@ -41,7 +41,7 @@ exports[`Footer renders the Footer component 1`] = `
                 >
                   Versión: 
                 </span>
-                1.0.2-new-ui
+                1.0.3-legajo
               </span>
             </div>
           </div>
@@ -86,7 +86,7 @@ exports[`Footer renders the Footer component 1`] = `
               >
                 Versión: 
               </span>
-              1.0.2-new-ui
+              1.0.3-legajo
             </span>
           </div>
         </div>

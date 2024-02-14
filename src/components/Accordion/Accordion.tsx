@@ -49,13 +49,16 @@ const TitleTextWithIcon = styled.div`
   align-items: center;
 `;
 
-interface IAccordionProps {
-  title: string;
-  children: JSX.Element | string;
+interface IAccordionContainerProps {
+  label: string;
+  data: Array<{
+    label: string;
+    body: string | JSX.Element;
+  }>;
   leftIcon?: JSX.Element;
 }
 
-const AccordionContainer = ({ title, children, leftIcon }: IAccordionProps): JSX.Element => {
+const AccordionContainer = ({ label, data, leftIcon }: IAccordionContainerProps): JSX.Element => {
   const [isExpanded, setExpand] = useState<boolean>();
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -71,14 +74,18 @@ const AccordionContainer = ({ title, children, leftIcon }: IAccordionProps): JSX
         <TitleContainer>
           <Heading>
             <TitleContent onClick={handleExpandToggle}>
-                <TitleTextWithIcon>{ leftIcon && leftIcon} {title}</TitleTextWithIcon>
+                <TitleTextWithIcon>{ leftIcon && leftIcon} {label}</TitleTextWithIcon>
               { isExpanded ? <ChevronUpIcon />  : <ChevronDownIcon /> }
             </TitleContent>
           </Heading>
         </TitleContainer>
-        <ContentWrapper maxHeight={contentHeight}>
-          <Content ref={contentRef}>{children}</Content>
-        </ContentWrapper>
+        { 
+          data.map((datum, index) => (
+            <ContentWrapper maxHeight={contentHeight} key={index}>
+              <Content ref={contentRef}>{datum.body}</Content>
+            </ContentWrapper>
+          ))
+        }
       </Container>
     </div>
   );
@@ -101,11 +108,12 @@ const AccordionLayout = styled.div<{ color?: string; }>`
     }
   }
   &:not(:last-child) {
-    padding-bottom: ${({ theme }) => theme.spacing.m};
+    /* padding-bottom: ${({ theme }) => theme.spacing.m}; */
   }
 `;
 
-interface IAccordiomProps {
+interface IAccordionProps {
+  label: string;
   data: Array<{
     label: string;
     body: string | JSX.Element;
@@ -114,14 +122,10 @@ interface IAccordiomProps {
   leftIcon?: JSX.Element;
 }
 
-const Accordion = ({id, data, leftIcon}: IAccordiomProps) => {
+const Accordion = ({label, id, data, leftIcon}: IAccordionProps) => {
   return (
-    <AccordionLayout id={id}>
-      {
-        data.map((datum, index) => (
-          <AccordionContainer key={index} title={datum.label} leftIcon={leftIcon}>{datum.body}</AccordionContainer>
-        ))
-      }
+    <AccordionLayout id={id} data-testid="accordion-layout">
+      <AccordionContainer label={label} leftIcon={leftIcon} data-testid="accordion-container" data={data} />
     </AccordionLayout>
   );
 };
