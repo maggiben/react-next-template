@@ -23,6 +23,7 @@ import LegajoEmailBody from '@components/Legajo/LegajoEmailBody';
 import LegajoInvoicesBody from '@components/Legajo/LegajoInvoicesBody';
 import { SpaceBottom, SpaceTop } from '@components/Spacing/Spacing';
 import { Customer } from 'types/type';
+import * as string from '@utils/string';
 
 const datum: Customer[] = [{
   "_id": "218e0095-e089-42a0-8ba1-34345b924375",
@@ -664,7 +665,6 @@ const CustomerCard = styled.div`
 `;
 
 const Legajo = (): JSX.Element => {
-  const router = useRouter();
   const legajo = datum[0];
 
   const addreses = legajo.addresses.map((address) => ({
@@ -674,7 +674,7 @@ const Legajo = (): JSX.Element => {
 
   const phones = legajo.phones.map((phone) => ({
     label: 'Phones',
-    body: <TextBody>{phone.number} verificado: {phone.verified}</TextBody>,
+    body: <TextBody>{phone.number} verificado: {string.booleanToText(phone.verified ?? false)}</TextBody>,
   }));
 
   const documents = legajo.documents.map((document) => ({
