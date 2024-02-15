@@ -14,7 +14,7 @@ const Container = styled.div`
   border-bottom-width: 1px;
   border-style: solid;
   border-bottom-color: ${({ theme }) => theme.colors.neutral[300]};
-  padding: 0 ${({ theme }) => theme.spacing.s};
+  /* padding: 0 ${({ theme }) => theme.spacing.s}; */
   & + & {
     margin-top: ${({ theme }) => theme.spacing.s};
   }
@@ -26,12 +26,14 @@ const TitleContainer = styled.div`
 
 const ContentWrapper = styled.div<{ maxHeight: number }>`
   max-height: ${(p) => `${p.maxHeight}px`};
+  /* margin: ${({ theme }) => theme.spacing.s}; */
   transition: max-height 0.25s ease-in-out;
   overflow: hidden;
 `;
 
 const Content = styled.div`
-  padding: 0 0 1rem;
+  padding: ${({ theme }) => theme.spacing.s};
+  padding-top: 0;
   line-height: 1.5;
 `;
 
@@ -39,8 +41,9 @@ const TitleContent = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: ${({ theme }) => theme.spacing.s};
-  padding-bottom: ${({ theme }) => theme.spacing.s};
+  /* padding-top: ${({ theme }) => theme.spacing.s};
+  padding-bottom: ${({ theme }) => theme.spacing.s}; */
+  padding: ${({ theme }) => theme.spacing.s};
 `;
 
 const TitleTextWithIcon = styled.div`
@@ -70,7 +73,7 @@ const AccordionContainer = ({ label, data, leftIcon }: IAccordionContainerProps)
 
   return (
     <div className='accordion-container'>
-      <Container data-testid="accordion-container">
+      <Container data-testid="accordion-content">
         <TitleContainer>
           <Heading>
             <TitleContent onClick={handleExpandToggle}>
