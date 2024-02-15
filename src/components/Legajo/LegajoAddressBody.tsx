@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme, IDefaultTheme } from '@fravega-it/bumeran-ds-fvg';
 import DataContainer from '@components/DataContainer/DataContainer';
 import { Address } from 'types/type';
-// import Map from '@components/Map/Map';
+import * as string from '@utils/string';
 import dynamic from 'next/dynamic';
 
 
@@ -41,10 +41,14 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
     []
   );
   const addressData: Record<string, string>[] = [
-    {'city': address.city},
-    {'cp': address.zipCode},
-    {'street': address.street},
-    {'number': address.number},
+    {'País': address.country},
+    {'Ciudad': address.city},
+    {'Código Postal': address.zipCode},
+    {'Calle': address.street},
+    {'Número': address.number},
+    {'Piso': address.floor},
+    {'Departamento': address.apartment ?? ''},
+    {'Última actualización': new Date(address.lastUseDate).toLocaleDateString()},
   ]
   return (
     <Centered>

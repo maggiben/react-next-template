@@ -10,16 +10,12 @@ import {
   DocumentIcon,
   TextBody,
 } from "@fravega-it/bumeran-ds-fvg";
-import Card from '@components/content/Card/Card';
-import { FormValues } from '@components/forms/SearchForm/SearchForm';
 import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
-import { useRouter } from 'next/router';
-import Welcome from '@components/content/Welcome/Welcome';
-import SearchForm from '@components/forms/SearchForm/SearchForm';
 import Accordion from '@components/Accordion/Accordion';
 import DataContainer from '@components/DataContainer/DataContainer';
 import LegajoAddressBody from '@components/Legajo/LegajoAddressBody';
+import LegajoDocumentsBody from '@components/Legajo/LegajoDocumentsBody';
 import LegajoEmailBody from '@components/Legajo/LegajoEmailBody';
 import LegajoInvoicesBody from '@components/Legajo/LegajoInvoicesBody';
 import { SpaceBottom, SpaceTop } from '@components/Spacing/Spacing';
@@ -82,25 +78,24 @@ const datum: Customer[] = [{
         "originChannelType": "Create"
       },
       "lastUseDate": "2024-01-31T19:00:09.777+0000",
-      "zipCode": "1001",
-      "street": "Della Paolera ",
-      "number": "265",
-      "floor": "28",
-      "apartment": null,
-      "city": "Ciudad Autónoma Buenos Aires",
-      "state": "CIUDAD AUTÓNOMA DE BUENOS AIRES",
+      "zipCode": "8400",
+      "street": "Mitre",
+      "number": "500",
+      "floor": "1",
+      "apartment": "a",
+      "city": "San Carlos de Bariloche",
+      "state": "Rio Negro",
       "country": "ARG",
       "_id": "abdd4c45-e13b-4e6a-9205-6ea0c9bfb843",
       "betweenStreets": null,
       "references": null,
       "geoCoordinates": {
-        "latitude": "-58.38155746459961",
-        "longitude": "-34.60368347167969"
+        "latitude": "-71.30248274567434",
+        "longitude": "-41.134002019411035"
       },
       "stateVerified": "VERIFIED",
       "channel": null,
       "applyTo": [
-        "DELIVERY",
         "INVOICE"
       ],
       "type": "0"
@@ -112,20 +107,20 @@ const datum: Customer[] = [{
         "originChannelType": "Create"
       },
       "lastUseDate": "2024-01-31T19:00:09.777+0000",
-      "zipCode": "1001",
-      "street": "Della Paolera ",
-      "number": "265",
-      "floor": "28",
+      "zipCode": "5500",
+      "street": "Av. España",
+      "number": "1537",
+      "floor": "3",
       "apartment": null,
-      "city": "Ciudad Autónoma Buenos Aires",
-      "state": "CIUDAD AUTÓNOMA DE BUENOS AIRES",
+      "city": "Mendoza",
+      "state": "Mendoza",
       "country": "ARG",
       "_id": "abdd4c45-e13b-4e6a-9205-6ea0c9bfb843",
       "betweenStreets": null,
       "references": null,
       "geoCoordinates": {
-        "latitude": "-58.38155746459961",
-        "longitude": "-34.60368347167969"
+        "latitude": "-68.84058043414383",
+        "longitude": "-32.885424480775086"
       },
       "stateVerified": "VERIFIED",
       "channel": null,
@@ -203,7 +198,7 @@ const datum: Customer[] = [{
       "type": "0"
     }]
   }],
-  "creationOriginOn": "2024-01-31T19:00:46.950+0000",
+  "creationOriginOn": "2021-01-31T19:00:46.950+0000",
   "creationChannel": "",
   "active": true,
   "disablingReason": null,
@@ -680,9 +675,9 @@ const Legajo = (): JSX.Element => {
     body: <TextBody>{phone.number} verificado: {string.booleanToText(phone.verified ?? false)}</TextBody>,
   }));
 
-  const documents = legajo.documents.map((document) => ({
+  const documents = legajo.documents.map((doc) => ({
     label: 'Documents',
-    body: <TextBody><span>{`${document.type}: `}</span>{document.number}</TextBody>,
+    body: <LegajoDocumentsBody doc={doc} />,
   }));
 
   const emails = legajo.emails.map((email) => ({
@@ -715,10 +710,10 @@ const Legajo = (): JSX.Element => {
           <SpaceBottom size='m' />
           <CustomerCard>
             <GridItem xs={12}>
-              <Accordion data={documents} id="documents" label="Documentos" leftIcon={<DocumentIcon size="l" />}/>
+              <Accordion data={documents} id="documents" label={t('documents')} leftIcon={<DocumentIcon size="l" />}/>
               <Accordion data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />}/>
               <Accordion data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />}/>
-              <Accordion data={emails} id='emails' label="Emails" leftIcon={<MailIcon size="l" />}/>
+              <Accordion data={emails} id='emails' label={t('emails')} leftIcon={<MailIcon size="l" />}/>
               <Accordion data={invoices} id='invoices' label="Invoices" leftIcon={<TicketIcon size="l" />}/>
             </GridItem>
           </CustomerCard>
