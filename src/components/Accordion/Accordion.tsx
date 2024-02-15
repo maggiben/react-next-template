@@ -14,7 +14,6 @@ const Container = styled.div`
   border-bottom-width: 1px;
   border-style: solid;
   border-bottom-color: ${({ theme }) => theme.colors.neutral[300]};
-  /* padding: 0 ${({ theme }) => theme.spacing.s}; */
   & + & {
     margin-top: ${({ theme }) => theme.spacing.s};
   }
@@ -26,7 +25,6 @@ const TitleContainer = styled.div`
 
 const ContentWrapper = styled.div<{ maxHeight: number }>`
   max-height: ${(p) => `${p.maxHeight}px`};
-  /* margin: ${({ theme }) => theme.spacing.s}; */
   transition: max-height 0.25s ease-in-out;
   overflow: hidden;
 `;
@@ -41,8 +39,6 @@ const TitleContent = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* padding-top: ${({ theme }) => theme.spacing.s};
-  padding-bottom: ${({ theme }) => theme.spacing.s}; */
   padding: ${({ theme }) => theme.spacing.s};
 `;
 
@@ -73,7 +69,7 @@ const AccordionContainer = ({ label, data, leftIcon }: IAccordionContainerProps)
 
   return (
     <div className='accordion-container'>
-      <Container data-testid="accordion-content">
+      <Container data-testid="accordion-container">
         <TitleContainer>
           <Heading>
             <TitleContent onClick={handleExpandToggle}>
@@ -128,7 +124,7 @@ interface IAccordionProps {
 const Accordion = ({label, id, data, leftIcon}: IAccordionProps) => {
   return (
     <AccordionLayout id={id} data-testid="accordion-layout">
-      <AccordionContainer label={label} leftIcon={leftIcon} data-testid="accordion-container" data={data} />
+      <AccordionContainer label={label} leftIcon={leftIcon} data={data} />
     </AccordionLayout>
   );
 };
