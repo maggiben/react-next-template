@@ -19,6 +19,10 @@
     "placeBirth" : null,
     "maritalStatus" : "NOT_INFORMED",
     "receiveNewsletter" : false,
+    "userMail": { 
+        "email": "diego@gmail.com",
+        "stateVerified" : "VERIFIED"
+    },
     "addresses" : [
         {
             "originChannel" : {

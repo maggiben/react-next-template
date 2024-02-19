@@ -19,7 +19,7 @@ import LegajoDocumentsBody from '@components/Legajo/LegajoDocumentsBody';
 import LegajoEmailBody from '@components/Legajo/LegajoEmailBody';
 import LegajoPhonesBody from '@components/Legajo/LegajoPhonesBody';
 import { SpaceBottom, SpaceTop } from '@components/Spacing/Spacing';
-import { Customer } from 'types/type';
+import { Customer, Email } from 'types/type';
 import * as string from '@utils/string';
 import * as localization from '@utils/localization';
 
@@ -699,23 +699,25 @@ const Legajo = (): JSX.Element => {
     body: <LegajoDocumentsBody doc={doc} />,
   }));
 
-  const emails = legajo.emails.map((email) => ({
+  const emails = [...[legajo.userMail], ...legajo.emails].map((email) => ({
     label: 'Emails',
-    body: <LegajoEmailBody email={email} />,
+    body: <LegajoEmailBody email={email as Email} />,
   }));
 
   const rootData: Record<string, string>[] = [{
-    'cuid': legajo._id,
+    'CUID': legajo._id,
   },{
-    'nombre': legajo.firstName,
+    'Nombre': legajo.firstName,
   },{
-    'apellido': legajo.lastName,
+    'Apellido': legajo.lastName,
   },{
     'Fecha de nacimiento': legajo.birth ? localization.toLocaleDateString(legajo.birth) : '',
   },{
     'Fecha de Creción': localization.toLocaleDateString(legajo.createdOn),
   }, {
     Nacionalidad: 'ARG',
+  }, {
+    'Sexo': legajo.gender,
   }];
   
   return (

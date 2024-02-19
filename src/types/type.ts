@@ -121,7 +121,7 @@ export interface Incident {
   description: string;
 }
 
-export interface UserEmail {
+export interface Usermail {
   email: string;
   stateVerified: ClientStatus;
 }
@@ -139,7 +139,7 @@ export interface Customer {
   placeBirth: string | null;
   maritalStatus: string;
   receiveNewsletter: boolean;
-  userMail: UserEmail;
+  userMail: Usermail;
   addresses: Address[];
   phones: Phone[];
   emails: Email[];
