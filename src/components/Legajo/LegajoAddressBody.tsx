@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { theme, IDefaultTheme } from '@fravega-it/bumeran-ds-fvg';
 import DataContainer from '@components/DataContainer/DataContainer';
 import { Address } from 'types/type';
-import * as string from '@utils/string';
+import { useTranslation } from 'react-i18next';
+import * as localization from '@utils/localization';
 import dynamic from 'next/dynamic';
-
+import verified from '@components/Verified/Verified'
 
 const Centered = styled.div`
   display: flex;
@@ -32,6 +33,7 @@ interface ILegajoAddressBodyProp {
 }
 
 const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
+  const { t } = useTranslation();
   const latitude = address.geoCoordinates && parseFloat(address.geoCoordinates.longitude);
   const longitude = address.geoCoordinates && parseFloat(address.geoCoordinates.latitude);
   // const latitude = -34.599722222222;
@@ -40,20 +42,23 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
     () => dynamic(() => import("@components/Map/Map"), { ssr: false }),
     []
   );
-  const addressData: Record<string, string>[] = [
-    {'País': address.country},
-    {'Ciudad': address.city},
+  const addressData: Record<string, string | JSX.Element>[] = [
+    {[t('country')]: address.country},
+    {[t('city')]: address.city},
+    {'Provincia': address.state},
     {'Código Postal': address.zipCode},
     {'Calle': address.street},
     {'Número': address.number},
     {'Piso': address.floor},
     {'Departamento': address.apartment ?? ''},
-    {'Última actualización': new Date(address.lastUseDate).toLocaleDateString()},
+    {[t('between streets')]: address.betweenStreets ?? ''},
+    {'Última actualización': localization.toLocaleDateString(address.lastUseDate)},
+    {[t('verified')]: verified(address.stateVerified)},
   ]
   return (
     <Centered>
       <CenteredColumn data-testid="legajo-address-body">
-        <DataContainer data={addressData} columns={2} withBorder={false} background={theme.colors.white} style={{
+        <DataContainer data={addressData} columns={3} withBorder={false} background={theme.colors.white} style={{
           borderTopLeftRadius: theme.borderRadius.s,
           borderTopRightRadius: theme.borderRadius.s,
           borderWidth: '1px',

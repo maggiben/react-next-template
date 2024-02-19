@@ -52,5 +52,8 @@
     "dni expired": "DNI caducado",
     "no results": "No encontramos resultados",
     "no results for": "No encontramos resultados para",
-    "no results help": "Te recomendamos revisar la escritura de la palabra, buscar una palabra distinta o filtrar por otra categoría."
+    "no results help": "Te recomendamos revisar la escritura de la palabra, buscar una palabra distinta o filtrar por otra categoría",
+    "between streets": "Entre calles",
+    "country": "País",
+    "city": "Ciudad"
 }

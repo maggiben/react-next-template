@@ -17,14 +17,16 @@ import DataContainer from '@components/DataContainer/DataContainer';
 import LegajoAddressBody from '@components/Legajo/LegajoAddressBody';
 import LegajoDocumentsBody from '@components/Legajo/LegajoDocumentsBody';
 import LegajoEmailBody from '@components/Legajo/LegajoEmailBody';
-import LegajoInvoicesBody from '@components/Legajo/LegajoInvoicesBody';
+import LegajoPhonesBody from '@components/Legajo/LegajoPhonesBody';
 import { SpaceBottom, SpaceTop } from '@components/Spacing/Spacing';
 import { Customer } from 'types/type';
 import * as string from '@utils/string';
+import * as localization from '@utils/localization';
 
-const datum: Customer[] = [{
+const datum: Customer[] = [
+{
   "_id": "218e0095-e089-42a0-8ba1-34345b924375",
-  "createdOn": "2024-01-31T19:00:46.950+0000",
+  "createdOn": "2024-01-08T19:00:46.950+0000",
   "updatedOn": null,
   "documents": [{
     "type": "DNI",
@@ -36,28 +38,32 @@ const datum: Customer[] = [{
   "firstName": "Karen Elizabeth",
   "lastName": "Tito",
   "gender": "NOT_INFORMED",
-  "birth": null,
+  "birth": "1983-09-30",
   "nationality": null,
   "placeBirth": null,
   "maritalStatus": "NOT_INFORMED",
   "receiveNewsletter": false,
+  "userMail": { 
+    "email": "diego@gmail.com", //Mostrar
+    "stateVerified" : "VERIFIED",//Mostrar
+  },
   "addresses": [{
       "originChannel": {
         "typeChannel": "Ecommerce",
         "sourceSystem": "Vtex",
         "originChannelType": "Create"
       },
-      "lastUseDate": "2024-01-31T19:00:09.777+0000",
+      "lastUseDate": "2024-01-01T19:00:09.777+0000",
       "zipCode": "1001",
       "street": "Della Paolera ",
       "number": "265",
       "floor": "28",
-      "apartment": null,
+      "apartment": "A",
       "city": "Ciudad Autónoma Buenos Aires",
       "state": "CIUDAD AUTÓNOMA DE BUENOS AIRES",
       "country": "ARG",
       "_id": "abdd4c45-e13b-4e6a-9205-6ea0c9bfb843",
-      "betweenStreets": null,
+      "betweenStreets" : "Almirante Brown y Chicago",
       "references": null,
       "geoCoordinates": {
         "latitude": "-58.38155746459961",
@@ -93,7 +99,7 @@ const datum: Customer[] = [{
         "latitude": "-71.30248274567434",
         "longitude": "-41.134002019411035"
       },
-      "stateVerified": "VERIFIED",
+      "stateVerified": "NOT_VERIFIED",
       "channel": null,
       "applyTo": [
         "INVOICE"
@@ -237,6 +243,10 @@ const datum: Customer[] = [{
   "placeBirth": null,
   "maritalStatus": "NOT_INFORMED",
   "receiveNewsletter": false,
+  "userMail": { 
+    "email": "diego@gmail.com", //Mostrar
+    "stateVerified" : "VERIFIED",//Mostrar
+  },
   "addresses": [{
     "originChannel": {
       "typeChannel": "Ecommerce",
@@ -373,6 +383,10 @@ const datum: Customer[] = [{
   "placeBirth": null,
   "maritalStatus": "NOT_INFORMED",
   "receiveNewsletter": false,
+  "userMail": { 
+    "email": "diego@gmail.com", //Mostrar
+    "stateVerified" : "VERIFIED",//Mostrar
+  },
   "addresses": [{
     "originChannel": {
       "typeChannel": "Ecommerce",
@@ -509,6 +523,10 @@ const datum: Customer[] = [{
   "placeBirth": null,
   "maritalStatus": "NOT_INFORMED",
   "receiveNewsletter": false,
+  "userMail": { 
+    "email": "diego@gmail.com", //Mostrar
+    "stateVerified" : "VERIFIED",//Mostrar
+  },
   "addresses": [{
     "originChannel": {
       "typeChannel": "Ecommerce",
@@ -626,7 +644,8 @@ const datum: Customer[] = [{
   "referenceContact": [
 
   ]
-}];
+}
+];
 
 const Container = styled.div`
   position: relative;
@@ -672,7 +691,7 @@ const Legajo = (): JSX.Element => {
 
   const phones = legajo.phones.map((phone) => ({
     label: 'Phones',
-    body: <TextBody>{phone.number} verificado: {string.booleanToText(phone.verified ?? false)}</TextBody>,
+    body: <LegajoPhonesBody phone={phone}/>,
   }));
 
   const documents = legajo.documents.map((doc) => ({
@@ -685,11 +704,20 @@ const Legajo = (): JSX.Element => {
     body: <LegajoEmailBody email={email} />,
   }));
 
-  const invoices = legajo.invoices.map((invoice) => ({
-    label: 'Invoices',
-    body: <LegajoInvoicesBody invoice={invoice} />,
-  }));
-
+  const rootData: Record<string, string>[] = [{
+    'cuid': legajo._id,
+  },{
+    'nombre': legajo.firstName,
+  },{
+    'apellido': legajo.lastName,
+  },{
+    'Fecha de nacimiento': legajo.birth ? localization.toLocaleDateString(legajo.birth) : '',
+  },{
+    'Fecha de Creción': localization.toLocaleDateString(legajo.createdOn),
+  }, {
+    Nacionalidad: 'ARG',
+  }];
+  
   return (
     <Grid>
       <GridItem xs={12}>
@@ -702,11 +730,7 @@ const Legajo = (): JSX.Element => {
             <Heading size="s">{legajo.firstName} {legajo.lastName}</Heading>
           </GridItem>
           <SpaceBottom size='m' />
-          <DataContainer data={[{
-            creado: new Date(legajo.createdOn).toLocaleDateString(),
-          }, {
-            nacionalidad: 'ARG',
-          }]} columns={2} withBorder={true} background='transparent'/>
+          <DataContainer data={rootData} columns={3} withBorder={true} background='transparent'/>
           <SpaceBottom size='m' />
           <CustomerCard>
             <GridItem xs={12}>
@@ -714,7 +738,6 @@ const Legajo = (): JSX.Element => {
               <Accordion data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />}/>
               <Accordion data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />}/>
               <Accordion data={emails} id='emails' label={t('emails')} leftIcon={<MailIcon size="l" />}/>
-              <Accordion data={invoices} id='invoices' label="Invoices" leftIcon={<TicketIcon size="l" />}/>
             </GridItem>
           </CustomerCard>
         </Container>

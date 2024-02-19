@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {
+	Label,
+	CheckIcon,
+	AlertIcon,
+} from '@fravega-it/bumeran-ds-fvg'
 import DataContainer from '@components/DataContainer/DataContainer';
 import * as string from '@utils/string';
 import { Document } from 'types/type';
@@ -37,11 +42,11 @@ interface ILegajoDocumentsBodyProp {
 }
 
 const LegajoDocumentsBody = ({ doc }: ILegajoDocumentsBodyProp): JSX.Element => {
-
-  const documentsData: Record<string, string>[] = [
+	const verified = (stateVerified: string) => stateVerified === 'VERIFIED' ? <Label color="green" leftIcon={<CheckIcon />} label={string.booleanToText(true)} /> : <Label color="red" leftIcon={<AlertIcon />} label={string.booleanToText(false)} />
+  const documentsData: Record<string, string | JSX.Element>[] = [
     {'Tipo': doc.type},
     {'numero': doc.number},
-    {'verificado': string.booleanToText(doc.stateVerified === 'VERIFIED' ? true : false)},
+    {'verificado': verified(doc.stateVerified)},
   ]
   return (
     <Centered>

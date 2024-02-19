@@ -1,5 +1,7 @@
 
 export type Status = 'onboardingfull' | 'onboardingincompleto' | 'dnicaduco';
+export type ClientStatus = 'VERIFIED' | 'NOT_VERIFIED' | 'INCONSISTENT';
+
 export interface Person {
   id: string;
   name: string;
@@ -57,7 +59,7 @@ export interface Address {
     latitude: string;
     longitude: string;
   } | null;
-  stateVerified: string;
+  stateVerified: ClientStatus;
   channel: string | null;
   applyTo: string[];
   type: string;
@@ -67,7 +69,7 @@ export interface Document {
   type: string;
   number: string;
   verified: boolean | null;
-  stateVerified: string;
+  stateVerified: ClientStatus;
   channel: string | null;
 }
 
@@ -84,7 +86,7 @@ export interface Phone {
   number: string;
   internal: string | null;
   verified: boolean | null;
-  stateVerified: string;
+  stateVerified: ClientStatus;
   channel: string | null;
 }
 
@@ -100,7 +102,7 @@ export interface Email {
   receiveNewsletter: boolean | null;
   isMain: boolean | null;
   verified: boolean | null;
-  stateVerified: string;
+  stateVerified: ClientStatus;
   channel: string | null;
 }
 
@@ -119,6 +121,11 @@ export interface Incident {
   description: string;
 }
 
+export interface UserEmail {
+  email: string;
+  stateVerified: ClientStatus;
+}
+
 export interface Customer {
   _id: string;
   createdOn: string;
@@ -132,6 +139,7 @@ export interface Customer {
   placeBirth: string | null;
   maritalStatus: string;
   receiveNewsletter: boolean;
+  userMail: UserEmail;
   addresses: Address[];
   phones: Phone[];
   emails: Email[];

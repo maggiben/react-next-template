@@ -46,7 +46,7 @@ const Centered = styled.div`
 export interface IDataContainerProps {
   columns: number;
   withBorder?: boolean;
-  data: Array<Record<string, string>>;
+  data: Array<Record<string, string | JSX.Element>>;
   background?: string;
   style?: CSSProperties;
 }
@@ -66,7 +66,12 @@ const DataContainer = ({ data, columns, withBorder, background, style}: IDataCon
                       <Centered key={label}>
                         <TextBody size="m" color="neutral" as="span">{label}</TextBody>
                         <SpaceRight size="s" />
-                        <TextBody size="m" as="span">{description}</TextBody>
+                        {
+                          typeof description === 'string' ? 
+                            <TextBody size="m" as="span">{description}</TextBody>
+                            :
+                            <>{description}</>
+                        }
                       </Centered>
                     ))
                   }

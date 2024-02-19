@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import DataContainer from '@components/DataContainer/DataContainer';
 import * as string from '@utils/string';
-import { Email } from 'types/type';
+import { useTranslation } from 'react-i18next';
 import verified from '@components/Verified/Verified'
+import { Phone } from 'types/type';
+
 
 const Centered = styled.div`
   display: flex;
@@ -32,23 +34,25 @@ const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'x
   margin-top: ${({ theme, size }) => theme.spacing[size]};
 `;
 
-interface ILegajoEmailBodyProp {
-  email: Email;
+interface ILegajoPhonesBodyProp {
+  phone: Phone;
 }
 
-const LegajoEmailBody = ({email}: ILegajoEmailBodyProp): JSX.Element => {
+const LegajoPhonesBody = ({phone}: ILegajoPhonesBodyProp): JSX.Element => {
+  const { t } = useTranslation();
 
   const emailsData: Record<string, string | JSX.Element>[] = [
-    {'Email': email.email},
-    {'Verificado': verified(email.stateVerified)},
+    {'Código de Área': phone.areaCode},
+    {'Número': phone.number},
+    {'Verificado': verified(phone.stateVerified)}
   ]
   return (
     <Centered>
-      <CenteredColumn data-testid="legajo-email-body">
+      <CenteredColumn data-testid="legajo-phone-body">
         <DataContainer data={emailsData} columns={2} withBorder={false} background='transparent'/>
       </CenteredColumn>
     </Centered>
   );
 };
 
-export default LegajoEmailBody;
+export default LegajoPhonesBody;
