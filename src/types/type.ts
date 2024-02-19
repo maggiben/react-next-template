@@ -74,7 +74,7 @@ export interface Document {
 }
 
 export interface Phone {
-  originChannel: {
+  originChannel?: {
     typeChannel: string;
     sourceSystem: string;
     originChannelType: string;
@@ -91,7 +91,7 @@ export interface Phone {
 }
 
 export interface Email {
-  originChannel: {
+  originChannel?: {
     typeChannel: string;
     sourceSystem: string;
     originChannelType: string;

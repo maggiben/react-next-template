@@ -167,6 +167,15 @@ const datum: Customer[] = [
     "verified": false,
     "stateVerified": "NOT_VERIFIED",
     "channel": null
+  },{
+    "lastUseDate": "2024-01-31T19:00:09.700+0000",
+    "_id": "78c7c0e2-b341-487e-bec7-8e19e85b6b2f",
+    "email": "sonic@gmail.com",
+    "receiveNewsletter": null,
+    "isMain": null,
+    "verified": false,
+    "stateVerified": "VERIFIED",
+    "channel": null
   }],
   "taxConfiguration": null,
   "creditCustomer": null,
@@ -647,6 +656,10 @@ const datum: Customer[] = [
 }
 ];
 
+const LegajoBody = styled.div`
+  min-height: calc(100vh - (80px + 2rem));
+`;
+
 const Container = styled.div`
   position: relative;
   display: block;
@@ -721,30 +734,32 @@ const Legajo = (): JSX.Element => {
   }];
   
   return (
-    <Grid>
-      <GridItem xs={12}>
-        {/* <Welcome /> */}
-        {/* <SpaceTop size='xl' /> */}
-        {/* <SearchForm onSearch={onSearch} {...router.query} /> */}
-        <SpaceTop size='xl' />
-        <Container data-testid="legajo">
-          <GridItem xs={12} justifySelf="start" alignSelf="center">
-            <Heading size="s">{legajo.firstName} {legajo.lastName}</Heading>
-          </GridItem>
-          <SpaceBottom size='m' />
-          <DataContainer data={rootData} columns={3} withBorder={true} background='transparent'/>
-          <SpaceBottom size='m' />
-          <CustomerCard>
-            <GridItem xs={12}>
-              <Accordion data={documents} id="documents" label={t('documents')} leftIcon={<DocumentIcon size="l" />}/>
-              <Accordion data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />}/>
-              <Accordion data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />}/>
-              <Accordion data={emails} id='emails' label={t('emails')} leftIcon={<MailIcon size="l" />}/>
+    <LegajoBody data-testid="legajo-body">
+      <Grid>
+        <GridItem xs={12}>
+          {/* <Welcome /> */}
+          {/* <SpaceTop size='xl' /> */}
+          {/* <SearchForm onSearch={onSearch} {...router.query} /> */}
+          <SpaceTop size='xl' />
+          <Container data-testid="legajo">
+            <GridItem xs={12} justifySelf="start" alignSelf="center">
+              <Heading size="s">{legajo.firstName} {legajo.lastName}</Heading>
             </GridItem>
-          </CustomerCard>
-        </Container>
-      </GridItem>
-    </Grid>
+            <SpaceBottom size='m' />
+            <DataContainer data={rootData} columns={3} withBorder={true} background='transparent'/>
+            <SpaceBottom size='m' />
+            <CustomerCard>
+              <GridItem xs={12}>
+                <Accordion data={documents} id="documents" label={t('documents')} leftIcon={<DocumentIcon size="l" />}/>
+                <Accordion data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />}/>
+                <Accordion data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />}/>
+                <Accordion data={emails} id='emails' label={t('emails')} leftIcon={<MailIcon size="l" />}/>
+              </GridItem>
+            </CustomerCard>
+          </Container>
+        </GridItem>
+      </Grid>
+    </LegajoBody>
   );
 };
 
