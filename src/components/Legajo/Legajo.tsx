@@ -720,10 +720,6 @@ const Legajo = (): JSX.Element => {
     body: <LegajoEmailBody email={email as Email} />,
   }));
 
-  const constryData = legajo.nationality && getCountryData(localization.countryISOMapping[legajo.nationality] as TCountryCode);
-  
-  const countryElement = constryData && <Country iso2={constryData.iso2} />;
-
   const rootData: Record<string, string | JSX.Element>[] = [{
     'CUID': legajo._id,
   },{
