@@ -19,8 +19,8 @@ import LegajoDocumentsBody from '@components/Legajo/LegajoDocumentsBody';
 import LegajoEmailBody from '@components/Legajo/LegajoEmailBody';
 import LegajoPhonesBody from '@components/Legajo/LegajoPhonesBody';
 import { SpaceBottom, SpaceTop } from '@components/Spacing/Spacing';
+import { getName } from 'country-list';
 import { Customer, Email } from 'types/type';
-import * as string from '@utils/string';
 import * as localization from '@utils/localization';
 
 const datum: Customer[] = [
@@ -39,7 +39,7 @@ const datum: Customer[] = [
   "lastName": "Tito",
   "gender": "NOT_INFORMED",
   "birth": "1983-09-30",
-  "nationality": null,
+  "nationality": "ARG",
   "placeBirth": null,
   "maritalStatus": "NOT_INFORMED",
   "receiveNewsletter": false,
@@ -717,6 +717,7 @@ const Legajo = (): JSX.Element => {
     body: <LegajoEmailBody email={email as Email} />,
   }));
 
+  const constryCode = legajo.nationality && getName(localization.countryISOMapping[legajo.nationality]);
   const rootData: Record<string, string>[] = [{
     'CUID': legajo._id,
   },{
@@ -728,7 +729,7 @@ const Legajo = (): JSX.Element => {
   },{
     [t('creation date')]: localization.toLocaleDateString(legajo.createdOn),
   }, {
-    [t('nacionality')]: 'ARG',
+    [t('nacionality')]: constryCode ? constryCode : '',
   }, {
     [t('sex')]: legajo.gender,
   }];

@@ -15,7 +15,7 @@
     "lastName" : "Tito",
     "gender" : "NOT_INFORMED",
     "birth" : null,
-    "nationality" : null,
+    "nationality" : "ARG",
     "placeBirth" : null,
     "maritalStatus" : "NOT_INFORMED",
     "receiveNewsletter" : false,

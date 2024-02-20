@@ -5,6 +5,7 @@ import DataContainer from '@components/DataContainer/DataContainer';
 import { Address } from 'types/type';
 import { useTranslation } from 'react-i18next';
 import * as localization from '@utils/localization';
+import { getName } from 'country-list';
 import dynamic from 'next/dynamic';
 import verified from '@components/Verified/Verified';
 
@@ -40,7 +41,7 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
   );
   
   const addressData: Record<string, string | JSX.Element>[] = [
-    {[t('country')]: address.country},
+    {[t('country')]: getName(localization.countryISOMapping[address.country]) ?? ''},
     {[t('city')]: address.city},
     {[t('province')]: address.state},
     {[t('postal code')]: address.zipCode},
