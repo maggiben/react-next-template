@@ -9,6 +9,7 @@ import {
   TicketIcon,
   DocumentIcon,
   TextBody,
+  theme,
 } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
@@ -18,8 +19,10 @@ import LegajoAddressBody from '@components/Legajo/LegajoAddressBody';
 import LegajoDocumentsBody from '@components/Legajo/LegajoDocumentsBody';
 import LegajoEmailBody from '@components/Legajo/LegajoEmailBody';
 import LegajoPhonesBody from '@components/Legajo/LegajoPhonesBody';
-import { SpaceBottom, SpaceTop } from '@components/Spacing/Spacing';
+import Country from '@components/Country/Country';
+import { SpaceBottom, SpaceTop, SpaceRight } from '@components/Spacing/Spacing';
 import { getCountryData, TCountryCode } from 'countries-list';
+import ReactCountryFlag from "react-country-flag"
 import { Customer, Email } from 'types/type';
 import * as localization from '@utils/localization';
 
@@ -719,7 +722,9 @@ const Legajo = (): JSX.Element => {
 
   const constryData = legajo.nationality && getCountryData(localization.countryISOMapping[legajo.nationality] as TCountryCode);
   
-  const rootData: Record<string, string>[] = [{
+  const countryElement = constryData && <Country iso2={constryData.iso2} />;
+
+  const rootData: Record<string, string | JSX.Element>[] = [{
     'CUID': legajo._id,
   },{
     [t('name')]: legajo.firstName,
@@ -730,7 +735,7 @@ const Legajo = (): JSX.Element => {
   },{
     [t('creation date')]: localization.toLocaleDateString(legajo.createdOn),
   }, {
-    [t('nacionality')]: constryData ? constryData.name : '',
+    [t('nacionality')]: legajo.nationality ? <Country country={legajo.nationality} /> : '',
   }, {
     [t('sex')]: legajo.gender,
   }];

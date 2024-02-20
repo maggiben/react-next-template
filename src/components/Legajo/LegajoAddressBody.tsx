@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import * as localization from '@utils/localization';
 import dynamic from 'next/dynamic';
 import verified from '@components/Verified/Verified';
+import Country from '@components/Country/Country';
 
 const Centered = styled.div`
   display: flex;
@@ -40,9 +41,8 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
     []
   );
   
-  const constryData = address.country && getCountryData(localization.countryISOMapping[address.country] as TCountryCode);
   const addressData: Record<string, string | JSX.Element>[] = [
-    {[t('country')]: constryData ? constryData.name : ''},
+    {[t('country')]: address.country ?<Country country={address.country} /> : ''},
     {[t('city')]: address.city},
     {[t('province')]: address.state},
     {[t('postal code')]: address.zipCode},
