@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import DataContainer from '@components/DataContainer/DataContainer';
-import * as string from '@utils/string';
 import { useTranslation } from 'react-i18next';
 import verified from '@components/Verified/Verified'
 import { Phone } from 'types/type';
@@ -42,9 +41,9 @@ const LegajoPhonesBody = ({phone}: ILegajoPhonesBodyProp): JSX.Element => {
   const { t } = useTranslation();
 
   const emailsData: Record<string, string | JSX.Element>[] = [
-    {'Código de Área': phone.areaCode},
-    {'Número': phone.number},
-    {'Verificado': verified(phone.stateVerified)}
+    {[t('area code')]: phone.areaCode},
+    {[t('number')]: phone.number},
+    {[t('verified')]: verified(phone.stateVerified)}
   ]
   return (
     <Centered>

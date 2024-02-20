@@ -3,6 +3,7 @@
     "lastname": "Apellido",
     "email": "Email",
     "emails": "Emails",
+    "sex": "Sexo",
     "dni": "DNI",
     "phone": "Teléfono",
     "address": "Dirección Legal",
@@ -12,7 +13,17 @@
     "facephi": "Facephi",
     "renaper": "Renaper",
     "status": "Estado",
+    "floor": "Piso",
+    "type": "Tipo",
+    "apartment": "Departamento",
+    "last update": "Última actualización",
+    "postal code": "Código postal",
+    "area code": "Código de área",
+    "number": "Número",
+    "province": "Provincia",
+    "nacionality": "Nacionalidad",
     "birth date": "Fecha de Nacimiento",
+    "creation date": "Fecha de creación",
     "resend email": "Reenviar email",
     "id expiration date": "Fecha de caducidad del documento",
     "confirmed email": "Email confirmado",
@@ -55,5 +66,6 @@
     "no results help": "Te recomendamos revisar la escritura de la palabra, buscar una palabra distinta o filtrar por otra categoría",
     "between streets": "Entre calles",
     "country": "País",
-    "city": "Ciudad"
+    "city": "Ciudad",
+    "verified": "Verificado"
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import DataContainer from '@components/DataContainer/DataContainer';
-import * as string from '@utils/string';
+import { useTranslation } from 'react-i18next';
 import { Email } from 'types/type';
 import verified from '@components/Verified/Verified'
 
@@ -37,10 +37,10 @@ interface ILegajoEmailBodyProp {
 }
 
 const LegajoEmailBody = ({email}: ILegajoEmailBodyProp): JSX.Element => {
-
+  const { t } = useTranslation();
   const emailsData: Record<string, string | JSX.Element>[] = [
-    {'Email': email.email},
-    {'Verificado': verified(email.stateVerified)},
+    {[t('email')]: email.email},
+    {[t('verified')]: verified(email.stateVerified)},
   ]
   return (
     <Centered>

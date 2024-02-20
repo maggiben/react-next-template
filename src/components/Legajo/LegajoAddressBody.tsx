@@ -6,7 +6,7 @@ import { Address } from 'types/type';
 import { useTranslation } from 'react-i18next';
 import * as localization from '@utils/localization';
 import dynamic from 'next/dynamic';
-import verified from '@components/Verified/Verified'
+import verified from '@components/Verified/Verified';
 
 const Centered = styled.div`
   display: flex;
@@ -24,9 +24,6 @@ const CenteredColumn = styled.div`
   align-items: center;
 `;
 
-const SpaceTop = styled.div<{ size: 'xxxs' | 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl'; }>`
-  margin-top: ${({ theme, size }) => theme.spacing[size]};
-`;
 
 interface ILegajoAddressBodyProp {
   address: Address;
@@ -36,23 +33,23 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
   const { t } = useTranslation();
   const latitude = address.geoCoordinates && parseFloat(address.geoCoordinates.longitude);
   const longitude = address.geoCoordinates && parseFloat(address.geoCoordinates.latitude);
-  // const latitude = -34.599722222222;
-  // const longitude = -58.381944444444;
+
   const Map = useMemo(
     () => dynamic(() => import("@components/Map/Map"), { ssr: false }),
     []
   );
+  
   const addressData: Record<string, string | JSX.Element>[] = [
     {[t('country')]: address.country},
     {[t('city')]: address.city},
-    {'Provincia': address.state},
-    {'Código Postal': address.zipCode},
-    {'Calle': address.street},
-    {'Número': address.number},
-    {'Piso': address.floor},
-    {'Departamento': address.apartment ?? ''},
+    {[t('province')]: address.state},
+    {[t('postal code')]: address.zipCode},
+    {[t('street')]: address.street},
+    {[t('number')]: address.number},
+    {[t('floor')]: address.floor},
+    {[t('apartment')]: address.apartment ?? ''},
     {[t('between streets')]: address.betweenStreets ?? ''},
-    {'Última actualización': localization.toLocaleDateString(address.lastUseDate)},
+    {[t('last update')]: localization.toLocaleDateString(address.lastUseDate)},
     {[t('verified')]: verified(address.stateVerified)},
   ]
   return (

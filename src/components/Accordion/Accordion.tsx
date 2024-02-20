@@ -72,7 +72,7 @@ const AccordionContainer = ({ label, data, leftIcon }: IAccordionContainerProps)
       <Container data-testid="accordion-container">
         <TitleContainer>
           <Heading>
-            <TitleContent onClick={handleExpandToggle}>
+            <TitleContent onClick={handleExpandToggle} data-testid="accordion-title">
                 <TitleTextWithIcon>{ leftIcon && leftIcon} {label}</TitleTextWithIcon>
               { isExpanded ? <ChevronUpIcon />  : <ChevronDownIcon /> }
             </TitleContent>
@@ -80,7 +80,7 @@ const AccordionContainer = ({ label, data, leftIcon }: IAccordionContainerProps)
         </TitleContainer>
         { 
           data.map((datum, index) => (
-            <ContentWrapper maxHeight={contentHeight} key={index}>
+            <ContentWrapper maxHeight={contentHeight} key={index} data-testid={`${datum.label}-${index}`}>
               <Content ref={contentRef}>{datum.body}</Content>
             </ContentWrapper>
           ))
@@ -90,7 +90,7 @@ const AccordionContainer = ({ label, data, leftIcon }: IAccordionContainerProps)
   );
 };
 
-const AccordionLayout = styled.div<{ color?: string; }>`
+const AccordionLayout = styled.li<{ color?: string; }>`
   background-color: ${({ theme, color }) => color || theme.colors.neutral[100]};
   font-family: inherit;
   &:first-child {
@@ -111,7 +111,13 @@ const AccordionLayout = styled.div<{ color?: string; }>`
   }
 `;
 
-interface IAccordionProps {
+export const Accordion = styled.ul`
+  list-style: none;
+  margin: 0;  
+  padding: 0;
+`;
+
+interface IAccordionItemProps {
   label: string;
   data: Array<{
     label: string;
@@ -121,12 +127,10 @@ interface IAccordionProps {
   leftIcon?: JSX.Element;
 }
 
-const Accordion = ({label, id, data, leftIcon}: IAccordionProps) => {
+export const AccordionItem = ({label, id, data, leftIcon}: IAccordionItemProps) => {
   return (
-    <AccordionLayout id={id} data-testid="accordion-layout">
+    <AccordionLayout id={id}>
       <AccordionContainer label={label} leftIcon={leftIcon} data={data} />
     </AccordionLayout>
   );
 };
-
-export default Accordion;

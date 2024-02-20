@@ -12,7 +12,7 @@ import {
 } from "@fravega-it/bumeran-ds-fvg";
 import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
-import Accordion from '@components/Accordion/Accordion';
+import { AccordionItem, Accordion } from '@components/Accordion/Accordion';
 import DataContainer from '@components/DataContainer/DataContainer';
 import LegajoAddressBody from '@components/Legajo/LegajoAddressBody';
 import LegajoDocumentsBody from '@components/Legajo/LegajoDocumentsBody';
@@ -720,17 +720,17 @@ const Legajo = (): JSX.Element => {
   const rootData: Record<string, string>[] = [{
     'CUID': legajo._id,
   },{
-    'Nombre': legajo.firstName,
+    [t('name')]: legajo.firstName,
   },{
-    'Apellido': legajo.lastName,
+    [t('lastname')]: legajo.lastName,
   },{
-    'Fecha de nacimiento': legajo.birth ? localization.toLocaleDateString(legajo.birth) : '',
+    [t('birth date')]: legajo.birth ? localization.toLocaleDateString(legajo.birth) : '',
   },{
-    'Fecha de Creción': localization.toLocaleDateString(legajo.createdOn),
+    [t('creation date')]: localization.toLocaleDateString(legajo.createdOn),
   }, {
-    Nacionalidad: 'ARG',
+    [t('nacionality')]: 'ARG',
   }, {
-    'Sexo': legajo.gender,
+    [t('sex')]: legajo.gender,
   }];
   
   return (
@@ -750,10 +750,12 @@ const Legajo = (): JSX.Element => {
             <SpaceBottom size='m' />
             <CustomerCard>
               <GridItem xs={12}>
-                <Accordion data={documents} id="documents" label={t('documents')} leftIcon={<DocumentIcon size="l" />}/>
-                <Accordion data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />}/>
-                <Accordion data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />}/>
-                <Accordion data={emails} id='emails' label={t('emails')} leftIcon={<MailIcon size="l" />}/>
+                <Accordion data-testid="accordionr">
+                  <AccordionItem data={documents} id="documents" label={t('documents')} leftIcon={<DocumentIcon size="l" />} data-testid="accordion-documents"/>
+                  <AccordionItem data={addreses} id="addreses" label={t('addresses')} leftIcon={<LocationIcon size="l" />} data-testid="accordion-addresses"/>
+                  <AccordionItem data={phones} id="phones" label={t('phones')} leftIcon={<PhoneIcon size="l" />} data-testid="accordion-phones"/>
+                  <AccordionItem data={emails} id='emails' label={t('emails')} leftIcon={<MailIcon size="l" />} data-testid="accordion-emails"/>
+                </Accordion>
               </GridItem>
             </CustomerCard>
           </Container>
