@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { theme, IDefaultTheme } from '@fravega-it/bumeran-ds-fvg';
 import DataContainer from '@components/DataContainer/DataContainer';
 import { Address } from 'types/type';
+import { getCountryData, TCountryCode } from 'countries-list';
 import { useTranslation } from 'react-i18next';
 import * as localization from '@utils/localization';
-import { getName } from 'country-list';
 import dynamic from 'next/dynamic';
 import verified from '@components/Verified/Verified';
 
@@ -40,8 +40,9 @@ const LegajoAddressBody = ({address}: ILegajoAddressBodyProp): JSX.Element => {
     []
   );
   
+  const constryData = address.country && getCountryData(localization.countryISOMapping[address.country] as TCountryCode);
   const addressData: Record<string, string | JSX.Element>[] = [
-    {[t('country')]: getName(localization.countryISOMapping[address.country]) ?? ''},
+    {[t('country')]: constryData ? constryData.name : ''},
     {[t('city')]: address.city},
     {[t('province')]: address.state},
     {[t('postal code')]: address.zipCode},
